@@ -1,21 +1,41 @@
+#!/bin/bash
+
+# This file is included in .zshrc and .bashrc and is therefore executed in bash and zsh
+# Aliases (require eza and a debian-based distribution)
+
+# ls commands
 alias ls='eza --icons --classify --group-directories-first -l'
 alias l='eza --icons --classify --group-directories-first'
 alias la='eza --icons --classify -lA --group-directories-first'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 
-alias grep='grep --color=auto'
-alias fgrep='fgrep --color=auto'
-alias egrep='egrep --color=auto'
+# Grep is useless since ripgrep is 10x better but you can still add some aliases :
+# alias grep='grep --color=auto'
+# alias fgrep='fgrep --color=auto'
+# alias egrep='egrep --color=auto'
 
+# Vitals :
 alias e='exit'
 alias c='clear'
-alias mk='mkdir'
+# Automatically add some options for mv and cp
 alias rm='rm -r'
-alias eden='ssh eden@99.103.38.109'
+alias cp='cp -r'
+alias eden='ssh eden@99.103.38.109' # example of how you can use ssh quicker
 alias upgrade='sudo apt upgrade'
 alias update='sudo apt update'
-alias i='sudo apt install'
+# When using pacman, you can also make the two commands above only one command with :
+# 
+# alias update='sudo pacman -Syu'
+#
+alias i='sudo apt install' # Change to pacman -S if pacman is the default package manager
 alias ctl='sudo systemctl'
 alias sql='sudo mysql -u root -p'
 alias chmox='chmod +x'
+
+# Export some paths for programs to use
+export labo="/home/paul/test"
+export priv="/home/paul/privat"
+export pro="/home/paul/pro"
+export but="/home/paul/pro/S1"
+export C="/home/paul/pro/S1/C/"
