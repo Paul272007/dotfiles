@@ -39,3 +39,7 @@ export priv="/home/paul/privat"
 export pro="/home/paul/pro"
 export but="/home/paul/pro/S1"
 export C="/home/paul/pro/S1/C/"
+
+mk() {
+  . ~/.local/bin/mk "$@"
+}

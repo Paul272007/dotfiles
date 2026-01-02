@@ -1,7 +1,7 @@
 return {
   "rachartier/tiny-inline-diagnostic.nvim",
   event = "VeryLazy", -- Ou "LspAttach"
-  priority = 1000, -- Needs to be loaded early
+  priority = 1000,    -- Needs to be loaded early
   config = function()
     require('tiny-inline-diagnostic').setup({
       preset = "modern", -- Style moderne "ghost text"

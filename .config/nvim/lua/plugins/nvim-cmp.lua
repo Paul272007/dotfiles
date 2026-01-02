@@ -2,8 +2,8 @@ return {
   "hrsh7th/nvim-cmp",
   event = { "InsertEnter", "CmdlineEnter" },
   dependencies = {
-    "hrsh7th/cmp-buffer", -- source pour compléter le texte déjà présent dans le buffer
-    "hrsh7th/cmp-path", -- source pour compléter les chemins des fichiers
+    "hrsh7th/cmp-buffer",  -- source pour compléter le texte déjà présent dans le buffer
+    "hrsh7th/cmp-path",    -- source pour compléter les chemins des fichiers
     "hrsh7th/cmp-cmdline", -- source pour les completions de la cmdline de vim
     {
       "L3MON4D3/LuaSnip",
@@ -12,10 +12,10 @@ return {
       -- install jsregexp (optional!).
       build = "make install_jsregexp",
     },
-    "saadparwaiz1/cmp_luasnip", -- ajoute LuaSnip à l'autocompletion
+    "saadparwaiz1/cmp_luasnip",     -- ajoute LuaSnip à l'autocompletion
     "rafamadriz/friendly-snippets", -- collection de snippets pratiques
-    "hrsh7th/cmp-emoji", -- complétion d'émojis à la saisie de :
-    "onsails/lspkind.nvim", -- vs-code pictogrammes
+    "hrsh7th/cmp-emoji",            -- complétion d'émojis à la saisie de :
+    "onsails/lspkind.nvim",         -- vs-code pictogrammes
   },
   config = function()
     local cmp = require("cmp")
@@ -37,23 +37,27 @@ return {
         end,
       },
       mapping = {
-        ["<C-k>"] = cmp.mapping.select_prev_item(),
-        ["<C-j>"] = cmp.mapping.select_next_item(),
+        -- ["<C-k>"] = cmp.mapping.select_prev_item(),
+        -- ["<C-j>"] = cmp.mapping.select_next_item(),
+        ["<PageUp>"] = cmp.mapping.select_prev_item(),
+        ["<Up>"] = cmp.mapping.select_prev_item(),
+        ["<PageDown>"] = cmp.mapping.select_next_item(),
+        ["<Down>"] = cmp.mapping.select_next_item(),
         ["<C-b>"] = cmp.mapping.scroll_docs(-1),
         ["<C-f>"] = cmp.mapping.scroll_docs(1),
         ["<C-Space>"] = cmp.mapping.complete(),
-        ["<C-e>"] = cmp.mapping.abort(),
+        ["<Left>"] = cmp.mapping.abort(),
         ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accepte la sélection courante. Mettre à `false` pour ne confirmer que les items explicitement sélectionnés
       },
 
       -- sources pour l'autocompletion
       sources = cmp.config.sources({
-        { name = "copilot", group_index = 2 },
+        { name = "copilot",  group_index = 2 }, -- copilot
         { name = "nvim_lsp", group_index = 2 }, -- lsp
-        { name = "nvim_lua", group_index = 2 },
-        { name = "luasnip", group_index = 2 }, -- snippets
-        { name = "path", group_index = 2 },
-        -- { name = "emoji" }, -- emojis
+        { name = "luasnip",  group_index = 2 }, -- snippets
+        { name = "nvim_lua", group_index = 2 }, -- aucune idée
+        { name = "path",     group_index = 2 }, -- les chemins
+        -- { name = "emoji" }, -- emojis (désactivés)
       }, {
         { name = "buffer" }, -- texte du buffer courant
       }),
@@ -69,7 +73,7 @@ return {
           menu = {
             nvim_lsp = "[LSP]",
             buffer = "[Buffer]",
-            luasnip = "[LuaSnip]",
+            luasnip = "[Snippet]",
             nvim_lua = "[Lua]",
             path = "[Path]",
             emoji = "[Emoji]",
@@ -100,6 +104,5 @@ return {
         },
       }),
     })
-
   end,
 }

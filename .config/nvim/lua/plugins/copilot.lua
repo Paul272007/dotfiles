@@ -3,12 +3,17 @@ return {
   {
     "zbirenbaum/copilot.lua",
     cmd = "Copilot",
+    -- event = "VeryLazy",
     event = "InsertEnter",
     config = function()
       require("copilot").setup({
+        filetypes = {
+          ["*"] = false,
+        },
         suggestion = { enabled = false }, -- On désactive l'affichage fantôme par défaut pour utiliser cmp
         panel = { enabled = false },
       })
+      -- vim.cmd("Copilot disable") -- désactivé par défaut
     end,
   },
   -- Connecteur pour nvim-cmp
