@@ -6,7 +6,7 @@
 # - fzf
 # - zoxide
 
-source ~/.config/custom/init
 source ~/.config/custom/envs
+source ~/.config/custom/init
 source ~/.config/custom/functions
 source ~/.config/custom/aliases

@@ -26,9 +26,14 @@ font-family = "JetBrains Mono"
 font-style = Regular
 
 # Window
+# Valid window themes : auto, system, light, dark, ghostty
+# background = #1a1b26
+# BG color of nvim/TokyoNight :
+background = #222436
 window-theme = ghostty
+window-padding-color = background
 window-padding-x = 10
-window-padding-y = 10
+window-padding-y = 6
 confirm-close-surface = false
 resize-overlay = never
 gtk-toolbar-style = flat
