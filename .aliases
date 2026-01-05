@@ -2,44 +2,73 @@
 
 # This file is included in .zshrc and .bashrc and is therefore executed in bash and zsh
 # Aliases (require eza and a debian-based distribution)
-
-# ls commands
-alias ls='eza --icons --classify --group-directories-first -l'
-alias l='eza --icons --classify --group-directories-first'
-alias la='eza --icons --classify -lA --group-directories-first'
-alias dir='dir --color=auto'
-alias vdir='vdir --color=auto'
-
-# Grep is useless since ripgrep is 10x better but you can still add some aliases :
-# alias grep='grep --color=auto'
-# alias fgrep='fgrep --color=auto'
-# alias egrep='egrep --color=auto'
-
-# Vitals :
-alias e='exit'
-alias c='clear'
-# Automatically add some options for mv and cp
-alias rm='rm -r'
-alias cp='cp -r'
-alias eden='ssh eden@99.103.38.109' # example of how you can use ssh quicker
-alias upgrade='sudo apt upgrade'
-alias update='sudo apt update'
-# When using pacman, you can also make the two commands above only one command with :
-# 
-# alias update='sudo pacman -Syu'
 #
-alias i='sudo apt install' # Change to pacman -S if pacman is the default package manager
-alias ctl='sudo systemctl'
-alias sql='sudo mysql -u root -p'
-alias chmox='chmod +x'
-
-# Export some paths for programs to use
-export labo="/home/paul/test"
-export priv="/home/paul/privat"
-export pro="/home/paul/pro"
-export but="/home/paul/pro/S1"
-export C="/home/paul/pro/S1/C/"
-
+# Functions
 mk() {
   . ~/.local/bin/mk "$@"
 }
+
+zd() {
+  if [ $# -eq 0 ]; then
+    builtin cd ~ && return
+  elif [ -d "$1" ]; then
+    builtin cd "$1"
+  else
+    z "$@" && printf "\U000F17A9 " && pwd || echo "Error: Directory not found"
+  fi
+}
+
+open() {
+  xdg-open "$@" >/dev/null 2>&1 &
+}
+
+n() {
+  if [ "$#" -eq 0 ]; then
+    nvim .
+  else
+    nvim "$@"
+  fi
+}
+
+# ls
+alias ls='eza --icons=auto --classify --group-directories-first -lh'
+alias l='eza --icons --classify --group-directories-first'
+alias la='eza --icons --classify -lA --group-directories-first'
+alias lt='eza --tree --level=2 --long --icons --git'
+
+# Vital shortcuts for already existing commands
+alias bat='batcat'
+alias ff="fzf --preview 'batcat --style=numbers --color=always {}'"
+alias e='exit'
+alias c='clear'
+alias d='docker'
+alias eden='ssh eden@99.103.38.109' # example of how you can use ssh quicker
+alias ctl='sudo systemctl'
+alias sql='sudo mysql -u root -p'
+alias chmox='chmod +x'
+alias g='git'
+# alias upgrade='sudo apt upgrade'
+# alias update='sudo apt update'
+alias up='sudo apt update && sudo apt upgrade'
+alias i='sudo apt update && sudo apt install' # Change to pacman -S if pacman is the default package manager
+# Example for pacman:
+#
+# alias update='sudo pacman -Syu'
+#
+# Automatically add some options for rm and cp
+alias rm='rm -r'
+alias cp='cp -r'
+
+# Directories actions
+alias cd='zd'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
+
+# Shorter paths
+export labo="/home/paul/test"
+export priv="/home/paul/privat"
+export pro="/home/paul/pro"
+export but="/home/paul/pro/S2"
+export C="/home/paul/pro/S1/C"
+export conf="/home/paul/dotfiles/.config"

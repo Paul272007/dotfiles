@@ -42,12 +42,15 @@ keymap('t', '<Esc>', '<C-\\><C-n>', { desc = "Quitter le mode terminal" })
 keymap("n", "<F5>", ':w<CR>:term zc run %<CR>', { desc = "Compile et exécute le code source en C avec zc." })
 
 -- Désactiver PageUp et PageDown en mode insertion (éviter les erreurs de frappe)
-vim.keymap.set("i", "<PageUp>", "<Nop>", { desc = "Disable PageUp" })
-vim.keymap.set("i", "<PageDown>", "<Nop>", { desc = "Disable PageDown" })
+keymap("i", "<PageUp>", "<Nop>", { desc = "Disable PageUp" })
+keymap("i", "<PageDown>", "<Nop>", { desc = "Disable PageDown" })
 
-vim.keymap.set("n", "<leader>rn", function()
+keymap("n", "<leader>rn", function()
   return ":IncRename " .. vim.fn.expand("<cword>")
 end, { expr = true })
 
 -- Dans votre fichier de keymaps (par exemple lua/config/keymaps.lua)
-vim.keymap.set("n", "<leader>ct", "<cmd>Copilot toggle<CR>", { desc = "Toggle Copilot" })
+keymap("n", "<leader>ct", "<cmd>Copilot toggle<CR>", { desc = "Toggle Copilot" })
+
+keymap("n", "<leader>;", "mqA;<esc>`q", { desc = "Ajouter ';' à la fin de la ligne" })
+keymap("n", "<leader>,", "mqA,<esc>`q", { desc = "Ajouter ',' à la fin de la ligne" })

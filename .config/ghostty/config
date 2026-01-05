@@ -16,26 +16,43 @@
 # reloaded while running; some only apply to new windows and others may require
 # a full restart to take effect.
 
-# Config syntax crash course
-# ==========================
-# # The config file consists of simple key-value pairs,
-# # separated by equals signs.
 
-font-family = JetBrains Mono
-font-family-bold = JetBrains Mono Bold
-font-family-italic = JetBrains Mono Italic
-font-family-bold-italic = JetBrains Mono Bold Italic
-theme = TokyoNight
+# Font
+font-family = "JetBrains Mono"
+# font-family-bold = JetBrains Mono Bold
+# font-family-italic = JetBrains Mono Italic
+# font-family-bold-italic = JetBrains Mono Bold Italic
+# theme = TokyoNight
+font-style = Regular
 
-# window-padding-x = 2
-#
-# # Spacing around the equals sign does not matter.
-# # All of these are identical:
-# key=value
-# key= value
-# key =value
-# key = value
-#
+# Window
+window-theme = ghostty
+window-padding-x = 10
+window-padding-y = 10
+confirm-close-surface = false
+resize-overlay = never
+gtk-toolbar-style = flat
+
+# Cursor (somehow doesn't work)
+cursor-style = bar
+cursor-style-blink = false
+
+# random shit from the omarchy config
+# Cursor styling + SSH session terminfo
+# (all shell integration options must be passed together)
+shell-integration-features = no-cursor,ssh-env
+
+# Mouse scrolling speed
+mouse-scroll-multiplier = 1.5
+
+# Keyboard bindings
+keybind = shift+insert=paste_from_clipboard
+keybind = control+insert=copy_to_clipboard
+keybind = super+control+shift+alt+arrow_down=resize_split:down,100
+keybind = super+control+shift+alt+arrow_up=resize_split:up,100
+keybind = super+control+shift+alt+arrow_left=resize_split:left,100
+keybind = super+control+shift+alt+arrow_right=resize_split:right,100
+
 # # Any line beginning with a # is a comment. It's not possible to put
 # # a comment after a config option, since it would be interpreted as a
 # # part of the value. For example, this will have a value of "#123abc":
