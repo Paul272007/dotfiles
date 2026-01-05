@@ -29,6 +29,7 @@ alias bat='batcat'
 alias ff="fzf --preview 'batcat --style=numbers --color=always {}'"
 alias e='exit'
 alias c='clear'
+alias lg='lazygit'
 alias d='docker'
 alias eden='ssh eden@99.103.38.109' # example of how you can use ssh quicker
 alias ctl='sudo systemctl'

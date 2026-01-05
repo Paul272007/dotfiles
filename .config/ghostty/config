@@ -29,7 +29,8 @@ font-style = Regular
 # Valid window themes : auto, system, light, dark, ghostty
 # background = #1a1b26
 # BG color of nvim/TokyoNight :
-background = #222436
+# background = #222436
+background = #1e2030
 window-theme = ghostty
 window-padding-color = background
 window-padding-x = 10

@@ -5,6 +5,7 @@
 # - eza
 # - fzf
 # - zoxide
+# - lazygit
 
 source ~/.config/custom/envs
 source ~/.config/custom/init

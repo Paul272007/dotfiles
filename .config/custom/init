@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# Included in .zshrc and .bashrc
+# Included in .zshrc (also in .bashrc even tho it won't work)
+# Change zsh to bash if $SHELL is bash
 # This file sets up all programs that need to run commands when loading the shell
 
 # Zoxide
