@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Requirements for all shell configuration files:
+# - debian-based distribution
+# - eza
+# - fzf
+# - zoxide
+
+source ~/.config/custom/init
+source ~/.config/custom/envs
+source ~/.config/custom/functions
+source ~/.config/custom/aliases

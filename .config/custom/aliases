@@ -1,13 +1,9 @@
 #!/bin/bash
 
-# This file is included in .zshrc and .bashrc and is therefore executed in bash and zsh
-# Aliases (require eza and a debian-based distribution)
-#
-# Functions
-mk() {
-  . ~/.local/bin/mk "$@"
-}
+# Included in .zshrc and .bashrc
+# The file sets up all aliases for the zsh or bash
 
+# Directories actions
 zd() {
   if [ $# -eq 0 ]; then
     builtin cd ~ && return
@@ -17,18 +13,10 @@ zd() {
     z "$@" && printf "\U000F17A9 " && pwd || echo "Error: Directory not found"
   fi
 }
-
-open() {
-  xdg-open "$@" >/dev/null 2>&1 &
-}
-
-n() {
-  if [ "$#" -eq 0 ]; then
-    nvim .
-  else
-    nvim "$@"
-  fi
-}
+alias cd='zd'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 
 # ls
 alias ls='eza --icons=auto --classify --group-directories-first -lh'
@@ -58,17 +46,3 @@ alias i='sudo apt update && sudo apt install' # Change to pacman -S if pacman is
 # Automatically add some options for rm and cp
 alias rm='rm -r'
 alias cp='cp -r'
-
-# Directories actions
-alias cd='zd'
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-
-# Shorter paths
-export labo="/home/paul/test"
-export priv="/home/paul/privat"
-export pro="/home/paul/pro"
-export but="/home/paul/pro/S2"
-export C="/home/paul/pro/S1/C"
-export conf="/home/paul/dotfiles/.config"

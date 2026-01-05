@@ -36,12 +36,6 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-# NVM things
-export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # Prompt styling
 autoload -U colors && colors  
 PROMPT='%F{red}┌──(%F{white}%n@%m%F{red})-[%F{white}%~%F{red}]-[%F{white}%!%F{red}]
@@ -53,9 +47,5 @@ source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ZSH_HIGHLIGHT_STYLES[path]='fg=white,bold'
 
-# Load aliases
-source ~/.aliases
-export PATH=$HOME/.local/bin:$PATH
-
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-eval "$(zoxide init bash)"
+# Load customized configuration
+source ~/dotfiles/.custom_conf
