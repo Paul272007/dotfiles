@@ -6,6 +6,8 @@
 # - fzf
 # - zoxide
 # - lazygit
+# - starship
+# - try
 
 source ~/.config/custom/envs
 source ~/.config/custom/init
