@@ -19,6 +19,16 @@ n() {
   fi
 }
 
+# When you don't know if you have permissions or not
+edit() {
+  local dir=$(dirname "$1")
+  if [ -w "$1" ] || [ ! -e "$1" -a -w "$dir" ]; then
+    n "$@"
+  else
+    sudoedit "$@"
+  fi
+}
+
 # Compression
 compress() {
   tar -czf "${1%/}.tar.gz" "${1%/}"

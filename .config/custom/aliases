@@ -28,6 +28,7 @@ alias lt='eza --tree --level=2 --long --icons --git'
 alias bat='batcat'
 alias ff="fzf --preview 'batcat --style=numbers --color=always {}'"
 alias e='exit'
+alias se='sudoedit'
 alias c='clear'
 alias lg='lazygit'
 alias d='docker'
