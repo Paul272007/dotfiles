@@ -19,10 +19,10 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 # ls
-alias ls='eza --icons=auto --classify --group-directories-first -lh'
-alias l='eza --icons --classify --group-directories-first'
-alias la='eza --icons --classify -lA --group-directories-first'
-alias lt='eza --tree --level=2 --long --icons --git'
+alias ls='eza --icons=always --hyperlink --git --classify --group-directories-first -lh'
+alias l='eza --icons=always --classify --group-directories-first'
+alias la='eza --icons=always --classify -lA --group-directories-first'
+alias lt='eza --tree --level=2 --long --icons=always --git'
 
 # Vital shortcuts for already existing commands
 alias bat='batcat'
