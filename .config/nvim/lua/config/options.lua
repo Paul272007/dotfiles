@@ -6,3 +6,5 @@ local opt = vim.opt
 
 opt.relativenumber = false
 -- opt.autoindent = true
+
+vim.g.lazyvim_lsp_inlay_hints = false

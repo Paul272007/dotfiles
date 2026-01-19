@@ -1,0 +1,7 @@
+[user]
+	name = Paul Maillard
+	email = pmaillard27@proton.me
+[init]
+	defaultBranch = main
+[core]
+	editor = nvim

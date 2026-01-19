@@ -10,7 +10,7 @@ export SUDO_EDITOR="$EDITOR"
 export BAT_THEME=ansi
 
 # Shorter paths
-export labo="/home/paul/test/labo/"
+export labo="/home/paul/test/labo"
 export priv="/home/paul/privat"
 export pro="/home/paul/pro"
 export but="/home/paul/pro/S2"
