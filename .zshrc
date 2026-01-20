@@ -41,6 +41,18 @@ autoload -U colors && colors
 PROMPT='%F{red}┌──(%F{white}%n@%m%F{red})-[%F{white}%~%F{red}]-[%F{white}%!%F{red}]
 └─%F{white}%# '
 
+# Zsh plugins
+
+ZSH_PLUGINS_DIR="$HOME/.config/zsh/plugins"
+
+if [ -f "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+    source "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+fi
+
+if [ -f "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
+    source "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
+fi
+
 ZSH_HIGHLIGHT_STYLES[path]='fg=white,bold'
 
 # Load customized configuration

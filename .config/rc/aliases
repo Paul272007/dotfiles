@@ -1,18 +1,21 @@
 #!/bin/bash
 
 # Included in .zshrc and .bashrc
-# The file sets up all aliases for the zsh or bash
+# The file sets up all aliases for common commands
 
 # Directories actions
 zd() {
   if [ $# -eq 0 ]; then
     builtin cd ~ && return
   elif [ -d "$1" ]; then
-    builtin cd "$1"
+    builtin cd "$1" && return
   else
-    z "$@" && printf "\U000F17A9 " && pwd || echo "Error: Directory not found"
+    z "$@" && printf "\U000F17A9 " && pwd || return
+    # No need for an error message since z already prints one out
   fi
 }
+
+# cd now calls the function above
 alias cd='zd'
 alias ..='cd ..'
 alias ...='cd ../..'
