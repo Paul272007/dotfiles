@@ -15,7 +15,7 @@ On Linux, your distribution's default package manager is enough.
 - Github CLI
 - Zoxide
 - Try
-- NVM (install only)
+- NVM (install only, no additional configuration)
 - Starship
 - Ghostty
 - Zsh with auto-suggestions and syntax highlighting
