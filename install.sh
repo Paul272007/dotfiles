@@ -9,10 +9,21 @@ BLUE='\033[0;34m'
 RED='\033[0;31m'
 NC='\033[0m'
 
+echo "Warning: this installation will delete all existing configuration for tools that are used by the configuration. Back up important data before proceeding."
+read -pr "Do you want to proceed with the installation ? [Y/n] " CONTINUE_CHOICE
+
+if [[ "$CONTINUE_CHOICE" != "Y" ]]; then
+  echo "Abort installation."
+  exit 1
+fi
+
+echo -e "${BLUE}===== Configuration Installation =====${NC}"
+echo ""
+
 OS=$(uname -s)
 DISTRO=""
 DE=""
-CONFIG_SHELL=""
+DOTFILES_DIR="$HOME/.dotfiles"
 
 # Detect os, distribution and DE if Linux
 echo "Detecting OS..."
@@ -91,7 +102,7 @@ set_wallpaper() {
 
 }
 
-install_depending_on_os() {
+install_pkg() {
   if [[ "$OS" == "Darwin" ]]; then
     brew install "$@"
   elif [[ "$DISTRO" == "Debian" ]]; then
@@ -101,21 +112,9 @@ install_depending_on_os() {
   elif [[ "$DISTRO" == "OpenSUSE" ]]; then
     sudo zypper install -y "$@"
   fi
-
 }
 
-echo "Warning: this installation will delete all existing configuration for tools that are used by the configuration. Back up important data before proceeding."
-read -pr "Do you want to proceed with the installation ? [Y/n] " CONTINUE_CHOICE
-
-if [[ "$CONTINUE_CHOICE" != "Y" ]]; then
-  echo "Abort installation."
-  exit 1
-fi
-
-echo -e "${BLUE}===== Configuration Installation =====${NC}"
-echo ""
-
-echo -e "${BLUE}[1/5] Choosing shell environment...${NC}"
+echo -e "${BLUE}[0/5] Choosing shell environment...${NC}"
 while true; do
   echo "Which shell do you want to use ?"
   echo "1: zsh"
@@ -127,13 +126,20 @@ while true; do
 
   case "$SHELL_CHOICE" in
   1)
-    chsh -s /bin/zsh "$USER"
-    install_depending_on_os zsh
+    if [ "$SHELL" != /bin/zsh ]; then
+      echo "Changing shell to zsh..."
+      chsh -s /bin/zsh "$USER"
+    fi
+    if ! command -v zsh &>/dev/null; then
+      install_pkg zsh
+    fi
     break
     ;;
   2)
-    chsh -s /bin/bash "$USER"
-    install_depending_on_os bash
+    if [ "$SHELL" != /bin/bash ]; then
+      echo "Changing shell to bash..."
+      chsh -s /bin/bash "$USER"
+    fi
     break
     ;;
   *)
@@ -143,48 +149,88 @@ while true; do
 done
 
 # Detect system and install dependencies
-# stow, git, curl, gh
-echo -e "${BLUE}[2/5] Installing dependencies...${NC}"
+# stow, git, curl
+echo -e "${BLUE}[1/5] Installing dependencies...${NC}"
 
-install_depending_on_os git stow curl
+install_pkg git stow curl
 
-if [[ "$OS" == "Darwin" ]]; then
-  brew install git gh stow curl
+echo -e "${BLUE}[2/5] Installing shell tools...${NC}"
 
-elif [[ "$DISTRO" == "Debian" ]]; then
+# Github CLI
 
-  (type -p wget >/dev/null || (sudo apt update && sudo apt install wget -y)) &&
-    sudo mkdir -p -m 755 /etc/apt/keyrings &&
-    wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg >/dev/null &&
-    sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg &&
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null &&
-    sudo apt update &&
-    sudo apt install gh -y
+if ! command -v gh &>/dev/null; then
+  echo "Installing Github CLI..."
+  if [[ "$OS" == "Darwin" ]]; then
+    brew install git gh stow curl
 
-elif [[ "$DISTRO" == "Red-Hat" ]]; then
+  elif [[ "$DISTRO" == "Debian" ]]; then
 
-  sudo dnf install 'dnf-command(config-manager)'
-  sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
-  sudo dnf install gh --repo gh-cli
+    (type -p wget >/dev/null || (sudo apt update && sudo apt install wget -y)) &&
+      sudo mkdir -p -m 755 /etc/apt/keyrings &&
+      wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg >/dev/null &&
+      sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg &&
+      echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list >/dev/null &&
+      sudo apt update &&
+      sudo apt install gh -y
 
-elif [[ "$DISTRO" == "Arch" ]]; then
+  elif [[ "$DISTRO" == "Red-Hat" ]]; then
 
-  sudo pacman -Syu --noconfirm github-cli
+    sudo dnf install 'dnf-command(config-manager)'
+    sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+    sudo dnf install gh --repo gh-cli
 
-elif [[ "$DISTRO" == "OpenSUSE" ]]; then
+  elif [[ "$DISTRO" == "Arch" ]]; then
 
-  sudo zypper addrepo https://cli.github.com/packages/rpm/gh-cli.repo
-  sudo zypper ref
-  sudo zypper install gh
+    sudo pacman -Syu --noconfirm github-cli
+
+  elif [[ "$DISTRO" == "OpenSUSE" ]]; then
+
+    sudo zypper addrepo https://cli.github.com/packages/rpm/gh-cli.repo
+    sudo zypper ref
+    sudo zypper install gh
+  fi
 fi
 
 # Starship
-curl -sS https://starship.rs/install.sh | sh
+
+if ! command -v starship &>/dev/null; then
+  echo "Installing Starship..."
+  curl -sS https://starship.rs/install.sh | sh
+fi
+
+# Zoxide
+if ! command -v zoxide &>/dev/null; then
+  echo "Installing Zoxide..."
+  curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+fi
 
 # Try
-curl -sSf https://raw.githubusercontent.com/dariuszparys/try-rs/main/install.sh | sh
+if ! command -v try &>/dev/null; then
+  echo "Installing Try..."
+  curl -sSf https://raw.githubusercontent.com/dariuszparys/try-rs/main/install.sh | sh
+fi
+
+# NVM (Node Version Manager)
+if [ ! -d "$HOME/.nvm" ]; then
+  echo "Installing NVM..."
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+fi
+
+# ZSH Plugins
+ZSH_PLUGINS="$HOME/.config/zsh/plugins"
+mkdir -p "$ZSH_PLUGINS"
+
+if [ ! -d "$ZSH_PLUGINS/zsh-syntax-highlighting" ]; then
+  git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_PLUGINS/zsh-syntax-highlighting"
+fi
+
+if [ ! -d "$ZSH_PLUGINS/zsh-autosuggestions" ]; then
+  git clone https://github.com/zsh-users/zsh-autosuggestions "$ZSH_PLUGINS/zsh-autosuggestions"
+fi
 
 echo -e "${BLUE}[3/5] Cleaning existing configuration files...${NC}"
+
+echo "This is why backup was necessary..."
 
 # Clean necessary configuration directories
 rm -rf ~/.config/ghostty
@@ -192,33 +238,32 @@ rm -rf ~/.config/custom
 rm -rf ~/.config/nvim
 
 # Clean necessary configuration files
-rm -f ~/.config/starship.toml
-
-# Clean other configuration files or files that could break my config
-rm -f ~/.bashrc
-rm -f ~/.zshrc
-rm -f ~/.clang-format
-rm -f ~/.gitconfig
-rm -f ~/.local/bin/mk
+rm -f ~/.bashrc ~/.zshrc ~/.clang-format ~/.gitconfig ~/.local/bin/mk ~/.config/starship.toml
 
 echo -e "${BLUE}[4/5] Installing the configuration...${NC}"
-# Install configuration
-cp -r . ~ # repo root (dotfiles) => ~/dotfiles
 
-# remove non configuration files
-rm -f ~/dotfiles/{README.md,LICENSE,install.sh,uninstall.sh}
+if [ ! -d "$DOTFILES_DIR" ]; then
+  echo "Creating dotfiles directory and copying files..."
+  mkdir -p "$DOTFILES_DIR"
+  cp -r . "$DOTFILES_DIR"
+
+  # remove non configuration files
+  rm -f "$DOTFILES_DIR/"{README.md,LICENSE,install.sh,uninstall.sh}
+fi
 
 # Then stow it
+cd "$DOTFILES_DIR"
 stow .
 
 echo -e "${BLUE}[5/5] Changing desktop background image...${NC}"
 if [[ "$OS" == "Darwin" ]]; then
-  set_wallpaper "/Users/$USER/.config/custom/background.png"
+  set_wallpaper "/Users/$USER/.config/rc/background.png"
 elif [[ "$OS" == "Linux" ]]; then
-  set_wallpaper "$HOME/.config/custom/background.png"
+  set_wallpaper "$HOME/.config/rc/background.png"
 else
   exit 1
 fi
 
 echo -e "${GREEN}===== Configuration installed successfully! =====${NC}"
+echo "Reload your terminal or your shell to see the changes."
 exit 0

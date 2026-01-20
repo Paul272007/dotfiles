@@ -1,10 +1,12 @@
 # Set up the prompt
 
+# Zsh options
 setopt histignorealldups sharehistory
 
-# Use emacs keybindings even if our EDITOR is set to vi
+# Use emacs keybindings even if our EDITOR is set to nvim
 bindkey -e
 
+# Key bindings
 bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 bindkey '^[[3;5~' kill-word
@@ -36,13 +38,10 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-# Prompt styling
-autoload -U colors && colors
-PROMPT='%F{red}┌──(%F{white}%n@%m%F{red})-[%F{white}%~%F{red}]-[%F{white}%!%F{red}]
-└─%F{white}%# '
+# Load customized configuration
+source ~/.config/rc/rc
 
 # Zsh plugins
-
 ZSH_PLUGINS_DIR="$HOME/.config/zsh/plugins"
 
 if [ -f "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
@@ -54,6 +53,3 @@ if [ -f "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
 fi
 
 ZSH_HIGHLIGHT_STYLES[path]='fg=white,bold'
-
-# Load customized configuration
-source ~/.config/rc/rc
