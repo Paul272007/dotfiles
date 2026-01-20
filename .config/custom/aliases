@@ -19,8 +19,8 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 # ls
-alias ls='eza --icons=always --hyperlink --git --classify --group-directories-first -lh'
 alias l='eza --icons=always --classify --group-directories-first'
+alias ls='eza --icons=always --hyperlink --git --classify --group-directories-first -lh'
 alias la='eza --icons=always --classify -lA --group-directories-first'
 alias lt='eza --tree --level=2 --long --icons=always --git'
 
@@ -37,10 +37,11 @@ alias ctl='sudo systemctl'
 alias sql='sudo mysql -u root -p'
 alias chmox='chmod +x'
 alias g='git'
-# alias upgrade='sudo apt upgrade'
-# alias update='sudo apt update'
+alias upgrade='sudo apt upgrade'
+alias update='sudo apt update'
 alias up='sudo apt update && sudo apt upgrade'
-alias i='sudo apt update && sudo apt install' # Change to pacman -S if pacman is the default package manager
+alias i='sudo apt update && sudo apt install'
+# You can change the alias depending on the package manager you're using
 # Example for pacman:
 #
 # alias update='sudo pacman -Syu'

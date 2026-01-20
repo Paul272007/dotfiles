@@ -5,3 +5,7 @@
 	defaultBranch = main
 [core]
 	editor = nvim
+
+# Other possible Git configurations :
+# Customize output color
+# Aliases (shortcuts for git commands)

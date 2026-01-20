@@ -7,6 +7,8 @@ Inspired by Omarchy configuration
 If you use macOS, Homebrew is required. You can install it this way :
 `/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
 
+On Linux, your distribution's default package manager is enough.
+
 ## This system contains configurations for these tools
 
 - Try
