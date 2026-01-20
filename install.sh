@@ -7,6 +7,7 @@ set -e
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 RED='\033[0;31m'
+YELLOW='\033[1;33m'
 NC='\033[0m'
 
 echo "Warning: this installation will delete all existing configuration for tools that are used by the configuration. Back up important data before proceeding."
@@ -152,7 +153,13 @@ done
 # stow, git, curl
 echo -e "${BLUE}[1/5] Installing dependencies...${NC}"
 
-install_pkg git stow curl
+PACKAGES="git stow curl"
+
+if ! command -v nvim &>/dev/null; then
+  PACKAGES="$PACKAGES neovim"
+fi
+
+install_pkg "$PACKAGES"
 
 echo -e "${BLUE}[2/5] Installing shell tools...${NC}"
 
@@ -189,36 +196,76 @@ if ! command -v gh &>/dev/null; then
     sudo zypper ref
     sudo zypper install gh
   fi
+else
+  echo "Github CLI is already installed"
+fi
+
+# Ghostty
+
+install_ghostty() {
+  if [[ "$OS" == "Darwin" ]]; then
+    brew install --cask ghostty || echo "Ghostty is already installed or brew had an error."
+
+  elif [[ "$DISTRO" == "arch" ]]; then
+    sudo pacman -S --noconfirm ghostty
+
+  else
+    # Debian/Ubuntu/Fedora
+    if command -v brew &>/dev/null; then
+      echo "Installation via Linuxbrew (recommended for Debian/Fedora)..."
+      brew install ghostty
+    else
+      echo -e "${YELLOW}Warning : Ghostty is not in the official repos of $DISTRO.${NC}"
+      echo -e "Please install Homebrew for Linux or compile it manually."
+      echo -e "Link : https://ghostty.org/docs/install"
+    fi
+  fi
+}
+
+if ! command -v ghostty &>/dev/null; then
+  echo "Installing Ghostty..."
+  install_ghostty
+else
+  echo "Ghostty is already installed."
 fi
 
 # Starship
-
 if ! command -v starship &>/dev/null; then
   echo "Installing Starship..."
   curl -sS https://starship.rs/install.sh | sh
+else
+  echo "Starship is already installed"
 fi
 
 # Zoxide
 if ! command -v zoxide &>/dev/null; then
   echo "Installing Zoxide..."
   curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
+else
+  echo "Zoxide is already installed"
 fi
 
 # Try
 if ! command -v try &>/dev/null; then
   echo "Installing Try..."
   curl -sSf https://raw.githubusercontent.com/dariuszparys/try-rs/main/install.sh | sh
+else
+  echo "Try is already installed"
 fi
 
-# NVM (Node Version Manager)
+# NVM
 if [ ! -d "$HOME/.nvm" ]; then
   echo "Installing NVM..."
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+  # \. "$HOME/.nvm/nvm.sh"
+else
+  echo "NVM is already installed"
 fi
 
 # ZSH Plugins
 ZSH_PLUGINS="$HOME/.config/zsh/plugins"
 mkdir -p "$ZSH_PLUGINS"
+echo "Installing some vital ZSH plugins..."
 
 if [ ! -d "$ZSH_PLUGINS/zsh-syntax-highlighting" ]; then
   git clone https://github.com/zsh-users/zsh-syntax-highlighting.git "$ZSH_PLUGINS/zsh-syntax-highlighting"

@@ -9,12 +9,16 @@ If you use macOS, Homebrew is required. You can install it this way :
 
 On Linux, your distribution's default package manager is enough.
 
-## This system contains configurations for these tools
+## This system installs and contains configurations for these tools
 
+- Neovim
+- Github CLI
+- Zoxide
 - Try
+- NVM (install only)
 - Starship
 - Ghostty
-- Neovim
+- Zsh with auto-suggestions and syntax highlighting
 
 ## Installing
 
