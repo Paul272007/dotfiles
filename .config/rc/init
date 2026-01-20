@@ -1,0 +1,52 @@
+#!/bin/bash
+
+# Included in .zshrc (also in .bashrc even tho it won't work)
+# Change zsh to bash if $SHELL is bash
+# This file sets up all programs that need to run commands when loading the shell
+
+CURRENT_SHELL=$(basename "$SHELL")
+
+# Zoxide
+if command -v zoxide &>/dev/null; then
+  eval "$(zoxide init "$CURRENT_SHELL")"
+fi
+
+# Homebrew
+if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
+
+# Starship
+if command -v starship &>/dev/null; then
+  eval "$(starship init "$CURRENT_SHELL")"
+fi
+
+# Try
+if command -v try &>/dev/null; then
+  eval "$(try init ~/test/labo)"
+fi
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# NVM Bash completion
+if [ "$CURRENT_SHELL" = "bash" ]; then
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+fi
+
+if [ "$CURRENT_SHELL" = "zsh" ]; then
+  ZSH_PLUGINS_DIR="$HOME/.config/zsh/plugins"
+
+  # Vérification de l'existence des fichiers avant de "sourcer"
+  [ -f "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] &&
+    source "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+  [ -f "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ] &&
+    source "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
+fi
+
+# NVM
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion" # This loads nvm bash_completion

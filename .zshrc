@@ -37,15 +37,11 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # Prompt styling
-autoload -U colors && colors  
+autoload -U colors && colors
 PROMPT='%F{red}┌──(%F{white}%n@%m%F{red})-[%F{white}%~%F{red}]-[%F{white}%!%F{red}]
 └─%F{white}%# '
-
-# Plugins (autocompletion and syntax highlighting)
-source ~/.zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 ZSH_HIGHLIGHT_STYLES[path]='fg=white,bold'
 
 # Load customized configuration
-source ~/dotfiles/.custom_conf
+source ~/.config/rc/rc
