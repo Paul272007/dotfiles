@@ -7,4 +7,5 @@ local opt = vim.opt
 opt.relativenumber = false
 -- opt.autoindent = true
 
+-- doesn't work
 vim.g.lazyvim_lsp_inlay_hints = false

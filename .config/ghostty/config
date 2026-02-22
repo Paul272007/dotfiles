@@ -39,9 +39,8 @@ confirm-close-surface = false
 resize-overlay = never
 gtk-toolbar-style = flat
 
-# Cursor (somehow doesn't work)
 cursor-style = bar
-cursor-style-blink = false
+cursor-style-blink = true
 
 # random shit from the omarchy config
 # Cursor styling + SSH session terminfo
