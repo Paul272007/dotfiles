@@ -1,14 +1,14 @@
 #!/bin/bash
 
 # Included in .zshrc and .bashrc
-# This file declares functions
+# This file declares additional functions for the shell
 
 mk() {
   mkdir -p "$1" && cd "$1" || return
 }
 
 open() {
-  xdg-open "$@" >/dev/null 2>&1 &
+  xdg-open "$@" >/dev/null
 }
 
 n() {
@@ -21,11 +21,18 @@ n() {
 
 # When you don't know if you have permissions or not
 edit() {
-  local dir=$(dirname "$1")
-  if [ -w "$1" ] || [ ! -e "$1" -a -w "$dir" ]; then
-    n "$@"
+  if [ -z "$1" ]; then
+    # If no argument was given, search for file to edit with fzf
+    nvim "$(fzf --preview='batcat {}')"
   else
-    sudoedit "$@"
+    # Else use sudoedit if root privileges are needed
+    local dir
+    dir=$(dirname "$1")
+    if [ -w "$1" ] || [ ! -e "$1" ] && [ -w "$dir" ]; then
+      n "$@"
+    else
+      sudoedit "$@"
+    fi
   fi
 }
 
@@ -33,8 +40,6 @@ edit() {
 compress() {
   tar -czf "${1%/}.tar.gz" "${1%/}"
 }
-
-alias decompress='tar -xvf'
 
 # _zc() {
 #   echo "JAJAJA"

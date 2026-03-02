@@ -44,6 +44,7 @@ alias upgrade='sudo apt upgrade'
 alias update='sudo apt update'
 alias up='sudo apt update && sudo apt upgrade'
 alias i='sudo apt update && sudo apt install'
+alias decompress='tar -xvf'
 # You can change the alias depending on the package manager you're using
 # Example for pacman:
 #
