@@ -9,3 +9,5 @@
 # Other possible Git configurations :
 # Customize output color
 # Aliases (shortcuts for git commands)
+[protocol "file"]
+	allow = always
