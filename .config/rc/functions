@@ -36,6 +36,16 @@ edit() {
   fi
 }
 
+apacheup() {
+  sudo systemctl start mariadb
+  sudo systemctl start apache2
+}
+
+apachedown() {
+  sudo systemctl stop apache2
+  sudo systemctl stop mariadb
+}
+
 # Compression
 compress() {
   tar -czf "${1%/}.tar.gz" "${1%/}"

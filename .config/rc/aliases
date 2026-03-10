@@ -51,5 +51,7 @@ alias decompress='tar -xvf'
 # alias update='sudo pacman -Syu'
 #
 # Automatically add some options for rm and cp
-alias rm='rm -r'
+alias mr='rm'
 alias cp='cp -r'
+alias glog='git log --all --oneline --graph'
+alias rs='source ~/.zshrc'

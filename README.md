@@ -1,28 +1,52 @@
-# Shell Configuration
+# Dotfiles - la configuration centralisée
 
-Inspired by Omarchy configuration
+## Prérequis
 
-## Dependencies
+- `Git`
+- `Curl`
+- `Stow`
+- `Ghostty`
+- `Starship`
+- `Zoxide`
+- `Neovim`
+- `ZSH`
 
-If you use macOS, Homebrew is required. You can install it this way :
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
+## Optionnel
 
-On Linux, your distribution's default package manager is enough.
+- `Homebrew`
+- `NVM` + `NPM` + `Node`
+- `Clang`
+- `GitHub-CLI`
+  Si Arch Linux :
+- `Hyprland`
+- `Hyprpaper`
 
-## This system installs and contains configurations for these tools
+## Structure des fichiers de configuration
 
-- Neovim
-- Github CLI
-- Zoxide
-- Try
-- NVM (install only, no additional configuration)
-- Starship
-- Ghostty
-- Zsh with auto-suggestions and syntax highlighting
+`dotfiles`
 
-## Installing
+- `.config/` = la configuration de chaque application.
+  - `ghostty/` = configuration de `ghostty`.
+    - `config`
+  - `nvim/` = configuration de `neovim`.
+    - `...`
+  - `rc/` = configuration de shell personnalisée.
+    - `aliases` = définition des alias de commandes.
+    - `envs` = définition des variables d'environnement.
+    - `functions` = définition de fonctions supplémentaires pour le shell.
+    - `init` = initialise et lance tous les services du shell.
+    - `rc` = source tous les fichiers précédents.
+  - `zsh/` = contient des configuration supplémentaires pour `zsh`.
+    - `plugins/` = plugins `zsh`.
+  - `starship.toml` = configuration de `starship`.
+- `.git/` = pour le dépôt git. Ignoré par `stow`.
+  - `...`
+- `.bashrc` = configuration de `bash`.
+- `.clang-format` = configuration du formatage `clang` pour tous les éditeurs de code.
+- `.gdbinit` = configuration de `GDB`.
+- `.gitconfig` = configuration de `git`.
+- `.gitignore` = pour le dépôt git. Ignoré par `stow`.
+- `.stow-local-ignore` = contient tous les fichiers ignorés par `stow`.
+- `.zshrc` = configuration de `zsh`.
+- `README.md` = README du dépôt. Ignoré par `stow`.
 
-Simply run `./install.sh` with root privileges
-
-**Warning**: The installation script will delete all existing configuration for
-tools that are used by this configuration. Back up important data before proceeding.
