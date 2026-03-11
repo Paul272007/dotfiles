@@ -11,3 +11,18 @@ source ~/.config/rc/envs
 source ~/.config/rc/init
 source ~/.config/rc/functions
 source ~/.config/rc/aliases
+
+# If terminal is interactive
+if [[ -t 1 ]]; then
+  MIN_COLS=85
+  MIN_LINES=35
+
+  # Fetches the current size of the terminal
+  TERM_COLS=$(tput cols 2>/dev/null || echo 0)
+  TERM_LINES=$(tput lines 2>/dev/null || echo 0)
+
+  # Compares current size to minimum
+  if [ "$TERM_COLS" -ge "$MIN_COLS" ] && [ "$TERM_LINES" -ge "$MIN_LINES" ]; then
+    fastfetch
+  fi
+fi
