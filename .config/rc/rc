@@ -14,7 +14,7 @@ source ~/.config/rc/aliases
 
 # If terminal is interactive
 if [[ -t 1 ]]; then
-  MIN_COLS=85
+  MIN_COLS=100
   MIN_LINES=35
 
   # Fetches the current size of the terminal

@@ -1,12 +1,12 @@
 { 
   "position": "top",
-  "exlusive": "true",
-  "passthrough": "true",
-  "gtk-layer-shell": "true",
+  "exclusive": true,
+  "passthrough": true,
+  "gtk-layer-shell": true,
   "margin-top": 5,
   "margin-left": 10,
   "margin-right": 10,
-  "height": 10, // Ne change rien
+  "height": 10,
   "modules-left": [
     "custom/weather",
     "cpu",
@@ -22,20 +22,18 @@
     "pulseaudio#microphone",
     "clock",
     "separator",
-    "tray",
     "network",
     "bluetooth"
   ],
-
 
   "tray": {
     "icon-size": 16,
     "icon-theme": "Papirus",
     "spacing": 2
   },
-   "custom/spacer": {
-        "format": " ", // Empty space
-        "tooltip": false
+  "custom/spacer": {
+    "format": " ",
+    "tooltip": false
   },
   "separator": {
     "format": " | "
@@ -65,9 +63,8 @@
       "urgent": "",
       "persistent": "",
       "focused": "",
-      "default": "",
-
-        },
+      "default": ""
+    },
     "sort-by-number": true,
     "persistent-workspaces": {
       "*": 9,
@@ -79,7 +76,6 @@
     "format": "<span color='#89b4fa'>󰥔 </span><span color='#cdd6f4'>{:%H:%M | %a %d %b}</span>",
     "format-alt": "{:%Y-%m-%d}"
   },
-
   "cpu": {
     "format": "<span color='#89b4fa'>󰍛</span> <span color='#cdd6f4'>{usage}%</span>",
     "interval": 1,
@@ -92,15 +88,12 @@
     "interval": 3,
     "format": "<span color='#f38ba8'> </span> <span color='#cdd6f4'>{used:0.1f}G</span>"
   },
-
   "custom/weather": {
-      "exec": "~/.config/hypr/scripts/weather.sh",
-      "return-type": "json",
-      "interval": 600,
-      "format": "{text}"
+    "exec": "~/.config/hypr/scripts/weather.sh",
+    "return-type": "json",
+    "interval": 600,
+    "format": "{text}"
   },
-
-
   "pulseaudio": {
     "format": "<span color='#a6e3a1'>{icon} </span><span color='#cdd6f4'>{volume}%</span>",
     "format-bluetooth": "<span color='#a6e3a1'>{icon}</span>  <span color='#cdd6f4'>{volume}%</span>",
@@ -119,7 +112,7 @@
       "default": [
         "",
         "",
-        "",
+        ""
       ]
     }
   },
@@ -129,22 +122,27 @@
     "format-source-muted": "",
     "on-click": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
     "on-scroll-up": "wpctl set-volume @DEFAULT_SOURCE@ 5%+",
-    "on-scroll-down": "wpctl set-volume @DEFAULT_SOURCE@ 5%-",
+    "on-scroll-down": "wpctl set-volume @DEFAULT_SOURCE@ 5%-"
   },
-
-   "hyprland/language": {
-
-  "format": "<span color='#f9e2af'>󰌌</span> <span color='#cdd6f4'>{}</span>",
-
-  "format-ar": "ara",
-
-  "format-en": "eng",
-
-},
+  "hyprland/language": {
+    "format": "<span color='#f9e2af'>󰌌</span> <span color='#cdd6f4'>{}</span>",
+    "format-ar": "ara",
+    "format-en": "eng"
+  },
   "disk":{
-	"interval": 3,
-  "path": "/home",
-	"format": "<span color='#a6e3a1'> </span><span color='#cdd6f4'>{free}</span>",
-	"unit": "GB"
-},
+    "interval": 3,
+    "path": "/home",
+    "format": "<span color='#a6e3a1'> </span><span color='#cdd6f4'>{free}</span>",
+    "unit": "GB"
+  },
+  "network": {
+    "format-wifi": "<span color='#89b4fa'> </span> <span color='#cdd6f4'>{essid}</span>",
+    "format-ethernet": "<span color='#89b4fa'>󰈀 </span> <span color='#cdd6f4'>Câblé</span>",
+    "format-disconnected": "<span color='#f38ba8'>󰖪 </span> <span color='#cdd6f4'>Off</span>"
+  },
+  "bluetooth": {
+    "format": "<span color='#89b4fa'></span> <span color='#cdd6f4'>{status}</span>",
+    "format-connected": "<span color='#89b4fa'></span> <span color='#cdd6f4'>{device_alias}</span>",
+    "on-click": "blueman-manager"
+  }
 }
