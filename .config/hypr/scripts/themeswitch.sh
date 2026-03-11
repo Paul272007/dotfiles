@@ -2,7 +2,7 @@
 
 THEME_DIR="$HOME/.config/hypr/themes"
 CURRENT_THEME_FILE="$HOME/.config/hypr/themes/current_theme.conf"
-AGS_COLORS="$HOME/.config/hypr/themes/current_theme_ags.css"
+WAYBAR_CSS="$HOME/.config/waybar/style.css"
 FASTFETCH_CONFIG="$HOME/.config/fastfetch/config.jsonc"
 
 if [ -z "$1" ]; then
@@ -22,7 +22,7 @@ fi
 # We suppose each theme folder has the required files
 ln -sf "$THEME_DIR/$THEME_NAME/theme.conf" "$CURRENT_THEME_FILE"
 # Change AGS colors
-ln -sf "$THEME_DIR/$THEME_NAME/ags_colors.css" "$AGS_COLORS"
+ln -sf "$THEME_DIR/$THEME_NAME/waybar.css" "$WAYBAR_CSS"
 # Change fastfetch configuration
 ln -sf "$THEME_DIR/$THEME_NAME/config.jsonc" "$FASTFETCH_CONFIG"
 
