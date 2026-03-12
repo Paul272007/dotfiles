@@ -30,7 +30,7 @@ ln -sf "$THEME_DIR/$THEME_NAME/config.jsonc" "$FASTFETCH_CONFIG"
 ln -sf "$THEME_DIR/$THEME_NAME/rofi_colors.rasi" "$ROFI_COLORS"
 
 # 3. Change background using swww
-# We search any image called wall.?
+# We search any image called wall.*
 WALLPAPER=$(find "$THEME_DIR/$THEME_NAME" -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.jpeg" \) | head -n 1)
 
 if [ -f "$WALLPAPER" ]; then
@@ -40,7 +40,8 @@ fi
 # 4. Reload hyprland to apply changes
 hyprctl reload
 
-# 5. Reload AGS colors
-ags -r "App.resetCss(); App.applyCss('./style.css');" &>/dev/null
+# 5. Reload waybar
+killall waybar
+waybar &>/dev/null
 
 notify-send "Thème appliqué" "Style : $THEME_NAME"
