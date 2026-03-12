@@ -10,6 +10,7 @@
 - `Zoxide`
 - `Neovim`
 - `ZSH`
+- `Yazi`
 
 ## Optionnel
 
@@ -19,7 +20,8 @@
 - `GitHub-CLI`
   Si Arch Linux :
 - `Hyprland`
-- `Hyprpaper`
+- `Waybar`
+- `Rofi`
 
 ## Structure des fichiers de configuration
 
@@ -49,4 +51,3 @@
 - `.stow-local-ignore` = contient tous les fichiers ignorés par `stow`.
 - `.zshrc` = configuration de `zsh`.
 - `README.md` = README du dépôt. Ignoré par `stow`.
-

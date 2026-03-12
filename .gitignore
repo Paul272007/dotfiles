@@ -3,3 +3,4 @@
 .config/waybar/style.css
 .config/hypr/themes/current_theme.conf
 .config/hypr/themes/current_theme_ags.css
+.config/rofi/colors.rasi
