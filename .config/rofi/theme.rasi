@@ -1,0 +1,85 @@
+@import "colors.rasi"
+
+window {
+  width: 600px;
+  border: 2px solid;
+  border-color: @accent-color;
+  border-radius: 15px;
+  background-color: @bg-color;
+}
+
+mainbox {
+  padding: 20px;
+  background-color: transparent;
+  children: [inputbar, listview, mode-switcher];
+}
+
+inputbar {
+  spacing: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: @bg-alt;
+  children: [ prompt, entry ];
+}
+
+prompt {
+  background-color: @accent-color;
+  padding: 6px;
+  border-radius: 6px;
+}
+
+entry {
+  padding: 6px;
+  text-color: @fg-color;
+  placeholder: "Rechercher...";
+  background-color: transparent;
+}
+
+listview {
+  lines: 8;
+  columns: 2;
+  // fixed-height: true;
+  border: 0px;
+  spacing: 5px;
+  padding: 10px 0px 0px;
+  background-color: transparent;
+}
+
+element {
+  padding: 8px;
+  spacing: 10px;
+  border-radius: 10px;
+  background-color: transparent;
+  text-color: @fg-color;
+}
+
+element selected {
+  background-color: @accent-color;
+  text-color: @bg-color;
+}
+
+element-text, element-icon {
+  size: 32px;
+  background-color: transparent;
+  text-color: inherit;
+  vertical-align: 0.5; /* Centre le texte verticalement avec l'icône */
+}
+
+mode-switcher {
+  spacing: 10px;
+  margin: 10px 0px 0px 0px;
+  background-color: @bg-color;
+}
+
+button {
+  padding: 8px;
+  border-radius: 8px;
+  background-color: @bg-alt;
+  text-color: @fg-color;
+  cursor: pointer;
+}
+
+button selected {
+  background-color: @accent-color;
+  text-color: @bg-color;
+}

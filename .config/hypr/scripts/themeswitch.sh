@@ -1,9 +1,10 @@
 #!/bin/bash
 
 THEME_DIR="$HOME/.config/hypr/themes"
-CURRENT_THEME_FILE="$HOME/.config/hypr/themes/current_theme.conf"
+CURRENT_THEME_FILE="$THEME_DIR/current_theme.conf"
 WAYBAR_CSS="$HOME/.config/waybar/style.css"
 FASTFETCH_CONFIG="$HOME/.config/fastfetch/config.jsonc"
+ROFI_COLORS="$HOME/.config/rofi/colors.rasi"
 
 if [ -z "$1" ]; then
   echo "Usage: ./themeswitch.sh <theme>"
@@ -25,6 +26,8 @@ ln -sf "$THEME_DIR/$THEME_NAME/theme.conf" "$CURRENT_THEME_FILE"
 ln -sf "$THEME_DIR/$THEME_NAME/waybar.css" "$WAYBAR_CSS"
 # Change fastfetch configuration
 ln -sf "$THEME_DIR/$THEME_NAME/config.jsonc" "$FASTFETCH_CONFIG"
+# Change rofi colors
+ln -sf "$THEME_DIR/$THEME_NAME/rofi_colors.rasi" "$ROFI_COLORS"
 
 # 3. Change background using swww
 # We search any image called wall.?

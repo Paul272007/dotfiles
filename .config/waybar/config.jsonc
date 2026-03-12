@@ -1,7 +1,6 @@
 {
   "position": "top",
   "exclusive": true,
-  "passthrough": true,
   "gtk-layer-shell": true,
   "margin-top": 5,
   "margin-left": 15,
@@ -17,7 +16,7 @@
     "hyprland/workspaces"
   ],
   "modules-right": [
-    "pulseaudio",
+    "pulseaudio#speaker",
     "pulseaudio#microphone",
     "clock",
     "separator",
@@ -93,7 +92,7 @@
     "interval": 600,
     "format": "{text}"
   },
-  "pulseaudio": {
+  "pulseaudio#speaker": {
     "format": "<span color='#a6e3a1'>{icon} </span><span color='#cdd6f4'>{volume}%</span>",
     "format-bluetooth": "<span color='#a6e3a1'>{icon}</span>  <span color='#cdd6f4'>{volume}%</span>",
     "tooltip": false,

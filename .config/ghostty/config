@@ -1,54 +1,29 @@
-# This is the configuration file for Ghostty.
-#
-# The template does not set any default options, since Ghostty ships
-# with sensible defaults for all options. Users should only need to set
-# options that they want to change from the default.
-#
-# Run `ghostty +show-config --default --docs` to view a list of
-# all available config options and their default values.
-#
-# Additionally, each config option is also explained in detail
-# on Ghostty's website, at https://ghostty.org/docs/config.
-#
-# Ghostty can reload the configuration while running by using the menu
-# options or the bound key (default: Command + Shift + comma on macOS and
-# Control + Shift + comma on other platforms). Not all config options can be
-# reloaded while running; some only apply to new windows and others may require
-# a full restart to take effect.
-
-
 # Font
-font-family = "JetBrains Mono"
-# font-family-bold = JetBrains Mono Bold
-# font-family-italic = JetBrains Mono Italic
-# font-family-bold-italic = JetBrains Mono Bold Italic
-# theme = TokyoNight
+font-family = "JetBrains Mono Nerd Font"
 font-style = Regular
 
-# Window
-# Valid window themes : auto, system, light, dark, ghostty
-# background = #1a1b26
-# BG color of nvim/TokyoNight :
-# background = #222436
+# Theme and appearance
+# theme = ...
+# BG color of nvim + TokyoNight :
 background = #1e2030
+background-opacity = 0.9
+
+# Window
 window-theme = ghostty
 window-padding-color = background
 window-padding-x = 10
-window-padding-y = 6
+window-padding-y = 10
 confirm-close-surface = false
 resize-overlay = never
 gtk-toolbar-style = flat
 
+# Cursor and mouse
 cursor-style = bar
 cursor-style-blink = true
+mouse-scroll-multiplier = 2
 
-# random shit from the omarchy config
-# Cursor styling + SSH session terminfo
-# (all shell integration options must be passed together)
+# Shell integration
 shell-integration-features = no-cursor,ssh-env
-
-# Mouse scrolling speed
-mouse-scroll-multiplier = 1.5
 
 # Keyboard bindings
 keybind = shift+insert=paste_from_clipboard
@@ -57,16 +32,3 @@ keybind = super+control+shift+alt+arrow_down=resize_split:down,100
 keybind = super+control+shift+alt+arrow_up=resize_split:up,100
 keybind = super+control+shift+alt+arrow_left=resize_split:left,100
 keybind = super+control+shift+alt+arrow_right=resize_split:right,100
-
-# # Any line beginning with a # is a comment. It's not possible to put
-# # a comment after a config option, since it would be interpreted as a
-# # part of the value. For example, this will have a value of "#123abc":
-# background = #123abc
-#
-# # Empty values are used to reset config keys to default.
-# key =
-#
-# # Some config options have unique syntaxes for their value,
-# # which is explained in the docs for that config option.
-# # Just for example:
-# resize-overlay-duration = 4s 200ms

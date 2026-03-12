@@ -1,0 +1,19 @@
+configuration {
+    modes: "drun,run,filebrowser,window";
+    case-sensitive: false;
+    font: "JetBrains Mono Nerd Font 12";
+    icon-theme: "Papirus";
+    show-icons: true;
+    terminal: "ghostty";
+    drun-display-format: "{icon} {name}";
+    location: 0;
+    disable-history: false;
+    hide-scrollbar: true;
+    display-drun: "   Apps ";
+    display-run: "   Run ";
+    display-window: "   Window ";
+    display-filebrowser: "   Files ";
+    sidebar-mode: true;
+}
+
+@theme "theme"
