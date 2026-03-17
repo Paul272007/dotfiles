@@ -23,7 +23,7 @@ n() {
 edit() {
   if [ -z "$1" ]; then
     # If no argument was given, search for file to edit with fzf
-    nvim "$(fzf --preview='batcat {}')"
+    nvim "$(fzf --preview='bat --style=numbers --color=always {}')"
   else
     # Else use sudoedit if root privileges are needed
     local dir

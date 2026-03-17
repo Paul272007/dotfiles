@@ -6,15 +6,16 @@
   "margin-left": 15,
   "margin-right": 10,
   "height": 10,
-  "modules-left": ["custom/weather", "cpu", "memory", "disk"],
+  "modules-left": ["custom/weather", "cpu", "memory", "disk", "custom/updates"],
   "modules-center": ["hyprland/workspaces"],
   "modules-right": [
+    "custom/redshift",
     "pulseaudio#speaker",
     "pulseaudio#microphone",
     "clock",
     "separator",
     "network",
-    "bluetooth",
+    // "bluetooth",
     "custom/power",
   ],
 
@@ -86,6 +87,23 @@
     "path": "/home",
     "format": "<span color='#F87C63'> </span><span color='#cdd6f4'>{free}</span>",
     "unit": "GB",
+  },
+  "custom/updates": {
+    "format": "{}",
+    "return-type": "json",
+    "exec": "~/.config/waybar/scripts/check_updates.sh",
+    "interval": 3600, // Vérifie toutes les heures
+    "on-click": "~/.config/waybar/scripts/run_updates.sh",
+    "signal": 9,
+    "tooltip": true,
+  },
+  "custom/redshift": {
+    "format": "{}",
+    "return-type": "json",
+    "interval": 1,
+    "exec": "~/.config/waybar/scripts/toggle_shade.sh status",
+    "on-click": "~/.config/waybar/scripts/toggle_shade.sh",
+    "signal": 8,
   },
   "pulseaudio#speaker": {
     "format": "<span color='#F87C63'>{icon} </span><span color='#cdd6f4'>{volume}%</span>",

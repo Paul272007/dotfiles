@@ -9,3 +9,7 @@ opt.relativenumber = false
 
 -- doesn't work
 vim.g.lazyvim_lsp_inlay_hints = false
+
+-- Pour Lua (init.lua)
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })

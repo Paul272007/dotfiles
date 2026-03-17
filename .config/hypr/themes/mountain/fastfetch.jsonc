@@ -1,10 +1,10 @@
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
   "logo": {
-    "type": "file",
-    "source": "~/dotfiles/.config/hypr/themes/mountain/fastfetch.txt",
+    "type": "auto",
+    "source": "",
     "color": {
-      "1": "white",
+      "1": "",
       "2": "",
       "3": "",
       "4": "",
@@ -17,9 +17,9 @@
     "width": null,
     "height": null,
     "padding": {
-      "top": 1,
-      "left": 5,
-      "right": 7,
+      "top": 4,
+      "left": 7,
+      "right": 9,
     },
     "printRemaining": true,
     "preserveAspectRatio": false,
