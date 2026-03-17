@@ -1,0 +1,48 @@
+@import "colors.rasi"
+
+configuration {
+  show-icons: false;
+}
+
+window {
+    width: 350px;
+    border: 2px solid;
+    border-color: @accent-color;
+    border-radius: 15px;
+    background-color: @bg-color;
+    location: center; /* Centre la fenêtre au milieu de l'écran */
+}
+
+mainbox {
+    padding: 15px;
+    background-color: transparent;
+    children: [ listview ];
+}
+
+listview {
+    lines: 5; /* Exactement 5 options */
+    columns: 1;
+    border: 0px;
+    spacing: 0px;
+    padding: 0;
+    background-color: transparent;
+}
+
+element {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: transparent;
+    text-color: @fg-color;
+    cursor: pointer;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    font: "GeistMono Nerd Font Bold 12";
+}
+
+element selected {
+    background-color: @accent-color;
+    text-color: @bg-color;
+}

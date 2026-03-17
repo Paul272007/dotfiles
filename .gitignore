@@ -1,6 +1,11 @@
+# Nvim packages
 .config/nvim/lazy-lock.json
-.config/fastfetch/config.jsonc
-.config/waybar/style.css
+
+# ----- All symlinks pointing to a theme configuration
 .config/hypr/themes/current_theme.conf
-.config/hypr/themes/current_theme_ags.css
+.config/waybar/config.jsonc
+.config/waybar/style.css
+.config/fastfetch/config.jsonc
 .config/rofi/colors.rasi
+.config/starship.toml
+.config/swaync/style.css

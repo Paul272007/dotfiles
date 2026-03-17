@@ -11,6 +11,12 @@
 - `Neovim`
 - `ZSH`
 - `Yazi`
+- `Fastfetch`
+- `Hyprland`
+- `Waybar`
+- `Rofi`
+- `Swww`
+- `Hyprlock`
 
 ## Optionnel
 
@@ -18,10 +24,6 @@
 - `NVM` + `NPM` + `Node`
 - `Clang`
 - `GitHub-CLI`
-  Si Arch Linux :
-- `Hyprland`
-- `Waybar`
-- `Rofi`
 
 ## Structure des fichiers de configuration
 

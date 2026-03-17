@@ -4,7 +4,6 @@
 @define-color surface0  #313244;
 @define-color blue      #89b4fa;
 @define-color green     #a6e3a1;
-@define-color yellow    #f9e2af;
 @define-color red       #f38ba8;
 @define-color mauve     #cba6f7;
 
@@ -36,7 +35,8 @@ tooltip {
 #pulseaudio,
 #clock,
 #network,
-#bluetooth {
+#bluetooth,
+#custom-power {
   padding: 2px 11px;
   border-radius: 0;
   background: @base;
@@ -59,7 +59,7 @@ tooltip {
   margin: 0 1px;
 
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  color: @yellow;
+  color: @text;
 }
 
 #workspaces button.empty {
@@ -98,7 +98,7 @@ tooltip {
 
 #disk,
 #clock,
-#bluetooth {
+#custom-power {
   border-radius: 0px 13px 13px 0px;
   padding-right: 18px;
   margin-right: 4px;
