@@ -9,3 +9,6 @@
 .config/rofi/colors.rasi
 .config/starship.toml
 .config/swaync/style.css
+
+# Tmux plugins
+.config/tmux/plugins/*

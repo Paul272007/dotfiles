@@ -92,7 +92,7 @@
     "format": "{}",
     "return-type": "json",
     "exec": "~/.config/waybar/scripts/check_updates.sh",
-    "interval": 3600, // Vérifie toutes les heures
+    "interval": 1800,
     "on-click": "~/.config/waybar/scripts/run_updates.sh",
     "signal": 9,
     "tooltip": true,
@@ -147,7 +147,7 @@
     "on-click": "blueman-manager",
   },
   "custom/power": {
-    "format": "<span color='#F87C63'>⏻</span>",
+    "format": "<span color='#F87C63'>⏻ </span>",
     "tooltip": false,
     "on-click": "~/.config/rofi/powermenu.sh",
   },

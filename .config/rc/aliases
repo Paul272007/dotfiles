@@ -46,6 +46,7 @@ alias cp='cp -r'
 alias glog='git log --all --oneline --graph'
 alias rs='source ~/.zshrc'
 alias y='yazi'
+alias a='tmux attach'
 # aliases for package managers
 alias apt-up='sudo apt update'
 alias upgrade='sudo apt update && sudo apt upgrade'
