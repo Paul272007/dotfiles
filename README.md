@@ -17,6 +17,8 @@
 - `Rofi`
 - `Swww`
 - `Hyprlock`
+- `Batcat`
+- `FZF`
 
 ## Optionnel
 
