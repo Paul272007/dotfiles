@@ -15,6 +15,7 @@
     "lazyvim.plugins.extras.lang.sql",
     "lazyvim.plugins.extras.lang.toml",
     "lazyvim.plugins.extras.lang.typescript",
+    "lazyvim.plugins.extras.lang.vue",
     "lazyvim.plugins.extras.util.dot"
   ],
   "install_version": 8,
@@ -23,4 +24,3 @@
   },
   "version": 8
 }
-

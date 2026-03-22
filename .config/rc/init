@@ -20,6 +20,11 @@ if command -v starship &>/dev/null; then
   eval "$(starship init "$CURRENT_SHELL")"
 fi
 
+# TV
+if command -v tv &>/dev/null; then
+  eval "$(tv init "$CURRENT_SHELL")"
+fi
+
 # Try
 # if command -v try &>/dev/null; then
 #   eval "$(try init ~/test/labo)"
@@ -32,3 +37,7 @@ export NVM_DIR="$HOME/.nvm"
 if [ "$CURRENT_SHELL" = "bash" ]; then
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 fi
+
+# if [ "$CURRENT_SHELL" = "zsh" ]; then
+#   source <(fzf --zsh)
+# fi
