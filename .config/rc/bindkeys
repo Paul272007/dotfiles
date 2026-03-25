@@ -1,0 +1,8 @@
+#!/bin/bash
+
+# Quick edit using Alt+E
+bindkey -s '\ee' 'edit\n'
+# Go to project using Alt+G
+bindkey -s '\eg' 'pj\n'
+# Go to directory using Alt+D
+bindkey -s '\ed' 'cdtv\n'

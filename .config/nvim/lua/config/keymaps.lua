@@ -45,6 +45,8 @@ keymap("n", "<PageDown>", ":bnext<CR>", { desc = "Switch to next buffer", norema
 
 keymap("n", "<PageUp>", ":bprev<CR>", { desc = "Switch to previous buffer", noremap = true, silent = true })
 
+-- keymap("n", "C-Del", ":bdelete<CR>", { desc = "Close current buffer", noremap = true, silent = true })
+
 keymap("t", "<Esc>", "<C-\\><C-n>", { desc = "Quit terminal mode" })
 
 keymap("n", "<F5>", ":w<CR>:term zc run %<CR>", { desc = "Compile and execute C/C++ code with ZC" })

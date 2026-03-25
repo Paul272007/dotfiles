@@ -1,0 +1,5 @@
+[channels.git-repos]
+# Remplace par tes vrais chemins absolus
+paths = ["/home/paul/"]
+# Profondeur de recherche (augmente si tes repos sont imbriqués)
+max_depth = 4

@@ -11,6 +11,7 @@ source ~/.config/rc/envs
 source ~/.config/rc/init
 source ~/.config/rc/functions
 source ~/.config/rc/aliases
+source ~/.config/rc/bindkeys
 
 # If terminal is interactive
 if [[ -t 1 ]]; then

@@ -19,23 +19,28 @@ n() {
   fi
 }
 
-# When you don't know if you have permissions or not
 edit() {
-  if [ -z "$1" ]; then
-    # If no argument was given, search for file to edit with fzf
-    nvim "$(fzf --preview='bat --style=numbers --color=always {}')"
+  local file="$1"
+  local dir
+
+  # When no argument, use television to choose file to edit
+  if [ -z "$file" ]; then
+    file=$(tv files)
+    # Exit if esc was pressed
+    [ -z "$file" ] && return 0
+  fi
+
+  # Check writing permissions
+  dir=$(dirname "$file")
+
+  # If the file can be written or if doesn't exist but the folder can be written
+  if [ -w "$file" ] || { [ ! -e "$file" ] && [ -w "$dir" ]; }; then
+    n "$file"
   else
-    # Else use sudoedit if root privileges are needed
-    local dir
-    dir=$(dirname "$1")
-    if [ -w "$1" ] || [ ! -e "$1" ] && [ -w "$dir" ]; then
-      n "$@"
-    else
-      sudoedit "$@"
-    fi
+    echo "Using sudoedit..."
+    sudoedit "$file"
   fi
 }
-
 apacheup() {
   sudo systemctl start mariadb
   sudo systemctl start apache2
@@ -49,6 +54,25 @@ apachedown() {
 # Compression
 compress() {
   tar -czf "${1%/}.tar.gz" "${1%/}"
+}
+
+# Switch between repos (doesn't work)
+pj() {
+  local dir
+  dir=$(tv git-repos)
+
+  if [[ -n "$dir" ]]; then
+    cd "$dir" || return
+  fi
+}
+
+cdtv() {
+  local dir
+  dir=$(tv dirs)
+
+  if [[ -n "$dir" ]]; then
+    cd "$dir" || return
+  fi
 }
 
 # _zc() {
