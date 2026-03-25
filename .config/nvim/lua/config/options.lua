@@ -15,3 +15,9 @@ vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
 vim.opt.clipboard = "unnamedplus"
+
+-- vim.opt.formatoptions:remove({ "r", "o" })
+vim.cmd([[autocmd FileType * set formatoptions-=ro]])
+-- Chaque lettre correspond à un comportement spécifique de Neovim :
+-- r : Ajoute automatiquement le symbole de commentaire après avoir appuyé sur Entrée en mode Insertion.
+-- o : Ajoute automatiquement le symbole de commentaire après avoir appuyé sur o ou O en mode Normal.

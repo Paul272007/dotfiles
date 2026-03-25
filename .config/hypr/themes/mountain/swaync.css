@@ -91,9 +91,10 @@ scrollbar slider:hover {
 
 .notification {
   border-radius: 13px;
-  padding: 0px;
+  padding: 2px 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  border: 2px solid @main-color;
+  /* border: 2px solid @main-color; */
+  border: none;
   color: @text-color;
   background: @bg-color;
 }

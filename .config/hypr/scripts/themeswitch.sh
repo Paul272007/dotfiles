@@ -43,7 +43,7 @@ ln -sf "$THEME_DIR/$THEME_NAME/swaync.css" "$SWAYNC_STYLE"
 WALLPAPER=$(find "$THEME_DIR/$THEME_NAME" -type f \( -name "*.jpg" -o -name "*.png" -o -name "*.jpeg" \) | head -n 1)
 
 if [ -f "$WALLPAPER" ]; then
-  swww img "$WALLPAPER" --transition-type center --transition-step 90 --transition-fps 60 &>/dev/null
+  awww img "$WALLPAPER" --transition-type center --transition-step 91 --transition-fps 60 &>/dev/null
   ln -sf "$WALLPAPER" "$HOME/.cache/current_wallpaper.png"
 fi
 
