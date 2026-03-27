@@ -15,10 +15,9 @@
 - `Hyprland`
 - `Waybar`
 - `Rofi`
-- `Swww`
+- `Awww`
 - `Hyprlock`
 - `Batcat`
-- `FZF`
 
 ## Optionnel
 

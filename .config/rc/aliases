@@ -24,18 +24,19 @@ alias ....='cd ../../..'
 # ls
 alias l='eza --icons=always --classify --group-directories-first'
 alias ls='eza --icons=always --hyperlink --git --classify --group-directories-first -lh'
+alias sl='ls'
 alias ms='eza --icons=always --hyperlink --git --classify --group-directories-first -lh'
 alias la='eza --icons=always --classify -lA --group-directories-first'
 alias lt='eza --tree --level=2 --long --icons=always --git'
 
 # Vital shortcuts for already existing commands
-alias ff="fzf --preview 'bat --style=numbers --color=always {}'"
 alias e='exit'
 alias se='sudoedit'
 alias c='clear'
 alias lg='lazygit'
+alias n='nvim'
 alias d='docker'
-alias eden='ssh eden@100.88.35.114' # example of how you can use ssh quicker
+alias eden='ssh eden@100.88.35.114' # example of how to use ssh quicker
 alias ctl='sudo systemctl'
 alias sql='sudo mysql -u root -p'
 alias chmox='chmod +x'

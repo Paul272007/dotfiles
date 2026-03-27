@@ -45,7 +45,9 @@ keymap("n", "<PageDown>", ":bnext<CR>", { desc = "Switch to next buffer", norema
 
 keymap("n", "<PageUp>", ":bprev<CR>", { desc = "Switch to previous buffer", noremap = true, silent = true })
 
--- keymap("n", "C-Del", ":bdelete<CR>", { desc = "Close current buffer", noremap = true, silent = true })
+keymap("n", "Q", function()
+  Snacks.bufdelete()
+end, { desc = "Delete current buffer" })
 
 keymap("t", "<Esc>", "<C-\\><C-n>", { desc = "Quit terminal mode" })
 

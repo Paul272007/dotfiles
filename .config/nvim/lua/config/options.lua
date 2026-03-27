@@ -4,7 +4,7 @@
 
 local opt = vim.opt
 
-opt.relativenumber = false
+-- opt.relativenumber = false
 -- opt.autoindent = true
 
 -- doesn't work
@@ -14,10 +14,17 @@ vim.g.lazyvim_lsp_inlay_hints = false
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
-vim.opt.clipboard = "unnamedplus"
+opt.clipboard = "unnamedplus"
 
--- vim.opt.formatoptions:remove({ "r", "o" })
+-- opt.formatoptions:remove({ "r", "o" })
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
 -- Chaque lettre correspond à un comportement spécifique de Neovim :
 -- r : Ajoute automatiquement le symbole de commentaire après avoir appuyé sur Entrée en mode Insertion.
 -- o : Ajoute automatiquement le symbole de commentaire après avoir appuyé sur o ou O en mode Normal.
+
+-- LazyVim root dir detection
+-- Each entry can be:
+-- the name of a detector function like `lsp` or `cwd`
+-- a pattern or array of patterns like `.git` or `lua`.
+-- a function with signature `function(buf) -> string|string[]`
+-- vim.g.root_spec = { "lsp", "cwd" }

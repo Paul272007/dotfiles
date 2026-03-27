@@ -11,14 +11,6 @@ open() {
   xdg-open "$@" >/dev/null
 }
 
-n() {
-  if [ "$#" -eq 0 ]; then
-    nvim .
-  else
-    nvim "$@"
-  fi
-}
-
 edit() {
   local file="$1"
   local dir
@@ -35,7 +27,7 @@ edit() {
 
   # If the file can be written or if doesn't exist but the folder can be written
   if [ -w "$file" ] || { [ ! -e "$file" ] && [ -w "$dir" ]; }; then
-    n "$file"
+    nvim "$file"
   else
     echo "Using sudoedit..."
     sudoedit "$file"

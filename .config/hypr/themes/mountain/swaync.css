@@ -5,6 +5,7 @@
 
 * {
   font-family: "GeistMono Nerd Font";
+  font-weight: bold;
 }
 
 /* --- CONTROL CENTER --- */
@@ -20,7 +21,7 @@
 /* Titre du panneau (Ex: "Notifications") */
 .widget-title {
   font-size: 18px;
-  font-weight: bold;
+  font-weight: bolder;
   margin: 10px;
   color: @main-color;
 }
@@ -104,7 +105,7 @@ scrollbar slider:hover {
 }
 
 .summary {
-  font-weight: bold;
+  font-weight: bolder;
   font-size: 16px;
   margin-bottom: 5px;
   color: @main-color;
