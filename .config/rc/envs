@@ -1,17 +1,13 @@
 #!/bin/bash
 
-# Included in .zshrc and .bashrc
-# This file sets up all envs for zsh or bash
+# ----------------------------------------------- #
+# ------------ Environment variables ------------ #
+# ----------------------------------------------- #
 
-# Custom executable directory
+# Add custom executable directory to path
 export PATH=$HOME/.local/bin:$PATH
+# Editors
 export EDITOR=nvim
 export SUDO_EDITOR="$EDITOR"
+export VISUAL="$EDITOR"
 export BAT_THEME=ansi
-
-# Shorter paths
-export labo="/home/paul/test/labo"
-export priv="/home/paul/privat"
-export pro="/home/paul/pro"
-export but="/home/paul/pro/S2"
-export conf="/home/paul/dotfiles/.config"

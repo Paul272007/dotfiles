@@ -1,16 +1,20 @@
 #!/bin/bash
 
-# Included in .zshrc and .bashrc
-# This file declares additional functions for the shell
+# ----------------------------------------------- #
+# ----- Additionnal functions for the shell ----- #
+# ----------------------------------------------- #
 
+# mkdir + cd
 mk() {
   mkdir -p "$1" && cd "$1" || return
 }
 
+# Open files quietly
 open() {
-  xdg-open "$@" >/dev/null
+  xdg-open "$@" &>/dev/null
 }
 
+# Edit files quickly
 edit() {
   local file="$1"
   local dir
@@ -24,7 +28,6 @@ edit() {
 
   # Check writing permissions
   dir=$(dirname "$file")
-
   # If the file can be written or if doesn't exist but the folder can be written
   if [ -w "$file" ] || { [ ! -e "$file" ] && [ -w "$dir" ]; }; then
     nvim "$file"
@@ -33,11 +36,14 @@ edit() {
     sudoedit "$file"
   fi
 }
+
+# Enable PHP server quickly
 apacheup() {
   sudo systemctl start mariadb
   sudo systemctl start apache2
 }
 
+# Disable PHP server quickly
 apachedown() {
   sudo systemctl stop apache2
   sudo systemctl stop mariadb
@@ -48,7 +54,7 @@ compress() {
   tar -czf "${1%/}.tar.gz" "${1%/}"
 }
 
-# Switch between repos (doesn't work)
+# Switch between repos (tv git-repos somehow doesn't work)
 pj() {
   local dir
   dir=$(tv git-repos)
@@ -58,6 +64,7 @@ pj() {
   fi
 }
 
+# cd to directory using television
 cdtv() {
   local dir
   dir=$(tv dirs)
@@ -66,16 +73,3 @@ cdtv() {
     cd "$dir" || return
   fi
 }
-
-# _zc() {
-#   echo "JAJAJA"
-#   local -a completions
-#
-#   # ${(f)} forces ZSH to separate the result of the command with \n
-#   # completions=(${(f)"$(zc --autocomplete 2>/dev/null)"})
-#   completions=(${(f)"$(zc --autocomplete)"})
-#
-#   compadd -a completions
-# }
-#
-# compdef _zc zc

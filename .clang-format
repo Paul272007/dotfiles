@@ -1,3 +1,14 @@
+# Les accolades des fonctions en dessous
 BasedOnStyle: LLVM
+# Deux espaces d'indentation
 IndentWidth: 2
+# Accolades toujours à la ligne suivante
 BreakBeforeBraces: Allman
+# Ne pas écrire de fonctions en une seule ligne
+AllowShortFunctionsOnASingleLine: None
+# S'assurer que les blocs vides ne sont pas non plus contractés
+# AllowShortBlocksOnASingleLine: Never
+# Indente les paramètres en bloc et place la parenthèse fermante à la ligne
+AlignAfterOpenBracket: BlockIndent
+# Interdit de regrouper plusieurs paramètres sur la même ligne
+# BinPackParameters: false

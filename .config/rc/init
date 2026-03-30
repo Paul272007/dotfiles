@@ -1,9 +1,12 @@
 #!/bin/bash
 
-# Included in .zshrc and .bashrc
-# This file sets up all programs that need to run commands when loading the shell
+# ----------------------------------------------- #
+# --------- Initialize all shell tools ---------- #
+# ----------------------------------------------- #
 
 CURRENT_SHELL=$(basename "$SHELL")
+
+# Verify each time if tool is installed
 
 # Zoxide
 if command -v zoxide &>/dev/null; then
@@ -20,24 +23,18 @@ if command -v starship &>/dev/null; then
   eval "$(starship init "$CURRENT_SHELL")"
 fi
 
-# TV
+# Television
 if command -v tv &>/dev/null; then
   eval "$(tv init "$CURRENT_SHELL")"
 fi
 
-# Try
-# if command -v try &>/dev/null; then
-#   eval "$(try init ~/test/labo)"
-# fi
-
+# NVM
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+if [ -d "$NVM_DIR" ]; then
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-# NVM Bash completion
-if [ "$CURRENT_SHELL" = "bash" ]; then
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  # NVM Bash completion
+  if [ "$CURRENT_SHELL" = "bash" ]; then
+    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+  fi
 fi
-
-# if [ "$CURRENT_SHELL" = "zsh" ]; then
-#   source <(fzf --zsh)
-# fi

@@ -1,17 +1,20 @@
 #!/bin/bash
 
-# Requirements for all shell configuration files:
-# - debian-based distribution
-# - eza
-# - fzf
-# - zoxide
-# - lazygit
+# ----------------------------------------------- #
+# --------- Unified shell configuration --------- #
+# ----------------------------------------------- #
 
-source ~/.config/rc/envs
-source ~/.config/rc/init
-source ~/.config/rc/functions
-source ~/.config/rc/aliases
-source ~/.config/rc/bindkeys
+# Can be sourced in either ~/.bashrc or ~/.zshrc
+
+RC_DIR="$HOME/.config/rc"
+
+source "$RC_DIR/envs"
+source "$RC_DIR/init"
+source "$RC_DIR/functions"
+source "$RC_DIR/aliases"
+source "$RC_DIR/bindkeys"
+
+##### (Optionnal) Fastfetch
 
 # If terminal is interactive
 if [[ -t 1 ]]; then

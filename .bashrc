@@ -37,8 +37,9 @@ fi
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # Load customized configuration
-if [ -f ~/.config/rc/rc ]; then
-  source ~/.config/rc/rc
+RC_FILE="$HOME/.config/rc/rc"
+if [ -f "$RC_FILE" ]; then
+  source "$RC_FILE"
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -52,4 +53,4 @@ if ! shopt -oq posix; then
   fi
 fi
 
-. "$HOME/.cargo/env"
+# . "$HOME/.cargo/env"

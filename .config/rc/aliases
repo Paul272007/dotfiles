@@ -1,55 +1,52 @@
 #!/bin/bash
 
-# Included in .zshrc and .bashrc
-# The file sets up all aliases for common commands
+# ---------------------------------------------- #
+# - Vital shortcuts for the most used commands - #
+# ---------------------------------------------- #
 
-# Directories actions
-zd() {
-  if [ $# -eq 0 ]; then
-    builtin cd ~ && return
-  elif [ -d "$1" ]; then
-    builtin cd "$1" && return
-  else
-    z "$@" && printf "\U000F17A9 " && pwd || return
-    # No need for an error message since z already prints one out
-  fi
-}
-
-# cd now calls the function above
-alias cd='zd'
+# cd
+alias cd='z'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
 # ls
-alias l='eza --icons=always --classify --group-directories-first'
-alias ls='eza --icons=always --hyperlink --git --classify --group-directories-first -lh'
+alias l='eza --icons=always --hyperlink --group-directories-first'
+alias ls='l --git -lh'
 alias sl='ls'
-alias ms='eza --icons=always --hyperlink --git --classify --group-directories-first -lh'
-alias la='eza --icons=always --classify -lA --group-directories-first'
-alias lt='eza --tree --level=2 --long --icons=always --git'
+alias ms='ls'
+alias sm='ls'
+alias la='ls -A'
+alias lt='ls --tree --level=2 --long'
 
-# Vital shortcuts for already existing commands
-alias e='exit'
-alias se='sudoedit'
-alias c='clear'
-alias lg='lazygit'
-alias n='nvim'
-alias d='docker'
-alias eden='ssh eden@100.88.35.114' # example of how to use ssh quicker
-alias ctl='sudo systemctl'
-alias sql='sudo mysql -u root -p'
-alias chmox='chmod +x'
+# ssh
+alias eden='ssh eden@100.88.35.114'
+
+# package managers
+alias update='sudo apt update'
+alias up='sudo apt update && sudo apt upgrade'
+alias apti='sudo apt install'
+alias i='sudo yay -Syu'
+
+# git
 alias g='git'
-alias decompress='tar -xvf'
-alias mr='rm'
-alias cp='cp -r'
+alias pull='git pull'
+alias push='git push'
 alias glog='git log --all --oneline --graph'
+
+# other native commands and shortcuts
+alias mr='rm'
+alias e='exit'
+alias c='clear'
+alias chmox='chmod +x'
+alias cp='cp -r'
+alias ctl='sudo systemctl'
 alias rs='source ~/.zshrc'
+
+# Other tools
+alias n='nvim'
 alias y='yazi'
+alias d='docker'
+alias lg='lazygit'
 alias a='tmux attach'
-# aliases for package managers
-alias apt-up='sudo apt update'
-alias upgrade='sudo apt update && sudo apt upgrade'
-alias apt-i='sudo apt install'
-alias pac='sudo pacman -Syu'
+alias sql='sudo mysql -u root -p'
