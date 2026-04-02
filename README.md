@@ -18,6 +18,7 @@
 - `Awww`
 - `Hyprlock`
 - `Batcat`
+- `Apple` cursor style
 
 ## Optionnel
 

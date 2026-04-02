@@ -11,3 +11,5 @@
 # Aliases (shortcuts for git commands)
 [protocol "file"]
 	allow = always
+[credential]
+	helper = store
