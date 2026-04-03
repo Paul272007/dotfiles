@@ -18,6 +18,7 @@
 - `Awww`
 - `Hyprlock`
 - `Batcat`
+- Fastfetch
 - `Apple` cursor style
 
 ## Optionnel
