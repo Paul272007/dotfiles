@@ -28,3 +28,19 @@ vim.cmd([[autocmd FileType * set formatoptions-=ro]])
 -- a pattern or array of patterns like `.git` or `lua`.
 -- a function with signature `function(buf) -> string|string[]`
 -- vim.g.root_spec = { "lsp", "cwd" }
+
+-- Fix pour l'erreur "nothing is copied" sur Wayland/Hyprland
+if os.getenv("WAYLAND_DISPLAY") then
+  vim.g.clipboard = {
+    name = "wl-clipboard",
+    copy = {
+      ["+"] = { "wl-copy", "--foreground", "--type", "text/plain" },
+      ["*"] = { "wl-copy", "--foreground", "--type", "text/plain" },
+    },
+    paste = {
+      ["+"] = { "wl-paste", "--no-newline" },
+      ["*"] = { "wl-paste", "--no-newline" },
+    },
+    cache_enabled = 1,
+  }
+end

@@ -17,12 +17,12 @@ else
 fi
 
 # API Call
-URL="https://api.openweathermap.org/data/2.5/weather?appid=$APIKEY&units=$UNITS&lang=$WEATHER_LANG&q=$(echo $CITY_NAME | sed 's/ /%20/g'),${COUNTRY_CODE}"
+URL="https://api.openweathermap.org/data/2.5/weather?appid=$APIKEY&units=$UNITS&lang=$WEATHER_LANG&q=$CITY_NAME,${COUNTRY_CODE}"
 RESPONSE=$(curl -s "$URL")
 
-# Vérification d'erreur (Correction de COLOR_ERR qui n'existait plus)
+# Vérification d'erreur
 if [ -z "$RESPONSE" ] || [ "$(echo "$RESPONSE" | jq -r .cod)" != "200" ]; then
-  echo "{ \"text\": \" \", \"tooltip\": \"Météo indisponible\", \"class\": \"weather\" }"
+  echo "{ \"text\": \" 󰇸\", \"tooltip\": \"Météo indisponible\", \"class\": \"weather\" }"
   exit 0
 fi
 

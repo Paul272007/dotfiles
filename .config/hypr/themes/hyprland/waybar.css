@@ -31,7 +31,9 @@ tooltip {
 #cpu,
 #memory,
 #disk,
+#custom-updates,
 #workspaces,
+#custom-redshift,
 #pulseaudio,
 #clock,
 #network,
@@ -89,14 +91,14 @@ tooltip {
 }
 
 #cpu,
-#pulseaudio.speaker,
+#custom-redshift,
 #network {
   border-radius: 13px 0px 0px 13px;
   padding-left: 18px;
   margin-left: 4px;
 }
 
-#disk,
+#custom-updates,
 #clock,
 #custom-power {
   border-radius: 0px 13px 13px 0px;

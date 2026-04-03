@@ -26,7 +26,7 @@ alias eden='ssh eden@100.88.35.114'
 alias update='sudo apt update'
 alias up='sudo apt update && sudo apt upgrade'
 alias apti='sudo apt install'
-alias i='sudo yay -Syu'
+alias i='yay -Syu'
 
 # git
 alias g='git'

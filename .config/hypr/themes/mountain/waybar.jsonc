@@ -15,7 +15,7 @@
     "clock",
     "separator",
     "network",
-    // "bluetooth",
+    "bluetooth",
     "custom/power",
   ],
 
@@ -125,8 +125,8 @@
   },
   "pulseaudio#microphone": {
     "format": "{format_source}",
-    "format-source": "<span color='#F87C63'> </span><span color='#cdd6f4'>{volume}%</span>",
-    "format-source-muted": "",
+    "format-source": "<span color='#F87C63'> </span><span color='#cdd6f4'>{volume}%</span>",
+    "format-source-muted": "<span color='#F87C63'>  </span>Off",
     "on-click": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
     "on-scroll-up": "wpctl set-volume @DEFAULT_SOURCE@ 5%+",
     "on-scroll-down": "wpctl set-volume @DEFAULT_SOURCE@ 5%-",
@@ -134,16 +134,19 @@
   "clock": {
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "format": "<span color='#F87C63'>󰥔 </span><span color='#cdd6f4'>{:%H:%M | %a %d %b}</span>",
-    "format-alt": "{:%Y-%m-%d}",
+    "format-alt": "<span color='#F87C63'>  </span>{:%Y-%m-%d}",
   },
   "network": {
     "format-wifi": "<span color='#F87C63'> </span> <span color='#cdd6f4'>{essid}</span>",
     "format-ethernet": "<span color='#F87C63'>󰈀 </span> <span color='#cdd6f4'>Câblé</span>",
     "format-disconnected": "<span color='#F87C63'>󰖪 </span> <span color='#cdd6f4'>Off</span>",
+    "on-click": "nm-connection-editor",
   },
   "bluetooth": {
-    "format": "<span color='#F87C63'></span> <span color='#cdd6f4'>{status}</span>",
-    "format-connected": "<span color='#F87C63'></span> <span color='#cdd6f4'>{device_alias}</span>",
+    "format-on": "<span size='110%' color='#F87C63'></span> <span color='#cdd6f4'>ON</span>",
+    "format-off": "<span size='110%' color='#F87C63'>󰂲</span> <span color='#cdd6f4'>OFF</span>",
+    "format-disabled": "<span size='110%' color='#F87C63'>󰂲</span> <span color='#cdd6f4'>OFF</span>",
+    "format-connected": "<span size='110%' color='#F87C63'></span> <span color='#cdd6f4'>{device_alias}</span>",
     "on-click": "blueman-manager",
   },
   "custom/power": {

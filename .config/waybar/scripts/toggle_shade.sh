@@ -1,5 +1,15 @@
 #!/bin/bash
 
+THEME=$(cat ~/.cache/current_theme)
+
+if [ "$THEME" == "hyprland" ]; then
+  COLOR="#89b4fa"
+elif [[ "$THEME" == "mountain" ]]; then
+  COLOR="#F87C63"
+else
+  COLOR="#ffffff"
+fi
+
 # Nom du shader (blue-light-filter est inclus par défaut avec hyprshade)
 SHADER="blue-light-filter"
 
@@ -7,9 +17,9 @@ SHADER="blue-light-filter"
 if [ "$1" == "status" ]; then
   CURRENT=$(hyprshade current)
   if [ "$CURRENT" == "$SHADER" ]; then
-    echo "{\"text\": \"<span color='#F87C63'></span> On\", \"class\": \"on\"}"
+    echo "{\"text\": \"<span color='$COLOR'></span> On\", \"class\": \"on\"}"
   else
-    echo "{\"text\": \"<span color='#F87C63'></span> Off\", \"class\": \"off\"}"
+    echo "{\"text\": \"<span color='$COLOR'></span> Off\", \"class\": \"off\"}"
   fi
   exit 0
 fi

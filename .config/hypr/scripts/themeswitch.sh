@@ -63,4 +63,4 @@ swaync-client -rs
 notify-send "Theme applied" "Style : $THEME_NAME"
 
 # Close rofi just in case it didn't
-pkill rofi
+pkill rofi &>/dev/null
