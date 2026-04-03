@@ -18,7 +18,9 @@
 - `Awww`
 - `Hyprlock`
 - `Batcat`
-- Fastfetch
+- `Fastfetch`
+- `zsh-autosuggestions`
+- `zsh-syntax-highlighting`
 - `Apple` cursor style
 
 ## Optionnel
