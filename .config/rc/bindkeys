@@ -17,4 +17,6 @@ if [ "$CURRENT_SHELL" = "zsh" ]; then
   bindkey -s '\en' 'npm run dev\n'
   # Launch docker compose using Alt+D
   bindkey -s '\ed' 'docker compose up -d\n'
+  # Write sudo pacman -S instantly using Alt+P
+  bindkey -s '\ep' 'sudo pacman -S '
 fi

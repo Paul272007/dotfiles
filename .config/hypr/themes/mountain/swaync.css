@@ -1,7 +1,7 @@
-@define-color bg-color rgba(30, 32, 48, 0.7);
+@define-color bg-color rgba(40, 32, 32, 0.6);
 @define-color main-color #FF7A60;
 @define-color text-color #ffffff;
-@define-color bg-hover rgba(255, 122, 96, 0.2); /* Corail transparent pour les survols */
+@define-color bg-hover rgba(255, 122, 96, 0.2);
 
 * {
   font-family: "GeistMono Nerd Font";
@@ -29,9 +29,9 @@
 /* Bouton "Clear All" (Tout effacer) */
 .widget-title > button {
   font-size: 14px;
-  background: transparent;
   border-radius: 8px;
   padding: 5px 10px;
+  background: @bg-hover;
   color: @text-color;
 }
 
@@ -50,7 +50,6 @@
 .widget-dnd > switch {
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.1);
-  border: 1px solid @main-color;
 }
 
 .widget-dnd > switch:checked {
@@ -74,14 +73,14 @@ scrollbar {
   background: transparent;
 }
 
-scrollbar slider {
-  background: rgba(255, 122, 96, 0.4);
-  border-radius: 5px;
-}
-
-scrollbar slider:hover {
-  background: @main-color;
-}
+/* scrollbar slider { */
+/*   background: rgba(255, 122, 96, 0.4); */
+/*   border-radius: 5px; */
+/* } */
+/**/
+/* scrollbar slider:hover { */
+/*   background: @main-color; */
+/* } */
 
 /* --- NOTIFICATIONS --- */
 .notification-row {
@@ -94,7 +93,6 @@ scrollbar slider:hover {
   border-radius: 13px;
   padding: 2px 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  /* border: 2px solid @main-color; */
   border: none;
   color: @text-color;
   background: @bg-color;
@@ -117,7 +115,7 @@ scrollbar slider:hover {
 
 /* Boutons d'action dans les notifications */
 .notification-action {
-  border-radius: 8px;
+  /* border-radius: 8px; */
   margin-top: 5px;
   border: 1px solid @main-color;
   color: @text-color;
@@ -126,5 +124,5 @@ scrollbar slider:hover {
 
 .notification-action:hover {
   color: #1a1b26;
-  background: @main-color;
+  background: @bg-hover;
 }

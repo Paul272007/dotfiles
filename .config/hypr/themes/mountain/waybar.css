@@ -3,7 +3,6 @@
 @define-color text      #cdd6f4;
 @define-color surface0  #313244;
 @define-color accent    #F87C63;
-/* @define-color accent    #ccb733; */
 @define-color green     #a6e3a1;
 @define-color yellow    #eeeeee;
 @define-color red       #f38ba8;
@@ -32,6 +31,8 @@ tooltip {
 #cpu,
 #memory,
 #disk,
+#battery,
+#custom-updates,
 #workspaces,
 #custom-redshift,
 #pulseaudio,
@@ -40,8 +41,6 @@ tooltip {
 #bluetooth,
 #custom-power {
   padding: 2px 11px;
-  border-radius: 0;
-  background: transparent;
 }
 
 /* =====================================================
@@ -57,8 +56,8 @@ tooltip {
   min-width: 20px;
   min-height: 20px;
   padding: 0;
-  padding-right: 4px;
-  margin: 0 1px;
+  /* padding-right: 4px; */
+  margin: 0 3px;
 
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   color: @yellow;

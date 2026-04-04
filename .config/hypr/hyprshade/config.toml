@@ -1,0 +1,8 @@
+[[shades]]
+name = "sweet-amber"
+default = true       # Optionnel : s'active si aucune autre règle ne correspond
+
+[[shades]]
+name = "sweet-amber"
+start_time = 19:00:00 # Heure de début (19h)
+end_time = 07:00:00   # Heure de fin (7h du matin)
