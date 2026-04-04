@@ -6,18 +6,11 @@ CITY_NAME='Ifs'
 COUNTRY_CODE='FR'
 WEATHER_LANG="fr"
 UNITS="metric"
-THEME=$(cat ~/.cache/current_theme)
 
-if [ "$THEME" == "hyprland" ]; then
-  COLOR="#89b4fa"
-elif [[ "$THEME" == "mountain" ]]; then
-  COLOR="#F87C63"
-else
-  COLOR="#ffffff"
-fi
+COLOR=$("$HOME/.local/bin/get-color")
 
 # API Call
-URL="https://api.openweathermap.org/data/2.5/weather?appid=$APIKEY&units=$UNITS&lang=$WEATHER_LANG&q=$CITY_NAME,${COUNTRY_CODE}"
+URL="https://api.openweathermap.org/data/2.5/weather?appid=$APIKEY&units=$UNITS&lang=$WEATHER_LANG&q=$(echo "$CITY_NAME" | sed 's/ /%20/g'),${COUNTRY_CODE}"
 RESPONSE=$(curl -s "$URL")
 
 # Vérification d'erreur

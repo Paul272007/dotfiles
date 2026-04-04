@@ -1,15 +1,6 @@
 #!/bin/bash
 
-# Récupération de la couleur selon le thème
-THEME=$(cat ~/.cache/current_theme 2>/dev/null) # Sécurité si le fichier n'existe pas
-
-if [ "$THEME" == "hyprland" ]; then
-  COLOR="#89b4fa"
-elif [[ "$THEME" == "mountain" ]]; then
-  COLOR="#F87C63"
-else
-  COLOR="#ffffff"
-fi
+COLOR=$("$HOME/.local/bin/get-color")
 
 # SHADER="blue-light-filter"
 SHADER="sweet-amber"

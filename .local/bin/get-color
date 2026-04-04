@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# 1. On récupère le nom du thème
+THEME=$(cat ~/.cache/current_theme 2>/dev/null || echo "Default")
+
+# 2. On définit le chemin du fichier accent
+ACCENT_PATH="$HOME/.config/hypr/themes/$THEME/accent.txt"
+
+# 3. On renvoie la couleur (avec une sécurité si le fichier n'existe pas)
+if [ -f "$ACCENT_PATH" ]; then
+  # tr -d supprime les espaces ou retours à la ligne invisibles
+  cat "$ACCENT_PATH" | tr -d '[:space:]'
+else
+  echo "#ffffff" # Blanc par défaut
+fi
