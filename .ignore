@@ -1,0 +1,7 @@
+/proc/*
+/sys/*
+/dev/*
+/run/*
+/mnt/*
+.git/
+node_modules/

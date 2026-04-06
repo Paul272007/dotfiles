@@ -12,9 +12,9 @@ IS_ON=$(hyprshade current | grep -q "$SHADER" && echo "true" || echo "false")
 if [ "$1" == "status" ]; then
   if [ "$IS_ON" == "true" ]; then
     # On peut même changer l'icône (ex: une lune quand c'est ON)
-    echo "{\"text\": \"<span size='110%' color='$COLOR'>󰛨</span> ON\", \"class\": \"on\", \"tooltip\": \"Filtre actif\"}"
+    echo "{\"text\": \"<span size='112%' color='$COLOR'>󰛨</span> ON\", \"class\": \"on\", \"tooltip\": \"Filtre actif\"}"
   else
-    echo "{\"text\": \"<span size='110%' color='$COLOR'>󰛩</span> OFF\", \"class\": \"off\", \"tooltip\": \"Filtre inactif\"}"
+    echo "{\"text\": \"<span size='112%' color='$COLOR'>󰛩</span> OFF\", \"class\": \"off\", \"tooltip\": \"Filtre inactif\"}"
   fi
   exit 0
 fi

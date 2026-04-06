@@ -169,15 +169,15 @@
     "on-scroll-down": "wpctl set-volume @DEFAULT_SOURCE@ 5%-",
   },
   "clock": {
+    "format": "<span color='#2AA63E'>󰥔 </span><span color='#cdd6f4'>{:%H:%M}</span>",
+    "format-alt": "<span size='105%' color='#2AA63E'></span>  {:%Y-%m-%d}",
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "<span color='#2AA63E'>󰥔 </span><span color='#cdd6f4'>{:%H:%M | %a %d %b}</span>",
-    "format-alt": "<span color='#2AA63E'>  </span>{:%Y-%m-%d}",
   },
   "network": {
     "format-wifi": "<span color='#2AA63E'> </span> <span color='#cdd6f4'>{essid}</span>",
     "format-ethernet": "<span color='#2AA63E'>󰈀 </span> <span color='#cdd6f4'>Câblé</span>",
     "format-disconnected": "<span color='#2AA63E'>󰖪 </span> <span color='#cdd6f4'>Off</span>",
-    "on-click": "nm-connection-editor",
+    "on-click": "nmrs",
   },
   "bluetooth": {
     "format-on": "<span size='110%' color='#2AA63E'></span> <span color='#cdd6f4'>ON</span>",

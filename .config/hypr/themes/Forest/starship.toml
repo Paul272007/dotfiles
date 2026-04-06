@@ -10,8 +10,11 @@ success_symbol = "[❯](bold green)"
 style = "bold green"
 truncation_length = 2
 truncation_symbol = "…/"
+format = "[$path]($style)[$read_only]($read_only_style) "
 repo_root_style = "bold green"
 repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+read_only = " 󰌾"
+read_only_style = "bold green"
 
 [git_branch]
 format = "[$branch]($style) "

@@ -1,4 +1,4 @@
-# add_newline = true
+add_newline = true
 command_timeout = 200
 format = "[$directory$git_branch$git_status]($style)$character"
 
@@ -7,11 +7,14 @@ error_symbol = "[✗](bold red)"
 success_symbol = "[❯](bold red)"
 
 [directory]
+style = "bold red"
 truncation_length = 2
 truncation_symbol = "…/"
-style = "bold red"
+format = "[$path]($style)[$read_only]($read_only_style) "
 repo_root_style = "bold red"
 repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+read_only = " 󰌾"
+read_only_style = "bold red"
 
 [git_branch]
 format = "[$branch]($style) "

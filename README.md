@@ -5,6 +5,7 @@
 - `Git`
 - `Curl`
 - `Stow`
+- `Yay`
 - `Ghostty`
 - `Starship`
 - `Zoxide`
@@ -21,6 +22,8 @@
 - `Fastfetch`
 - `zsh-autosuggestions`
 - `zsh-syntax-highlighting`
+- `wl-clipboard` and `cliphist`
+- `pacman-contrib`
 - `Apple` cursor style
 
 ## Optionnel
