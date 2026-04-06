@@ -44,7 +44,7 @@ alias ctl='sudo systemctl'
 alias rs='source ~/.zshrc'
 
 # Other tools
-alias n='nvim'
+alias n='edit'
 alias y='yazi'
 alias d='docker'
 alias lg='lazygit'
