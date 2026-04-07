@@ -61,3 +61,10 @@
 - `.stow-local-ignore` = contient tous les fichiers ignorés par `stow`.
 - `.zshrc` = configuration de `zsh`.
 - `README.md` = README du dépôt. Ignoré par `stow`.
+
+## Additional commands
+
+- `set-default-theme <theme>` - set default theme
+- `power` - show power menu
+- `themeswitch <theme>` - change current theme
+- `get-color` - get current theme's accent color

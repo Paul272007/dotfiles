@@ -12,3 +12,6 @@
 
 # Tmux plugins
 .config/tmux/plugins/*
+
+# Default theme (link)
+.config/hypr/themes/Default
