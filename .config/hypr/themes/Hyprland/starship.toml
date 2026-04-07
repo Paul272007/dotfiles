@@ -7,10 +7,14 @@ error_symbol = "[✗](bold cyan)"
 success_symbol = "[❯](bold cyan)"
 
 [directory]
+style = "bold cyan"
 truncation_length = 2
 truncation_symbol = "…/"
+format = "[$path]($style)[$read_only]($read_only_style) "
 repo_root_style = "bold cyan"
 repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
+read_only = " 󰌾"
+read_only_style = "bold cyan"
 
 [git_branch]
 format = "[$branch]($style) "

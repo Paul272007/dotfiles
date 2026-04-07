@@ -2,7 +2,6 @@
 @define-color text      #eeeeee;
 @define-color empty     #547254;
 @define-color accent    #178236;
-@define-color red       #f38ba8;
 
 * {
   font-family: "GeistMono Nerd Font", sans-serif;
@@ -16,10 +15,10 @@ window#waybar {
 }
 
 tooltip {
-  background: rgb(30, 30, 30);
-  border: 2px solid @accent;
+  background: rgb(40, 40, 40);
   border-radius: 8px;
   padding: 5px;
+  border: 2px solid @accent;
 }
 
 /* =====================================================
@@ -30,10 +29,8 @@ tooltip {
   border-radius: 14px;
 }
 
-/* Color = circle ; bg = around the circle, only visible when hovering */
 #workspaces button {
-  min-width: 20px;
-  min-height: 20px;
+  min-height: 18px;
   padding: 0;
   margin: 0 3px;
 
@@ -54,7 +51,7 @@ tooltip {
 }
 
 #workspaces button.urgent {
-  color: @red;
+  color: #f38ba8;
 }
 
 /* =====================================================
@@ -68,7 +65,7 @@ tooltip {
 #battery,
 #custom-updates,
 #workspaces,
-#custom-redshift,
+#custom-hyprshade,
 #pulseaudio,
 #clock,
 #network,
@@ -79,7 +76,7 @@ tooltip {
 }
 
 #custom-weather,
-#custom-redshift {
+#custom-hyprshade {
   border-radius: 13px 0px 0px 13px;
   padding-left: 18px;
   margin-left: 4px;
