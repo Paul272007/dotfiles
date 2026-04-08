@@ -1,9 +1,7 @@
-# Set up the prompt
-
 # Zsh options
 setopt histignorealldups sharehistory
 
-# Use emacs keybindings even if our EDITOR is set to nvim
+# Use emacs keybindings even if $EDITOR is set to nvim
 bindkey -e
 
 # Key bindings
@@ -12,6 +10,9 @@ bindkey '^[[1;5C' forward-word
 bindkey '^[[1;5D' backward-word
 bindkey '^[[3;5~' kill-word
 bindkey '^H' backward-kill-word
+
+# Removes slash and dot from characters considered as part of a word
+WORDCHARS=${WORDCHARS//[\/.]/}
 
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=1000
@@ -48,7 +49,6 @@ ZSH_PLUGINS_DIR="/usr/share/zsh/plugins"
 
 if [ -f "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
     source "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-    ZSH_HIGHLIGHT_STYLES[path]='fg=white,bold'
 else
   echo "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh n'existe pas"
 fi
