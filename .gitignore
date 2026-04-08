@@ -2,7 +2,7 @@
 .config/nvim/lazy-lock.json
 
 # ----- All symlinks pointing to a theme configuration
-.config/hypr/themes/current_theme.conf
+.config/hypr/hyprland/current_theme.conf
 .config/waybar/config.jsonc
 .config/waybar/style.css
 .config/fastfetch/config.jsonc
