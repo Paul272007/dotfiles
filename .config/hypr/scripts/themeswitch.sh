@@ -2,7 +2,7 @@
 
 THEME_DIR="$HOME/.config/hypr/themes"
 
-CURRENT_THEME_FILE="$HOME/.config/hypr/configs/current_theme.conf"
+CURRENT_THEME_FILE="$HOME/.config/hypr/hyprland/current_theme.conf"
 WAYBAR_CONF="$HOME/.config/waybar/config.jsonc"
 WAYBAR_CSS="$HOME/.config/waybar/style.css"
 FASTFETCH_CONFIG="$HOME/.config/fastfetch/config.jsonc"

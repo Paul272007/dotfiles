@@ -68,7 +68,7 @@
     "format": "<span color='#F87C63' size='115%'>󰍛</span> {usage}%",
     "interval": 1,
     "format-alt-click": "click",
-    "format-alt": "<span color='#00FF00'>{icon0}{icon1}{icon2}{icon3}</span> <span color='#FFFFFF'>{usage:>2}%</span> <span color='#00FF00'>󰍛</span>",
+    "format-alt": "<span color='#F87C63'>{icon0}{icon1}{icon2}{icon3}</span> {usage:>2}% <span color='#F87C63'>󰍛</span>",
     "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"],
     "on-click": "gnome-system-monitor",
   },
@@ -132,20 +132,20 @@
   "pulseaudio#microphone": {
     "format": "{format_source}",
     "format-source": "<span color='#F87C63'> </span>{volume}%",
-    "format-source-muted": "<span color='#F87C63'>  </span>Off",
+    "format-source-muted": "<span color='#F87C63'>  </span>OFF",
     "on-click": "wpctl set-mute @DEFAULT_SOURCE@ toggle",
     "on-scroll-up": "wpctl set-volume @DEFAULT_SOURCE@ 5%+",
     "on-scroll-down": "wpctl set-volume @DEFAULT_SOURCE@ 5%-",
   },
   "clock": {
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
-    "format": "<span color='#F87C63'>󰥔 </span>{:%H:%M | %a %d %b}",
+    "format": "<span color='#F87C63'>󰥔 </span>{:%H:%M}",
     "format-alt": "<span color='#F87C63'>  </span>{:%Y-%m-%d}",
   },
   "network": {
     "format-wifi": "<span color='#F87C63'> </span> {essid}",
     "format-ethernet": "<span color='#F87C63'>󰈀 </span> Câblé",
-    "format-disconnected": "<span color='#F87C63'>󰖪 </span> Off",
+    "format-disconnected": "<span color='#F87C63'>󰖪 </span> OFF",
     "on-click": "nm-connection-editor",
   },
   "bluetooth": {

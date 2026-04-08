@@ -3,7 +3,7 @@ font-family = "JetBrains Mono Nerd Font"
 font-style = Regular
 
 # Theme and appearance
-# theme = ...
+# theme = TokyoNight
 # BG color of nvim + TokyoNight :
 # background = #1e2030
 background = #20212c
