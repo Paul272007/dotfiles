@@ -4,7 +4,7 @@ configuration {
     font: "GeistMono Nerd Font Bold 12";
     icon-theme: "Papirus";
     show-icons: true;
-    terminal: "ghostty";
+    terminal: "kitty";
     drun-display-format: "{icon} {name}";
     location: 0;
     disable-history: false;

@@ -1,7 +1,6 @@
 * {
-  bg-color: #1a1b26;
-  bg-alt: #24283b;
+  bg-color: #1b1a1688;
+  bg-alt: #241f1f88;
   fg-color: #eeeeee;
   accent-color: #F87C63;
-  // accent-color: #bbbbbb;
 }

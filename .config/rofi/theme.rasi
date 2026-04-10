@@ -37,7 +37,7 @@ entry {
 
 listview {
   lines: 8;
-  columns: 2;
+  columns: 1;
   // fixed-height: true;
   border: 0px;
   spacing: 5px;
@@ -55,7 +55,7 @@ element {
 
 element selected {
   background-color: @accent-color;
-  text-color: @bg-color;
+  text-color: #111111;
 }
 
 element-text, element-icon {
@@ -68,7 +68,7 @@ element-text, element-icon {
 mode-switcher {
   spacing: 10px;
   margin: 10px 0px 0px 0px;
-  background-color: @bg-color;
+  background-color: transparent;
 }
 
 button {
@@ -81,5 +81,5 @@ button {
 
 button selected {
   background-color: @accent-color;
-  text-color: @bg-color;
+  text-color: #111111;
 }

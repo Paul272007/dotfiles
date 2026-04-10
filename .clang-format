@@ -12,3 +12,5 @@ AllowShortFunctionsOnASingleLine: None
 AlignAfterOpenBracket: BlockIndent
 # Interdit de regrouper plusieurs paramètres sur la même ligne
 # BinPackParameters: false
+# A partir de quand on étale la ligne sur plusieurs lignes
+ColumnLimit: 110
