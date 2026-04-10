@@ -44,5 +44,5 @@ element-text {
 
 element selected {
     background-color: @accent-color;
-    text-color: @bg-color;
+    text-color: #111111;
 }

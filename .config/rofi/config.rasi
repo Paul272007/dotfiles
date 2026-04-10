@@ -14,6 +14,7 @@ configuration {
     display-window: "   Window ";
     display-filebrowser: "   Files ";
     sidebar-mode: true;
+    sorting-method: "fzf"; /* Nécessite parfois une version récente */
 }
 
 @theme "theme"
