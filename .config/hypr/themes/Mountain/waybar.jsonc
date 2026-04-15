@@ -115,7 +115,7 @@
     "format": "<span color='#F87C63'>{icon} </span>{volume}%",
     "format-bluetooth": "<span color='#a6e3a1'>{icon}</span>  {volume}%",
     "tooltip": false,
-    "format-muted": "<span color='#F87C63'>󰝟</span>",
+    "format-muted": "<span color='#F87C63'>󰝟</span> OFF",
     "on-click": "wpctl set-mute @DEFAULT_SINK@ toggle",
     "on-scroll-up": "wpctl set-volume @DEFAULT_SINK@ 10%+",
     "on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 10%-",
