@@ -2,9 +2,9 @@
 BasedOnStyle: LLVM
 # Deux espaces d'indentation
 IndentWidth: 2
-# Accolades toujours à la ligne suivante
+# Accolades toujours à la ligne suivante pour les if / while / for / try / catch
 BreakBeforeBraces: Allman
-# Ne pas écrire de fonctions en une seule ligne
+# Ne pas écrire de fonctions en une seule ligne (serait bien pour les fonctions vides)
 AllowShortFunctionsOnASingleLine: None
 # S'assurer que les blocs vides ne sont pas non plus contractés
 # AllowShortBlocksOnASingleLine: Never
@@ -14,3 +14,6 @@ AlignAfterOpenBracket: BlockIndent
 # BinPackParameters: false
 # A partir de quand on étale la ligne sur plusieurs lignes
 ColumnLimit: 110
+# Les boucles vides ne rejettent pas la virgule sur la ligne suivante
+# Problème : ça permet aux boucles courtes de se mettre sur une ligne
+AllowShortLoopsOnASingleLine: true

@@ -18,3 +18,12 @@ vim.api.nvim_create_autocmd("ColorScheme", {
     vim.api.nvim_set_hl(0, "SnacksPickerBorder", { fg = red, bg = gray })
   end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+  group = spell_group,
+  pattern = "text",
+  callback = function()
+    vim.opt_local.spell = true
+    vim.opt_local.spelllang = "fr"
+  end,
+})
