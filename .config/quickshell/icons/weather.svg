@@ -1,0 +1,7 @@
+<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Soleil -->
+    <circle cx="15" cy="9" r="3" stroke="#2aa63e" stroke-width="2"/>
+    <path d="M15 4V5M20 9H19M15 14V13M10 9H11" stroke="#2aa63e" stroke-width="2" stroke-linecap="round"/>
+    <!-- Nuage -->
+    <path d="M7 19C4.79086 19 3 17.2091 3 15C3 12.8544 4.68695 11.1019 6.81243 11.0044C7.40488 9.2625 9.05942 8 11 8C13.2501 8 15.0805 9.77114 15.234 12.0001C15.2393 12 15.2447 12 15.25 12C17.3211 12 19 13.6789 19 15.75C19 17.8211 17.3211 19.5 15.25 19.5L7 19Z" fill="#141414" stroke="#2aa63e" stroke-width="2" stroke-linejoin="round"/>
+</svg>
