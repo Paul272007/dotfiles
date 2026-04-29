@@ -7,8 +7,8 @@
 .config/waybar/style.css
 .config/fastfetch/config.jsonc
 .config/rofi/colors.rasi
-.config/starship.toml
 .config/swaync/style.css
+.config/quickshell/.qmmlls.ini
 
 # Tmux plugins
 .config/tmux/plugins/*
