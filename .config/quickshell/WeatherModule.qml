@@ -51,7 +51,7 @@ Rectangle {
     // Ajout d'animations...
     
     border.width: 1
-    border.color: osdMuted && showingOSD ? "#ff5555" : (expanded ? Config.accent : (mouseArea.containsMouse ? Qt.rgba(1, 1, 1, 0.3) : Qt.rgba(1, 1, 1, 0.1)))
+    border.color: osdMuted && showingOSD ? "#ff5555" : (island.isHovered ? Qt.rgba(1, 1, 1, 0.3) : Qt.rgba(1, 1, 1, 0.1))
 
     // Animations
     Behavior on implicitWidth { NumberAnimation { duration: island.showingOSD ? 200 : 300; easing.type: Easing.OutBack } }
