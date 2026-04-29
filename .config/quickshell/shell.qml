@@ -9,6 +9,7 @@ PanelWindow {
     id: root
     exclusiveZone: Config.barHeight + Config.margin
     SystemData { id: sys }
+    
     anchors { top: true; left: true; right: true }
     margins { top: Config.margin; left: Config.margin * 2; right: Config.margin * 2 }
     implicitHeight: 300
@@ -65,7 +66,11 @@ PanelWindow {
                 content: Row {
                     anchors.centerIn: parent; spacing: 8
                     Image { source: "icons/disk.svg"; sourceSize: Qt.size(16, 16) }
-                    Text { text: sys.diskUsage + "%"; color: Config.text; font.bold: true; font.pixelSize: Config.fontSize }
+                    Text { 
+                        text: sys.diskUsage + "%"; color: Config.text; font.bold: true
+                        font.pixelSize: Config.fontSize; font.family: Config.fontFamily
+                        height: 16; verticalAlignment: Text.AlignVCenter
+                    }
                 }
             }
 
@@ -80,7 +85,11 @@ PanelWindow {
                         Row {
                             anchors.centerIn: parent; spacing: 6
                             Image { source: "icons/cpu.svg"; sourceSize: Qt.size(16, 16) }
-                            Text { text: sys.cpuUsage + "%"; color: Config.text; font.bold: true; font.pixelSize: Config.fontSize }
+                            Text { 
+                                text: sys.cpuUsage + "%"; color: Config.text; font.bold: true
+                                font.pixelSize: Config.fontSize; font.family: Config.fontFamily
+                                height: 16; verticalAlignment: Text.AlignVCenter
+                            }
                         }
                     }
                     MouseArea { id: cpuMouse; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor; onClicked: Hyprland.dispatch("exec kitty btop") }
@@ -92,7 +101,11 @@ PanelWindow {
                 content: Row {
                     anchors.centerIn: parent; spacing: 8
                     Image { source: "icons/ram.svg"; sourceSize: Qt.size(16, 16) }
-                    Text { text: sys.memUsage + "%"; color: Config.text; font.bold: true; font.pixelSize: Config.fontSize }
+                    Text { 
+                        text: sys.memUsage + "%"; color: Config.text; font.bold: true
+                        font.pixelSize: Config.fontSize; font.family: Config.fontFamily
+                        height: 16; verticalAlignment: Text.AlignVCenter
+                    }
                 }
             }
         }
@@ -114,13 +127,42 @@ PanelWindow {
             spacing: 12
 
             BaseModule {
-                collapsedWidth: 70
+                id: wifiIsland
+                collapsedWidth: (sys.wifiName.length * 8) + 40
                 content: Row {
-                    anchors.centerIn: parent; spacing: 10
-                    Image { source: "icons/wifi.svg"; sourceSize: Qt.size(16, 16); opacity: sys.wifiName !== "Déconnecté" ? 1 : 0.3 }
-                    Image { source: "icons/bluetooth.svg"; sourceSize: Qt.size(16, 16); opacity: sys.bluetoothOn ? 1 : 0.3 }
+                    anchors.centerIn: parent; spacing: 8
+                    // Icône : Image pour WiFi, Texte (Nerd Font) pour Ethernet
+                    Image { 
+                        visible: !sys.isWired
+                        source: "icons/wifi.svg"; sourceSize: Qt.size(16, 16)
+                        opacity: sys.wifiName !== "Déconnecté" ? 1 : 0.3 
+                    }
+                    Text {
+                        visible: sys.isWired
+                        text: "󰈀" // Icône Ethernet Nerd Font
+                        color: Config.accent
+                        font.pixelSize: 18
+                        font.family: Config.fontFamily
+                        height: 16; verticalAlignment: Text.AlignVCenter
+                    }
+                    Text { 
+                        text: sys.wifiName; color: Config.text; font.bold: true
+                        font.pixelSize: Config.fontSize; font.family: Config.fontFamily 
+                        height: 16; verticalAlignment: Text.AlignVCenter
+                    }
                 }
                 onClicked: Hyprland.dispatch("exec kitty nmtui")
+            }
+
+            BaseModule {
+                collapsedWidth: 40
+                content: Row {
+                    anchors.centerIn: parent
+                    Image { 
+                        source: "icons/bluetooth.svg"; sourceSize: Qt.size(16, 16)
+                        opacity: sys.bluetoothOn ? 1 : 0.3 
+                    }
+                }
             }
 
             Item {
@@ -134,7 +176,11 @@ PanelWindow {
                         Row {
                             anchors.centerIn: parent; spacing: 6
                             Image { source: "icons/battery.svg"; sourceSize: Qt.size(16, 16) }
-                            Text { text: sys.batteryLevel + "%"; color: Config.text; font.bold: true; font.pixelSize: Config.fontSize }
+                            Text { 
+                                text: sys.batteryLevel + "%"; color: Config.text; font.bold: true
+                                font.pixelSize: Config.fontSize; font.family: Config.fontFamily
+                                height: 16; verticalAlignment: Text.AlignVCenter
+                            }
                         }
                     }
                     MouseArea { id: batMouse; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor }
@@ -146,7 +192,7 @@ PanelWindow {
                 BaseModule {
                     id: timeIsland; anchors.horizontalCenter: parent.horizontalCenter
                     property bool showDate: false
-                    collapsedWidth: showDate ? 120 : 80
+                    collapsedWidth: showDate ? 140 : 80
                     containsMouse: timeMouse.containsMouse; isPressed: timeMouse.pressed
                     content: Item {
                         anchors.fill: parent
@@ -155,7 +201,9 @@ PanelWindow {
                             Image { source: "icons/clock.svg"; sourceSize: Qt.size(16, 16) }
                             Text { 
                                 text: timeIsland.showDate ? sys.shortDate : sys.time
-                                color: Config.text; font.bold: true; font.pixelSize: Config.fontSize 
+                                color: Config.text; font.bold: true
+                                font.pixelSize: Config.fontSize; font.family: Config.fontFamily 
+                                height: 16; verticalAlignment: Text.AlignVCenter
                             }
                         }
                     }
@@ -167,21 +215,26 @@ PanelWindow {
             }
 
             Item {
-                width: 40; height: Config.moduleHeight
+                width: 36; height: Config.moduleHeight
                 BaseModule {
                     id: powerIsland; anchors.right: parent.right
-                    collapsedWidth: 40
+                    collapsedWidth: 36
                     containsMouse: powerMouse.containsMouse; isPressed: powerMouse.pressed
                     content: Item {
                         anchors.fill: parent
                         Image {
                             anchors.centerIn: parent
                             source: "icons/power.svg"; sourceSize: Qt.size(14, 14)
+                            opacity: powerMouse.containsMouse ? 1 : 0.6
+                            Behavior on opacity { NumberAnimation { duration: 200 } }
                         }
                     }
                     MouseArea { 
                         id: powerMouse; anchors.fill: parent; hoverEnabled: true; cursorShape: Qt.PointingHandCursor
-                        onClicked: Hyprland.dispatch("exec wlogout")
+                        onClicked: {
+                            let p = Qt.createQmlObject('import Quickshell.Io; Process { command: ["sh", "-c", "~/.local/bin/power"] }', powerIsland);
+                            p.running = true;
+                        }
                     }
                 }
             }

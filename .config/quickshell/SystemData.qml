@@ -25,6 +25,7 @@ QtObject {
     property string mediaTitle: ""
     property string mediaArtist: ""
     property string mediaStatus: "Stopped"
+    property string mediaArtUrl: ""
 
     signal osdEvent(string type, int value, bool muted)
 
@@ -81,9 +82,35 @@ QtObject {
         }
     }
 
+    property bool isWired: false
+
     property Process wifiProc: Process {
-        command: ["sh", "-c", "nmcli -t -f active,ssid dev wifi | grep '^oui' | cut -d: -f2"]
-        stdout: StdioCollector { onStreamFinished: sysData.wifiName = this.text.trim() || "Déconnecté" }
+        command: ["sh", "-c", "
+            # Trouver l'interface active (parmi ethernet ou wifi)
+            IFACE=$(ip route get 1.1.1.1 2>/dev/null | grep dev | awk '{print $5}')
+            if [ -z \"$IFACE\" ]; then
+                echo \"none:Déconnecté\"
+            else
+                TYPE=\"wifi\"
+                # Vérifier si c'est de l'ethernet
+                if [ -d \"/sys/class/net/$IFACE/device\" ] && [ ! -d \"/sys/class/net/$IFACE/wireless\" ]; then
+                    TYPE=\"ethernet\"
+                    NAME=\"Câblé\"
+                else
+                    # Essayer de chopper le SSID si c'est du wifi (iw ou iwgetid)
+                    NAME=$(iwgetid -r \"$IFACE\" 2>/dev/null || echo \"WiFi\")
+                fi
+                echo \"$TYPE:$NAME\"
+            fi
+        "]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                let text = this.text.trim();
+                let parts = text.split(":");
+                sysData.isWired = parts[0] === "ethernet";
+                sysData.wifiName = parts[1] || "Déconnecté";
+            }
+        }
     }
 
     property Process btProc: Process {
@@ -155,16 +182,18 @@ QtObject {
     }
 
     property Process mediaProc: Process {
-        command: ["sh", "-c", "playerctl metadata --format '{{title}}||{{artist}}||{{status}}' 2>/dev/null"]
+        command: ["sh", "-c", "playerctl metadata --format '{{title}}||{{artist}}||{{status}}||{{mpris:artUrl}}' 2>/dev/null"]
         stdout: StdioCollector {
             onStreamFinished: {
                 let parts = this.text.trim().split("||");
-                if (parts.length >= 3) {
+                if (parts.length >= 4) {
                     sysData.mediaTitle = parts[0];
                     sysData.mediaArtist = parts[1];
                     sysData.mediaStatus = parts[2];
+                    sysData.mediaArtUrl = parts[3].replace("file://", "");
                 } else {
                     sysData.mediaStatus = "Stopped";
+                    sysData.mediaArtUrl = "";
                 }
             }
         }
@@ -176,9 +205,10 @@ QtObject {
             sysData.cpuProc.running = true;
             sysData.memProc.running = true;
             let d = new Date();
-            sysData.time = d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-            sysData.fullDate = d.toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long' });
-            sysData.shortDate = d.toLocaleDateString(undefined, { day: 'numeric', month: 'short' }).replace(".", "");
+            let locale = Qt.locale("fr_FR");
+            sysData.time = d.toLocaleTimeString(locale, "HH:mm");
+            sysData.fullDate = d.toLocaleDateString(locale, "dddd d MMMM");
+            sysData.shortDate = d.toLocaleDateString(locale, "ddd d MMM");
             sysData.fullDate = sysData.fullDate.charAt(0).toUpperCase() + sysData.fullDate.slice(1);
         }
     }
