@@ -73,7 +73,7 @@ QtObject {
     }
 
     property Process weatherProc: Process {
-        command: ["/home/paul/.zc/bin/weather"]
+        command: ["sh", "-c", "~/.zc/bin/weather"]
         stdout: StdioCollector {
             onStreamFinished: {
                 try { sysData.weatherData = JSON.parse(this.text); } catch(e) {}
