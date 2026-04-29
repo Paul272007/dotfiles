@@ -17,11 +17,11 @@ QtObject {
     // Dimensions
     readonly property int barHeight: 40
     readonly property int moduleHeight: 28
-    readonly property int margin: 6
+    readonly property int margin: 3
     readonly property int spacing: 10
     readonly property int sidePadding: 12
     readonly property int moduleRadius: 20
-    
+
     // Animations (Fluides et organiques)
     readonly property int animDuration: 400
 }
