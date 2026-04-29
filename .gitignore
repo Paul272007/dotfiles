@@ -8,7 +8,7 @@
 .config/fastfetch/config.jsonc
 .config/rofi/colors.rasi
 .config/swaync/style.css
-.config/quickshell/.qmmlls.ini
+.config/quickshell/.qmlls.ini
 
 # Tmux plugins
 .config/tmux/plugins/*
