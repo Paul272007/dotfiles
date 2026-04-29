@@ -174,7 +174,12 @@ Rectangle {
                 clip: true
                 Image {
                     anchors.fill: parent
-                    source: sys.mediaArtUrl ? "file://" + sys.mediaArtUrl : ""
+                    // Si l'URL commence par http, on l'utilise directement, sinon on ajoute file:// pour les fichiers locaux
+                    source: {
+                        if (!sys.mediaArtUrl) return "";
+                        if (sys.mediaArtUrl.startsWith("http")) return sys.mediaArtUrl;
+                        return "file://" + sys.mediaArtUrl;
+                    }
                     fillMode: Image.PreserveAspectCrop
                     visible: status === Image.Ready
                 }

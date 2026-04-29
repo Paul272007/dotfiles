@@ -3,7 +3,8 @@ import QtQuick
 
 QtObject {
     // Couleurs
-    readonly property color bg: Qt.rgba(25 / 255, 25 / 255, 25 / 255, 0.70)
+    readonly property color bg: Qt.rgba(25 / 255, 25 / 255, 25 / 255, 0.75)
+    readonly property color hover: Qt.rgba(35 / 255, 35 / 255, 35 / 255, 0.8)
     readonly property color text: "#eeeeee"
     readonly property color empty: "#547254"
     readonly property color alt: "#3b9b47"

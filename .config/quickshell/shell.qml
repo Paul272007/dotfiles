@@ -192,7 +192,7 @@ PanelWindow {
                 BaseModule {
                     id: timeIsland; anchors.horizontalCenter: parent.horizontalCenter
                     property bool showDate: false
-                    collapsedWidth: showDate ? 140 : 80
+                    collapsedWidth: showDate ? 144 : 84
                     containsMouse: timeMouse.containsMouse; isPressed: timeMouse.pressed
                     content: Item {
                         anchors.fill: parent

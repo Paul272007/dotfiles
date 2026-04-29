@@ -8,7 +8,6 @@ QtObject {
     property string fullDate: ""
     property string shortDate: ""
     property int cpuUsage: 0
-    property var cpuCores: []
     property int memUsage: 0
     property int diskUsage: 0
     property string wifiName: "Déconnecté"
@@ -30,31 +29,24 @@ QtObject {
     signal osdEvent(string type, int value, bool muted)
 
     property Process cpuProc: Process {
-        command: ["sh", "-c", "grep '^cpu' /proc/stat"]
+        command: ["sh", "-c", "grep 'cpu ' /proc/stat"]
         stdout: StdioCollector {
             onStreamFinished: {
-                let lines = this.text.trim().split("\n");
-                let newCores = [];
-                lines.forEach((line, index) => {
-                    let p = line.trim().split(/\s+/);
-                    let idle = parseInt(p[4]) + parseInt(p[5]);
-                    let total = p.slice(1, 8).reduce((a, b) => a + parseInt(b), 0);
-                    if (sysData.lastCpuTotals[index]) {
-                        let diffTotal = total - sysData.lastCpuTotals[index];
-                        let diffIdle = idle - sysData.lastCpuIdles[index];
-                        let usage = Math.round(100 * (1 - diffIdle / diffTotal));
-                        if (index === 0) sysData.cpuUsage = usage;
-                        else newCores.push(usage);
-                    }
-                    sysData.lastCpuTotals[index] = total;
-                    sysData.lastCpuIdles[index] = idle;
-                });
-                sysData.cpuCores = newCores;
+                let p = this.text.trim().split(/\s+/);
+                let idle = parseInt(p[4]) + parseInt(p[5]);
+                let total = p.slice(1, 8).reduce((a, b) => a + parseInt(b), 0);
+                if (sysData.lastCpuTotal) {
+                    let diffTotal = total - sysData.lastCpuTotal;
+                    let diffIdle = idle - sysData.lastCpuIdle;
+                    sysData.cpuUsage = Math.round(100 * (1 - diffIdle / diffTotal));
+                }
+                sysData.lastCpuTotal = total;
+                sysData.lastCpuIdle = idle;
             }
         }
     }
-    property var lastCpuTotals: []
-    property var lastCpuIdles: []
+    property var lastCpuTotal: 0
+    property var lastCpuIdle: 0
 
     property Process memProc: Process {
         command: ["sh", "-c", "free | grep Mem"]
@@ -86,21 +78,16 @@ QtObject {
 
     property Process wifiProc: Process {
         command: ["sh", "-c", "
-            # Trouver l'interface active (parmi ethernet ou wifi)
-            IFACE=$(ip route get 1.1.1.1 2>/dev/null | grep dev | awk '{print $5}')
-            if [ -z \"$IFACE\" ]; then
+            # Détection ultra-légère via /proc/net/route et /sys/class/net
+            GW=$(awk '$2 == \"00000000\" {print $1}' /proc/net/route | head -n 1)
+            if [ -z \"$GW\" ]; then
                 echo \"none:Déconnecté\"
             else
-                TYPE=\"wifi\"
-                # Vérifier si c'est de l'ethernet
-                if [ -d \"/sys/class/net/$IFACE/device\" ] && [ ! -d \"/sys/class/net/$IFACE/wireless\" ]; then
-                    TYPE=\"ethernet\"
-                    NAME=\"Câblé\"
+                if [ -d \"/sys/class/net/$GW/wireless\" ]; then
+                    echo \"wifi:$(iwgetid -r \"$GW\" 2>/dev/null || echo \"WiFi\")\"
                 else
-                    # Essayer de chopper le SSID si c'est du wifi (iw ou iwgetid)
-                    NAME=$(iwgetid -r \"$IFACE\" 2>/dev/null || echo \"WiFi\")
+                    echo \"ethernet:Câblé\"
                 fi
-                echo \"$TYPE:$NAME\"
             fi
         "]
         stdout: StdioCollector {
@@ -215,7 +202,7 @@ QtObject {
 
     // Timer ultra-rapide pour l'OSD (Volume/Luminosité)
     property Timer osdFastTimer: Timer {
-        interval: 100; running: true; repeat: true; triggeredOnStart: true
+        interval: 200; running: true; repeat: true; triggeredOnStart: true
         onTriggered: {
             sysData.volProc.running = true;
             sysData.micProc.running = true;

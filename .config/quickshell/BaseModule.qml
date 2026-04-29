@@ -17,7 +17,7 @@ Rectangle {
 
     signal clicked
 
-    color: (containsMouse || expanded) ? Qt.rgba(35 / 255, 35 / 255, 35 / 255, 0.8) : Config.bg
+    color: (containsMouse || expanded) ? Config.hover : Config.bg
     radius: expanded ? 16 : Config.moduleRadius
     scale: isPressed ? 0.96 : (containsMouse ? 1.05 : 1.0)
     z: (containsMouse || expanded) ? 100 : 1
