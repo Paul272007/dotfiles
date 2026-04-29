@@ -302,15 +302,15 @@ Rectangle {
             RowLayout {
                 Layout.fillWidth: true; spacing: 25
                 ColumnLayout {
-                    Text { text: "RESSENTI"; color: Config.empty; font.pixelSize: 8; font.bold: true }
+                    Text { text: "RESSENTI"; color: Config.text; opacity: 0.6 ; font.pixelSize: 8; font.bold: true }
                     Text { text: weatherData.main ? Math.round(weatherData.main.feels_like) + "°" : "--"; color: Config.text; font.pixelSize: 13; font.bold: true }
                 }
                 ColumnLayout {
-                    Text { text: "HUMIDITÉ"; color: Config.empty; font.pixelSize: 8; font.bold: true }
+                    Text { text: "HUMIDITÉ"; color: Config.text; opacity: 0.6 ; font.pixelSize: 8; font.bold: true }
                     Text { text: weatherData.main ? weatherData.main.humidity + "%" : "--"; color: Config.text; font.pixelSize: 13; font.bold: true }
                 }
                 ColumnLayout {
-                    Text { text: "VENT"; color: Config.empty; font.pixelSize: 8; font.bold: true }
+                    Text { text: "VENT"; color: Config.text; opacity: 0.6 ; font.pixelSize: 8; font.bold: true }
                     Text { text: weatherData.wind ? Math.round(weatherData.wind.speed * 3.6) + " km/h" : "--"; color: Config.text; font.pixelSize: 13; font.bold: true }
                 }
             }

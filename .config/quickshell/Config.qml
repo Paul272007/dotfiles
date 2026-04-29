@@ -7,8 +7,8 @@ QtObject {
     readonly property color hover: Qt.rgba(35 / 255, 35 / 255, 35 / 255, 0.8)
     readonly property color text: "#eeeeee"
     readonly property color empty: "#547254"
-    readonly property color alt: "#3b9b47"
-    readonly property color accent: "#2aa63e"
+    readonly property color alt: "#3b8b47"
+    readonly property color accent: "#2a963e"
 
     // Typographie (Basée sur le Dynamic Island)
     readonly property string fontFamily: "JetBrainsMono Nerd Font"
@@ -16,11 +16,9 @@ QtObject {
     readonly property int fontSizeSmall: 10
 
     // Dimensions
-    readonly property int barHeight: 40
+    readonly property int barHeight: 35
     readonly property int moduleHeight: 28
     readonly property int margin: 3
-    readonly property int spacing: 10
-    readonly property int sidePadding: 12
     readonly property int moduleRadius: 20
 
     // Animations (Fluides et organiques)

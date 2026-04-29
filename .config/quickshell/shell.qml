@@ -199,7 +199,7 @@ PanelWindow {
                         Row {
                             anchors.centerIn: parent; spacing: 8
                             Image { source: "icons/clock.svg"; sourceSize: Qt.size(16, 16) }
-                            Text { 
+                            Text {
                                 text: timeIsland.showDate ? sys.shortDate : sys.time
                                 color: Config.text; font.bold: true
                                 font.pixelSize: Config.fontSize; font.family: Config.fontFamily 
@@ -224,8 +224,7 @@ PanelWindow {
                         anchors.fill: parent
                         Image {
                             anchors.centerIn: parent
-                            source: "icons/power.svg"; sourceSize: Qt.size(14, 14)
-                            opacity: powerMouse.containsMouse ? 1 : 0.6
+                            source: "icons/power.svg"; sourceSize: Qt.size(15, 15)
                             Behavior on opacity { NumberAnimation { duration: 200 } }
                         }
                     }
