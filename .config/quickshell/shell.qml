@@ -103,7 +103,7 @@ PanelWindow {
             width: implicitWidth; height: implicitHeight
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.top: parent.top
-            anchors.topMargin: parent.commonTop - (hasMedia && !expanded && !showingOSD ? 4 : 0)
+            anchors.topMargin: parent.commonTop - (hasMedia && !expanded ? 4 : 0)
             weatherData: sys.weatherData; z: 50
         }
 
