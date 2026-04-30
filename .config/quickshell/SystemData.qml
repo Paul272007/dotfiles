@@ -12,6 +12,7 @@ QtObject {
     property int diskUsage: 0
     property string wifiName: "Déconnecté"
     property bool bluetoothOn: false
+    property string bluetoothDevice: ""
     property int batteryLevel: 0
     property string batteryStatus: ""
     property string batteryTime: ""
@@ -101,8 +102,25 @@ QtObject {
     }
 
     property Process btProc: Process {
-        command: ["sh", "-c", "bluetoothctl show | grep 'Powered: yes'"]
-        stdout: StdioCollector { onStreamFinished: sysData.bluetoothOn = this.text.includes("yes") }
+        command: ["sh", "-c", "
+            if bluetoothctl show | grep -q 'Powered: yes'; then
+                DEVICE=$(bluetoothctl devices Connected | head -n 1 | cut -d' ' -f3-)
+                if [ -n \"$DEVICE\" ]; then
+                    echo \"ON:$DEVICE\"
+                else
+                    echo \"ON:none\"
+                fi
+            else
+                echo \"OFF:none\"
+            fi
+        "]
+        stdout: StdioCollector {
+            onStreamFinished: {
+                let parts = this.text.trim().split(":");
+                sysData.bluetoothOn = parts[0] === "ON";
+                sysData.bluetoothDevice = parts[1] === "none" ? "" : parts[1];
+            }
+        }
     }
 
     property Process batteryProc: Process {
