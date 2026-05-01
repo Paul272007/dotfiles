@@ -184,15 +184,6 @@ PanelWindow {
                     }
                     onClicked: showDate = !showDate
                 }
-
-                BaseModule {
-                    implicitWidth: 36
-                    content: SvgImage {
-                        anchors.centerIn: parent
-                        source: "icons/power.svg"
-                    }
-                    onClicked: Hyprland.dispatch("exec ~/.local/bin/power")
-                }
             }
         }
     }
