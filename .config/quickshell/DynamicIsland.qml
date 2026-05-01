@@ -116,6 +116,12 @@ Rectangle {
                 height: parent.height
                 radius: parent.radius
                 color: island.osdMuted ? Config.redBorder : Config.accent
+                Behavior on width {
+                    NumberAnimation {
+                        duration: 100
+                        easing.type: Easing.OutCubic
+                    }
+                }
             }
         }
 
@@ -192,13 +198,15 @@ Rectangle {
         SvgImage {
             source: weatherData.weather ? "https://openweathermap.org/img/wn/" + weatherData.weather[0].icon + "@2x.png" : "icons/weather.svg"
             sourceSize: Qt.size(24, 24)
+            Layout.alignment: Qt.AlignVCenter
         }
         ModuleText {
             text: weatherData.main ? Math.round(weatherData.main.temp) + "°" : "--°"
             font.pixelSize: 12
+            Layout.alignment: Qt.AlignVCenter
         }
         Item {
-          width: 2
+            width: 2
         }
         Rectangle {
             width: 1
@@ -206,13 +214,13 @@ Rectangle {
             color: Qt.rgba(1, 1, 1, 0.2)
         }
         Item {
-          width: 2
+            width: 2
         }
         ModuleText {
-            anchors.verticalCenter: parent.verticalCenter
             text: weatherData.weather ? weatherData.weather[0].description : "Météo..."
             font.pixelSize: 11
             opacity: 0.6
+            Layout.alignment: Qt.AlignVCenter
         }
     }
 
@@ -245,7 +253,8 @@ Rectangle {
                     id: albumArtImage
                     anchors.fill: parent
                     source: {
-                        if (!sys.mediaArtUrl) return "";
+                        if (!sys.mediaArtUrl)
+                            return "";
                         return sys.mediaArtUrl.startsWith("http") ? sys.mediaArtUrl : "file://" + sys.mediaArtUrl;
                     }
                     fillMode: Image.PreserveAspectCrop

@@ -228,14 +228,21 @@ QtObject {
         }
     }
 
+    // Timer pour la wifi, le bluetooth et la batterie
+    property Timer timer3: Timer {
+        interval: 30000; running: true; repeat: true; triggeredOnStart: true
+        onTriggered: {
+            sysData.wifiProc.running = true;
+            sysData.btProc.running = true;
+            sysData.batteryProc.running = true;
+        }
+    }
+
     property Timer slowTimer: Timer {
         interval: 60000; running: true; repeat: true; triggeredOnStart: true
         property int count: 15
         onTriggered: {
             sysData.diskProc.running = true;
-            sysData.wifiProc.running = true;
-            sysData.btProc.running = true;
-            sysData.batteryProc.running = true;
             if (++count >= 15) { sysData.weatherProc.running = true; count = 0; }
         }
     }

@@ -27,6 +27,10 @@ PanelWindow {
 
     SystemData { id: sys }
 
+    FullscreenOSD {
+        sysData: sys
+    }
+
     color: "transparent"
 
     // --- CENTRE ---
