@@ -3,8 +3,9 @@
 THEME_DIR="$HOME/.config/hypr/themes"
 
 CURRENT_THEME_FILE="$HOME/.config/hypr/hyprland/current_theme.conf"
-WAYBAR_CONF="$HOME/.config/waybar/config.jsonc"
-WAYBAR_CSS="$HOME/.config/waybar/style.css"
+# WAYBAR_CONF="$HOME/.config/waybar/config.jsonc"
+# WAYBAR_CSS="$HOME/.config/waybar/style.css"
+QUICKSHELL_CONFIG="$HOME/.config/quickshell/Config.qml"
 FASTFETCH_CONFIG="$HOME/.config/fastfetch/config.jsonc"
 ROFI_COLORS="$HOME/.config/rofi/colors.rasi"
 STARSHIP_CONF="$HOME/.config/starship.toml"
@@ -27,8 +28,10 @@ fi
 # We suppose each theme folder has the required files
 ln -sf "$THEME_DIR/$THEME_NAME/theme.conf" "$CURRENT_THEME_FILE"
 # Change waybar
-ln -sf "$THEME_DIR/$THEME_NAME/waybar.jsonc" "$WAYBAR_CONF"
-ln -sf "$THEME_DIR/$THEME_NAME/waybar.css" "$WAYBAR_CSS"
+# ln -sf "$THEME_DIR/$THEME_NAME/waybar.jsonc" "$WAYBAR_CONF"
+# ln -sf "$THEME_DIR/$THEME_NAME/waybar.css" "$WAYBAR_CSS"
+# Change quickshell config
+ln -sf "$THEME_DIR/$THEME_NAME/ShellConfig.qml" "$QUICKSHELL_CONFIG"
 # Change fastfetch configuration
 ln -sf "$THEME_DIR/$THEME_NAME/fastfetch.jsonc" "$FASTFETCH_CONFIG"
 # Change rofi colors
@@ -53,9 +56,11 @@ hyprctl reload
 # Store new theme in a file
 echo "$THEME_NAME" >~/.cache/current_theme
 
-# 5. Reload waybar
-killall waybar
-waybar &>/dev/null &
+# 5. Reload waybar / quickshell bar
+# killall waybar
+# waybar &>/dev/null &
+killall quickshell
+quickshell &>/dev/null &
 
 # 6. Reload swaync CSS
 swaync-client -rs

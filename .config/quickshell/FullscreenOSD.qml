@@ -12,7 +12,7 @@ PanelWindow {
     WlrLayershell.layer: WlrLayer.Overlay
 
     anchors.bottom: true
-    WlrLayershell.margins.bottom: 100
+    WlrLayershell.margins.bottom: 70
 
     property string osdType: ""
     property int osdValue: 0
@@ -71,7 +71,7 @@ PanelWindow {
                 color: root.osdMuted ? Config.redBorder : Config.text
                 font {
                     family: Config.fontFamily
-                    pixelSize: 12
+                    pixelSize: Config.fontSize
                     bold: true
                 }
             }

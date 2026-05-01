@@ -116,12 +116,6 @@ Rectangle {
                 height: parent.height
                 radius: parent.radius
                 color: island.osdMuted ? Config.redBorder : Config.accent
-                Behavior on width {
-                    NumberAnimation {
-                        duration: 100
-                        easing.type: Easing.OutCubic
-                    }
-                }
             }
         }
 
@@ -220,7 +214,7 @@ Rectangle {
             text: weatherData.weather ? weatherData.weather[0].description : "Météo..."
             font.pixelSize: 11
             opacity: 0.6
-            Layout.alignment: Qt.AlignVCenter
+            anchors.verticalCenter: parent.verticalCenter
         }
     }
 

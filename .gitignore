@@ -9,6 +9,7 @@
 .config/rofi/colors.rasi
 .config/swaync/style.css
 .config/quickshell/.qmlls.ini
+.config/quickshell/Config.qml
 
 # Tmux plugins
 .config/tmux/plugins/*

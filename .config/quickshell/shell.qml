@@ -25,7 +25,9 @@ PanelWindow {
     implicitHeight: 200
     exclusiveZone: Config.barHeight // + Config.margin * 2
 
-    SystemData { id: sys }
+    SystemData {
+        id: sys
+    }
 
     FullscreenOSD {
         sysData: sys
@@ -76,7 +78,12 @@ PanelWindow {
                                 readonly property bool isFocused: Hyprland.focusedWorkspace?.id === (index + 1)
                                 implicitWidth: isFocused ? 28 : (wsMouse.containsMouse ? 16 : 10)
                                 implicitHeight: 10
-                                Behavior on implicitWidth { NumberAnimation { duration: 300; easing.type: Easing.OutBack } }
+                                Behavior on implicitWidth {
+                                    NumberAnimation {
+                                        duration: 300
+                                        easing.type: Easing.OutBack
+                                    }
+                                }
                                 Rectangle {
                                     anchors.fill: parent
                                     radius: 5
@@ -99,8 +106,12 @@ PanelWindow {
                     content: Row {
                         anchors.centerIn: parent
                         spacing: Config.moduleSpacing
-                        SvgImage { source: "icons/disk.svg" }
-                        ModuleText { text: sys.diskUsage + "%" }
+                        SvgImage {
+                            source: "icons/disk.svg"
+                        }
+                        ModuleText {
+                            text: sys.diskUsage + "%"
+                        }
                     }
                     onClicked: Hyprland.dispatch("exec kitty btop")
                 }
@@ -109,8 +120,12 @@ PanelWindow {
                     content: Row {
                         anchors.centerIn: parent
                         spacing: Config.moduleSpacing
-                        SvgImage { source: "icons/cpu.svg" }
-                        ModuleText { text: sys.cpuUsage + "%" }
+                        SvgImage {
+                            source: "icons/cpu.svg"
+                        }
+                        ModuleText {
+                            text: sys.cpuUsage + "%"
+                        }
                     }
                     onClicked: Hyprland.dispatch("exec kitty btop")
                 }
@@ -119,8 +134,12 @@ PanelWindow {
                     content: Row {
                         anchors.centerIn: parent
                         spacing: Config.moduleSpacing
-                        SvgImage { source: "icons/ram.svg" }
-                        ModuleText { text: sys.memUsage + "%" }
+                        SvgImage {
+                            source: "icons/ram.svg"
+                        }
+                        ModuleText {
+                            text: sys.memUsage + "%"
+                        }
                     }
                     onClicked: Hyprland.dispatch("exec kitty btop")
                 }
@@ -159,7 +178,9 @@ PanelWindow {
                             source: sys.isWired ? "icons/ethernet.svg" : "icons/wifi.svg"
                             opacity: sys.wifiName !== "Déconnecté" ? 1 : 0.3
                         }
-                        ModuleText { text: sys.wifiName }
+                        ModuleText {
+                            text: sys.wifiName
+                        }
                     }
                     onClicked: Hyprland.dispatch("exec kitty nmtui")
                 }
@@ -171,7 +192,9 @@ PanelWindow {
                         SvgImage {
                             source: sys.batteryStatus === "Charging" ? "icons/battery-charging.svg" : "icons/battery.svg"
                         }
-                        ModuleText { text: sys.batteryLevel + "%" }
+                        ModuleText {
+                            text: sys.batteryLevel + "%"
+                        }
                     }
                     onClicked: Hyprland.dispatch("exec xfce4-power-manager-settings")
                 }
@@ -183,8 +206,12 @@ PanelWindow {
                     content: Row {
                         anchors.centerIn: parent
                         spacing: Config.moduleSpacing
-                        SvgImage { source: "icons/clock.svg" }
-                        ModuleText { text: timeIsland.showDate ? sys.shortDate : sys.time }
+                        SvgImage {
+                            source: "icons/clock.svg"
+                        }
+                        ModuleText {
+                            text: timeIsland.showDate ? sys.shortDate : sys.time
+                        }
                     }
                     onClicked: showDate = !showDate
                 }
