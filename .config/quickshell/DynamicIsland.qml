@@ -31,13 +31,13 @@ Rectangle {
     property bool showingOSD: false
 
     // Size and position
-    implicitWidth: expanded ? 360 : (showingOSD ? 160 : (hasMedia ? 260 : collapsedLayout.implicitWidth + 30))
-    implicitHeight: expanded ? 160 : (hasMedia ? Config.barHeight : Config.moduleHeight)
+    implicitWidth: expanded ? Config.expandedModuleWidth : (showingOSD ? 160 : (hasMedia ? 260 : collapsedLayout.implicitWidth + 30))
+    implicitHeight: expanded ? Config.expandedModuleHeight : (hasMedia ? Config.barHeight : Config.moduleHeight)
 
     // Style
     color: osdMuted && showingOSD ? Config.redBg : Config.bg
     radius: expanded ? Config.expandedModuleRadius : Config.moduleRadius
-    border.width: 1
+    border.width: Config.borderWidth
     border.color: osdMuted && showingOSD ? Config.redBorder : (island.isHovered ? Config.borderHover : Config.borderColor)
 
     // Détection de survol robuste : l'îlot reste étendu si la souris est au-dessus de lui ou d'un de ses enfants
@@ -60,7 +60,7 @@ Rectangle {
         id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
-        cursorShape: Qt.PointingHandCursor
+        // cursorShape: Qt.PointingHandCursor
     }
 
     // Animations
@@ -72,7 +72,7 @@ Rectangle {
     }
     Behavior on implicitHeight {
         NumberAnimation {
-            duration: 400
+            duration: Config.animDuration
             easing.type: Easing.OutBack
         }
     }
@@ -84,12 +84,6 @@ Rectangle {
     Behavior on color {
         ColorAnimation {
             duration: 200
-        }
-    }
-    Behavior on scale {
-        NumberAnimation {
-            duration: 150
-            easing.type: Easing.OutCubic
         }
     }
 
@@ -246,8 +240,8 @@ Rectangle {
 
             Rectangle {
                 id: albumArtContainer
-                width: 100
-                height: 100
+                width: 110
+                height: 110
                 radius: 12
                 color: Config.borderColor
 

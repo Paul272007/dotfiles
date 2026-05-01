@@ -8,8 +8,6 @@ import QtQuick.Layouts
 PanelWindow {
     id: root
 
-    WlrLayershell.layer: WlrLayershell.Top
-
     anchors {
         top: true
         left: true
@@ -25,11 +23,21 @@ PanelWindow {
     }
 
     implicitHeight: 200
-    exclusiveZone: Config.barHeight + Config.margin * 2
+    exclusiveZone: Config.barHeight // + Config.margin * 2
 
     SystemData { id: sys }
 
     color: "transparent"
+
+    // --- CENTRE ---
+    DynamicIsland {
+        id: dynamicIsland
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: parent.top
+        anchors.topMargin: Config.margin + (hasMedia ? 0 : Config.barHeight - Config.moduleHeight) / 2
+        weatherData: sys.weatherData
+        z: 100
+    }
 
     Item {
         id: barContainer
@@ -37,10 +45,13 @@ PanelWindow {
         height: Config.barHeight + Config.margin * 2
 
         Item {
-            anchors.fill: parent
-            anchors.topMargin: Config.margin
-            anchors.leftMargin: Config.sideMargin
-            anchors.rightMargin: Config.sideMargin
+            anchors {
+                fill: parent
+                topMargin: Config.margin
+                bottomMargin: Config.margin
+                leftMargin: Config.sideMargin
+                rightMargin: Config.sideMargin
+            }
 
             // --- GAUCHE ---
             Row {
@@ -112,15 +123,14 @@ PanelWindow {
             }
 
             // --- CENTRE ---
-            DynamicIsland {
-                id: dynamicIsland
-                anchors.horizontalCenter: parent.horizontalCenter // Stays right in the middle
-                // anchors.verticalCenter: parent.verticalCenter // Now extends around the center
-                anchors.top: parent.top
-                anchors.topMargin: (parent.height - (hasMedia ? Config.barHeight : Config.moduleHeight)) / 2
-                weatherData: sys.weatherData
-                z: 100
-            }
+            // DynamicIsland {
+            //     id: dynamicIsland
+            //     anchors.horizontalCenter: parent.horizontalCenter // Stays right in the middle
+            //     anchors.top: parent.top
+            //     anchors.topMargin: (parent.height - (hasMedia ? Config.barHeight : Config.moduleHeight)) / 2
+            //     weatherData: sys.weatherData
+            //     z: 100
+            // }
 
             // --- DROITE ---
             Row {
@@ -175,7 +185,7 @@ PanelWindow {
                 BaseModule {
                     id: timeIsland
                     property bool showDate: false
-                    implicitWidth: showDate ? 144 : 85
+                    implicitWidth: showDate ? 135 : 85
                     content: Row {
                         anchors.centerIn: parent
                         spacing: Config.moduleSpacing
@@ -187,10 +197,9 @@ PanelWindow {
 
                 BaseModule {
                     implicitWidth: 36
-                    content: Image {
+                    content: SvgImage {
                         anchors.centerIn: parent
                         source: "icons/power.svg"
-                        sourceSize: Qt.size(16, 16)
                     }
                     onClicked: Hyprland.dispatch("exec ~/.local/bin/power")
                 }
