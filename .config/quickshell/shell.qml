@@ -122,16 +122,6 @@ PanelWindow {
                 }
             }
 
-            // --- CENTRE ---
-            // DynamicIsland {
-            //     id: dynamicIsland
-            //     anchors.horizontalCenter: parent.horizontalCenter // Stays right in the middle
-            //     anchors.top: parent.top
-            //     anchors.topMargin: (parent.height - (hasMedia ? Config.barHeight : Config.moduleHeight)) / 2
-            //     weatherData: sys.weatherData
-            //     z: 100
-            // }
-
             // --- DROITE ---
             Row {
                 id: rightModules
@@ -185,7 +175,7 @@ PanelWindow {
                 BaseModule {
                     id: timeIsland
                     property bool showDate: false
-                    implicitWidth: showDate ? 135 : 85
+                    implicitWidth: showDate ? 125 : 85
                     content: Row {
                         anchors.centerIn: parent
                         spacing: Config.moduleSpacing

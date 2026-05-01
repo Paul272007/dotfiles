@@ -245,18 +245,6 @@ Rectangle {
                 radius: 12
                 color: Config.borderColor
 
-                // Le masque pour les coins arrondis
-                Item {
-                    id: albumArtMask
-                    width: parent.width
-                    height: parent.height
-                    visible: false
-                    Rectangle {
-                        anchors.fill: parent
-                        radius: 12
-                    }
-                }
-
                 Image {
                     id: albumArtImage
                     anchors.fill: parent
@@ -265,15 +253,17 @@ Rectangle {
                         return sys.mediaArtUrl.startsWith("http") ? sys.mediaArtUrl : "file://" + sys.mediaArtUrl;
                     }
                     fillMode: Image.PreserveAspectCrop
-                    visible: false // Caché car affiché par le MultiEffect
-                }
-
-                MultiEffect {
-                    anchors.fill: albumArtImage
-                    source: albumArtImage
-                    maskEnabled: true
-                    maskSource: albumArtMask
-                    visible: albumArtImage.status === Image.Ready
+                    // FIX : image border radius
+                    //
+                    // layer.enabled: true
+                    // layer.effect: MultiEffect {
+                    //     maskEnabled: true
+                    //     maskSource: Rectangle {
+                    //         width: albumArtImage.width
+                    //         height: albumArtImage.height
+                    //         radius: 12
+                    //     }
+                    // }
                 }
 
                 Text {
