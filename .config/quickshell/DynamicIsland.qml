@@ -183,40 +183,36 @@ Rectangle {
         anchors.centerIn: parent
         visible: island.implicitHeight < 50 && !island.showingOSD && !island.hasMedia
         opacity: visible ? 1 : 0
-        spacing: Config.spacing
+        spacing: 5
         Behavior on opacity {
             NumberAnimation {
                 duration: 200
             }
         }
-
-        Image {
-            source: "icons/weather.svg"
-            sourceSize: Qt.size(16, 16)
-            opacity: 0.9
+        SvgImage {
+            source: weatherData.weather ? "https://openweathermap.org/img/wn/" + weatherData.weather[0].icon + "@2x.png" : "icons/weather.svg"
+            sourceSize: Qt.size(24, 24)
         }
-        Text {
+        ModuleText {
             text: weatherData.main ? Math.round(weatherData.main.temp) + "°" : "--°"
-            color: Config.text
-            font {
-                family: Config.fontFamily
-                pixelSize: 12
-                bold: true
-            }
+            font.pixelSize: 12
+        }
+        Item {
+          width: 2
         }
         Rectangle {
             width: 1
             height: 10
             color: Qt.rgba(1, 1, 1, 0.2)
         }
-        Text {
+        Item {
+          width: 2
+        }
+        ModuleText {
+            anchors.verticalCenter: parent.verticalCenter
             text: weatherData.weather ? weatherData.weather[0].description : "Météo..."
-            color: Config.text
-            font {
-                family: Config.fontFamily
-                pixelSize: 11
-            }
-            opacity: 0.7
+            font.pixelSize: 11
+            opacity: 0.6
         }
     }
 
