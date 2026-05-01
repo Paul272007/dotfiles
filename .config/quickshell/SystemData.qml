@@ -79,7 +79,6 @@ QtObject {
 
     property Process wifiProc: Process {
         command: ["sh", "-c", "
-            # Détection ultra-légère via /proc/net/route et /sys/class/net
             GW=$(awk '$2 == \"00000000\" {print $1}' /proc/net/route | head -n 1)
             if [ -z \"$GW\" ]; then
                 echo \"none:Déconnecté\"

@@ -22,8 +22,9 @@ QtObject {
     // Dimensions
     readonly property int borderWidth: 1
     readonly property int margin: 3
+    readonly property int sideMargin: 15
+    readonly property int moduleSpacing: 8
     readonly property int spacing: 10
-    readonly property int sideMargin: 18
     readonly property int barHeight: 35
     readonly property int moduleHeight: 28
     readonly property int moduleWidth: 75

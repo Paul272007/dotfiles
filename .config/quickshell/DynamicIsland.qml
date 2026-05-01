@@ -6,9 +6,6 @@ import Quickshell.Io
 Rectangle {
     id: island
 
-    property bool expanded: false
-    property var weatherData: ({})
-
     // Processus pour les contrôles média
     Process {
         id: prevProc
@@ -23,20 +20,25 @@ Rectangle {
         command: ["sh", "-c", "playerctl next"]
     }
 
+    // Propriétés d'affichage et de contenu
+    property bool expanded: false
+    property var weatherData: ({})
+    readonly property bool hasMedia: sys.mediaStatus === "Playing" || sys.mediaStatus === "Paused"
     // Propriétés pour l'OSD (Volume/Luminosité/Micro)
     property string osdType: ""
     property int osdValue: 0
     property bool osdMuted: false
     property bool showingOSD: false
 
-    readonly property bool hasMedia: sys.mediaStatus === "Playing" || sys.mediaStatus === "Paused"
+    // Size and position
+    implicitWidth: expanded ? 360 : (showingOSD ? 160 : (hasMedia ? 260 : collapsedLayout.implicitWidth + 30))
+    implicitHeight: expanded ? 160 : (hasMedia ? Config.barHeight : Config.moduleHeight)
 
+    // Style
     color: osdMuted && showingOSD ? Config.redBg : Config.bg
     radius: expanded ? Config.expandedModuleRadius : Config.moduleRadius
-    scale: mouseArea.pressed ? 0.96 : (island.isHovered ? 1.02 : 1.0)
-
-    implicitWidth: expanded ? 360 : (showingOSD ? 160 : (hasMedia ? 260 : Math.max(120, collapsedLayout.implicitWidth + 30)))
-    implicitHeight: expanded ? 160 : (hasMedia ? 36 : 28)
+    border.width: 1
+    border.color: osdMuted && showingOSD ? Config.redBorder : (island.isHovered ? Config.borderHover : Config.borderColor)
 
     // Détection de survol robuste : l'îlot reste étendu si la souris est au-dessus de lui ou d'un de ses enfants
     property bool isHovered: mouseArea.containsMouse || prevMouse.containsMouse || playMouse.containsMouse || nextMouse.containsMouse
@@ -60,9 +62,6 @@ Rectangle {
         hoverEnabled: true
         cursorShape: Qt.PointingHandCursor
     }
-
-    border.width: 1
-    border.color: osdMuted && showingOSD ? Config.redBorder : (island.isHovered ? Config.borderHover : Config.borderColor)
 
     // Animations
     Behavior on implicitWidth {

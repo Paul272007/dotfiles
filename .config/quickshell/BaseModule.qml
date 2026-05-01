@@ -6,9 +6,6 @@ Rectangle {
 
     property alias content: contentContainer.data
 
-    property int moduleWidth: Config.moduleWidth
-    property int moduleHeight: Config.moduleHeight
-
     property bool containsMouse: mouseArea.containsMouse
     property bool isPressed: mouseArea.pressed
 
@@ -19,8 +16,8 @@ Rectangle {
     scale: isPressed ? 0.96 : (containsMouse ? 1.05 : 1.0)
     z: 1
 
-    implicitWidth: moduleWidth
-    implicitHeight: moduleHeight
+    implicitWidth: Config.moduleWidth
+    implicitHeight: Config.moduleHeight
 
     border.width: Config.borderWidth
     border.color: containsMouse ? Config.borderHover : Config.borderColor
