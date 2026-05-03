@@ -71,7 +71,7 @@ PanelWindow {
                 color: root.osdMuted ? Config.redBorder : Config.text
                 font {
                     family: Config.fontFamily
-                    pixelSize: Config.fontSize
+                    pixelSize: 13
                     bold: true
                 }
             }

@@ -73,7 +73,7 @@ Rectangle {
     Behavior on implicitHeight {
         NumberAnimation {
             duration: Config.animDuration
-            easing.type: Easing.OutBack
+            easing.type: Easing.OutExpo
         }
     }
     Behavior on radius {

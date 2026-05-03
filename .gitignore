@@ -1,6 +1,3 @@
-# Nvim packages
-.config/nvim/lazy-lock.json
-
 # ----- All symlinks pointing to a theme configuration
 .config/hypr/hyprland/current_theme.conf
 .config/waybar/config.jsonc
@@ -10,9 +7,12 @@
 .config/swaync/style.css
 .config/quickshell/.qmlls.ini
 .config/quickshell/Config.qml
+.config/weather.conf
+# Default theme (link)
+.config/hypr/themes/Default
+
+# Nvim packages
+.config/nvim/lazy-lock.json
 
 # Tmux plugins
 .config/tmux/plugins/*
-
-# Default theme (link)
-.config/hypr/themes/Default

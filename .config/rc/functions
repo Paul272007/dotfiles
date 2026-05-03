@@ -9,11 +9,6 @@ mk() {
   mkdir -p "$1" && cd "$1" || return
 }
 
-# Open files quietly
-open() {
-  xdg-open "$@" &>/dev/null
-}
-
 # Edit files quickly
 edit() {
   local file="$1"

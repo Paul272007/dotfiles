@@ -2,7 +2,6 @@ vendor
 node_modules
 __pycache__
 .DS_Store
-ZC2
 dist
 out
 dist-electron
