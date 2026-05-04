@@ -9,6 +9,10 @@ mk() {
   mkdir -p "$1" && cd "$1" || return
 }
 
+x() {
+  cat "$@" | wl-copy
+}
+
 # Edit files quickly
 edit() {
   local file="$1"
