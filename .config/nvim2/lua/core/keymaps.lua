@@ -17,7 +17,7 @@ map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Wi
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
 -- LSP
-map('n', '<leader>cd', vim.diagnostic.open_float)
+map('n', '<leader>cd', vim.diagnostic.open_float, { desc = "Show line diagnostics" })
 
 -- Buffers
 map("n", "<PageDown>", ":bnext<CR>", { desc = "Switch to next buffer", noremap = true, silent = true })
