@@ -1,0 +1,16 @@
+{
+  "plugins": {
+    "bufferline.nvim": {
+      "rev": "655133c3b4c3e5e05ec549b9f8cc2894ac6f51b3",
+      "src": "https://github.com/akinsho/bufferline.nvim"
+    },
+    "mini.ai": {
+      "rev": "7e10ce8468c0fce4f527ae2c0e5c484f7667f73d",
+      "src": "https://github.com/nvim-mini/mini.ai"
+    },
+    "mini.pairs": {
+      "rev": "42387c7fe68fc0b6e95eaf37f1bb76e7bffaa0d9",
+      "src": "https://github.com/nvim-mini/mini.pairs"
+    }
+  }
+}

@@ -14,8 +14,6 @@ vim.g.lazyvim_lsp_inlay_hints = false
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
-opt.clipboard = "unnamedplus"
-
 -- opt.formatoptions:remove({ "r", "o" })
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
 -- Chaque lettre correspond à un comportement spécifique de Neovim :
