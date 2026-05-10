@@ -6,9 +6,10 @@ require('which-key').setup({
     {
       mode = { "n", "x" },
       { "<leader>c", group = "code" },
+      { "<leader>g", group = "git" },
     },
   },
-}) -- FIX : config doesn't work
+})
 
 require('gitsigns').setup()
 require('todo-comments').setup()

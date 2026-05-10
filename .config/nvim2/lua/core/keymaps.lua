@@ -1,6 +1,6 @@
 local map = vim.keymap.set
 
--- Disable some keys
+-- Disable page up and down keys when in insert mode
 map("i", "<PageUp>", "<Nop>", { desc = "Disable PageUp" })
 map("i", "<PageDown>", "<Nop>", { desc = "Disable PageDown" })
 
@@ -19,11 +19,42 @@ map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window W
 -- LSP
 map('n', '<leader>cd', vim.diagnostic.open_float, { desc = "Show line diagnostics" })
 
+-- Clear search on esc
+map({ "n" }, "<esc>", function()
+  vim.cmd("noh")
+end, { desc = "Clear search highlights" })
+
 -- Buffers
 map("n", "<PageDown>", ":bnext<CR>", { desc = "Switch to next buffer", noremap = true, silent = true })
 map("n", "<PageUp>", ":bprev<CR>", { desc = "Switch to previous buffer", noremap = true, silent = true })
 map("n", "<tab>", ":bnext<CR>", { desc = "Switch to next buffer", noremap = true, silent = true })
 map("n", "<S-tab>", ":bprev<CR>", { desc = "Switch to previous buffer", noremap = true, silent = true })
 
+-- save file
+map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
+
 -- Terminal mode
 map("t", "<Esc>", "<C-\\><C-n>", { desc = "Quit terminal mode" })
+
+-- Lazygit -  FIX : does not work without lazyvim
+if vim.fn.executable("lazygit") == 1 then
+  map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Lazygit" })
+end
+
+-- Neogen
+map("n", "<leader>co", ":lua require('neogen').generate()<cr>", { desc = "Générer Doc (@brief)" })
+
+-- Snacks
+--
+-- picker
+map("n", "<leader><space>", function() Snacks.picker.smart() end, { desc = "Smart find files" })
+map("n", "<leader>e", function()
+  Snacks.explorer({
+    layout = { layout = { position = "right" } },
+  })
+end, { desc = "File Explorer" })
+-- buffers
+map("n", "<leader>q", function() Snacks.bufdelete() end, { desc = "Delete current buffer" })
+-- lsp
+map("n", "<leader>ss", function() Snacks.picker.lsp_symbols() end, { desc = "LSP Symbols" });
+map("n", "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, { desc = "LSP Workspace Symbols" });
