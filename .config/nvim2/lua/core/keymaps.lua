@@ -24,27 +24,35 @@ map({ "n" }, "<esc>", function()
   vim.cmd("noh")
 end, { desc = "Clear search highlights" })
 
--- Buffers
+-- Append character at the end of the line
+map("n", "<leader>a", function()
+  local char = vim.fn.nr2char(vim.fn.getchar())
+  if char:match("[%z\27]") then return end
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local line = vim.api.nvim_get_current_line()
+  vim.api.nvim_set_current_line(line .. char)
+  vim.api.nvim_win_set_cursor(0, cursor)
+end, { desc = "Append character at end of line" })
+
+---- Buffers
+-- move between buffers
 map("n", "<PageDown>", ":bnext<CR>", { desc = "Switch to next buffer", noremap = true, silent = true })
 map("n", "<PageUp>", ":bprev<CR>", { desc = "Switch to previous buffer", noremap = true, silent = true })
 map("n", "<tab>", ":bnext<CR>", { desc = "Switch to next buffer", noremap = true, silent = true })
 map("n", "<S-tab>", ":bprev<CR>", { desc = "Switch to previous buffer", noremap = true, silent = true })
-
 -- save file
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 
--- Terminal mode
+---- Terminal mode
 map("t", "<Esc>", "<C-\\><C-n>", { desc = "Quit terminal mode" })
 
--- Lazygit -  FIX : does not work without lazyvim
-if vim.fn.executable("lazygit") == 1 then
-  map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Lazygit" })
-end
+---- ZC
+map("n", "<F5>", ":w<CR>:term zc run -q %<CR>", { desc = "Compile and execute C/C++ file using ZC" })
 
--- Neogen
+---- Neogen
 map("n", "<leader>co", ":lua require('neogen').generate()<cr>", { desc = "Générer Doc (@brief)" })
 
--- Snacks
+---- Snacks
 --
 -- picker
 map("n", "<leader><space>", function() Snacks.picker.smart() end, { desc = "Smart find files" })
@@ -58,3 +66,5 @@ map("n", "<leader>q", function() Snacks.bufdelete() end, { desc = "Delete curren
 -- lsp
 map("n", "<leader>ss", function() Snacks.picker.lsp_symbols() end, { desc = "LSP Symbols" });
 map("n", "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, { desc = "LSP Workspace Symbols" });
+-- lazygit
+map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Lazygit" }) -- FIX : doesn't work

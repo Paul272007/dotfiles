@@ -1,6 +1,25 @@
 require('mini.pairs').setup()
 
-require('mini.ai').setup({})
+local ai = require('mini.ai')
+ai.setup({
+  n_lines = 500,
+  custom_textobjects = {
+    -- f : Function (requires Treesitter)
+    f = ai.gen_spec.treesitter({
+      a = "@function.outer",
+      i = "@function.inner",
+    }),
+
+    -- g : Entire buffer
+    g = function()
+      local tot_lines = vim.fn.line('$')
+      return {
+        from = { line = 1, col = 1 },
+        to = { line = tot_lines, col = math.max(vim.fn.getline(tot_lines):len(), 1) },
+      }
+    end,
+  },
+})
 
 require('lazydev').setup()
 
