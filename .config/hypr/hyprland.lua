@@ -1,0 +1,7 @@
+require("hyprland.envs")
+require("hyprland.monitors")
+require("hyprland.settings")
+require("hyprland.windowrules")
+require("hyprland.theme")
+require("hyprland.keybinds")
+require("hyprland.execs")

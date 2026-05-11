@@ -9,17 +9,16 @@ g.autoformat = true
 -- disable clipboard if in SSH
 opt.clipboard = vim.env.SSH_CONNECTION and "" or "unnamedplus" -- system clipboard
 opt.confirm = true                                             -- confirm before quitting modified buffer
-opt.cursorline = false                                         -- highlight current line
+opt.cursorline = true                                          -- highlight current line
 opt.mouse = "a"                                                -- enable mouse
 opt.smoothscroll = true
 opt.spelllang = { 'en', 'fr' }
 opt.signcolumn = "yes" -- always show sign column
 opt.wrap = false
-opt.mousemoveevent = true
 
-opt.number = true -- print line number
-opt.relativenumber = true
-opt.termguicolors = true
+opt.number = true                  -- print line number
+opt.relativenumber = true          -- numbers are relative to cursor
+opt.termguicolors = true           -- enable true colors
 opt.list = true                    -- show invisible characters such as tabs, spaces...
 opt.splitbelow = true              -- open new windows below current one
 opt.splitright = true              -- open new windows right of current one
@@ -48,13 +47,3 @@ opt.tabstop = 2
 
 -- Autocompletion
 opt.completeopt = { 'menu', 'menuone', 'noselect' }
-
--- UI Customization
--- Transparency
--- local function transparency()
---   local groups = { "Normal", "NormalFloat", "NormalNC", "SignColumn", "FoldColumn", "StatusLine", "StatusLineNC" }
---   for _, group in ipairs(groups) do
---     vim.api.nvim_set_hl(0, group, { bg = "NONE", ctermbg = "NONE" })
---   end
--- end
--- transparency()

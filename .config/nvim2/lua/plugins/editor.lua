@@ -7,6 +7,7 @@ require('which-key').setup({
       mode = { "n", "x" },
       { "<leader>c", group = "code" },
       { "<leader>g", group = "git" },
+      { "<leader>s", group = "search" },
     },
   },
 })

@@ -3,7 +3,8 @@ local augroup = vim.api.nvim_create_augroup
 vim.api.nvim_create_autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("my.lsp", {}),
   callback = function(ev)
-    local client = assert(vim.lsp.get_client_by_id(ev.data.client_id))
+    -- local client =
+    assert(vim.lsp.get_client_by_id(ev.data.client_id))
 
     -- blink.cmp handles completion, we don't need to enable the built-in one
   end,

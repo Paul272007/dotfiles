@@ -2,7 +2,7 @@
 
 THEME_DIR="$HOME/.config/hypr/themes"
 
-CURRENT_THEME_FILE="$HOME/.config/hypr/hyprland/current_theme.conf"
+CURRENT_THEME_FILE="$HOME/.config/hypr/hyprland/theme.lua"
 # WAYBAR_CONF="$HOME/.config/waybar/config.jsonc"
 # WAYBAR_CSS="$HOME/.config/waybar/style.css"
 QUICKSHELL_CONFIG="$HOME/.config/quickshell/Config.qml"
@@ -26,7 +26,7 @@ fi
 
 # 2. Update all symlinks
 # We suppose each theme folder has the required files
-ln -sf "$THEME_DIR/$THEME_NAME/theme.conf" "$CURRENT_THEME_FILE"
+ln -sf "$THEME_DIR/$THEME_NAME/theme.lua" "$CURRENT_THEME_FILE"
 # Change waybar
 # ln -sf "$THEME_DIR/$THEME_NAME/waybar.jsonc" "$WAYBAR_CONF"
 # ln -sf "$THEME_DIR/$THEME_NAME/waybar.css" "$WAYBAR_CSS"

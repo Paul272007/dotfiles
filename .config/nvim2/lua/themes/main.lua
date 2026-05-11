@@ -1,16 +1,10 @@
 local M = {}
 
 M.colors = {
-  --   bg0    = "#16120e", -- fond le plus sombre (lignes inactives)
-  --   bg1    = "#1e1812", -- fond principal
-  --   bg2    = "#252018", -- fond surface (splits, popups)
-  --   bg3    = "#2e2418", -- bordures, séparateurs
-
-  -- TRANSPARENT
-  bg0    = "NONE",    -- fond le plus sombre (lignes inactives)
-  bg1    = "NONE",    -- fond principal
-  bg2    = "NONE",    -- fond surface (splits, popups)
-  bg3    = "NONE",    -- bordures, séparateurs
+  bg0    = "#16120e", -- fond le plus sombre (lignes inactives)
+  bg1    = "#1e1812", -- fond principal
+  bg2    = "#252018", -- fond surface (splits, popups)
+  bg3    = "#2e2418", -- bordures, séparateurs
   bg4    = "#3a2c1c", -- sélection, visual mode
 
   fg0    = "#e0d0ba", -- texte très lumineux (rare)
@@ -45,36 +39,36 @@ function M.setup()
   end
 
   -- Editor
-  hl("Normal", { fg = c.fg1, bg = c.bg1 })
-  hl("NormalFloat", { fg = c.fg1, bg = c.bg2 })
-  hl("NormalNC", { fg = c.fg2, bg = c.bg0 })
-  hl("SignColumn", { fg = c.fg3, bg = c.bg1 })
-  hl("LineNr", { fg = c.fg3, bg = c.bg1 })
-  hl("CursorLine", { bg = c.bg2 })
-  hl("CursorLineNr", { fg = c.yellow, bg = c.bg2, bold = true })
-  hl("ColorColumn", { bg = c.bg2 })
-  hl("MatchParen", { fg = c.yellow, bold = true, underline = true })
+  hl("Normal", { fg = c.fg1, bg = "NONE" })
+  hl("NormalFloat", { fg = c.fg1, bg = "NONE" })
+  hl("NormalNC", { fg = c.fg2, bg = "NONE" })
+  hl("SignColumn", { fg = c.fg3, bg = "NONE" })
+  hl("LineNr", { fg = c.fg3, bg = "NONE" })
+  hl("CursorLine", { bg = "NONE" })
+  hl("CursorLineNr", { fg = c.fg0, bg = "NONE", bold = true })
+  hl("ColorColumn", { bg = "NONE" })
+  -- hl("MatchParen", { fg = c.orange, bold = true, underline = true })
 
   -- Bordures : discrètes, pas agressives
-  hl("WinSeparator", { fg = c.bg3, bg = c.bg1 })
-  hl("VertSplit", { fg = c.bg3, bg = c.bg1 })
-  hl("FloatBorder", { fg = c.bg3, bg = c.bg2 })
+  hl("WinSeparator", { fg = "NONE", bg = "NONE" })
+  hl("VertSplit", { fg = "NONE", bg = "NONE" })
+  hl("FloatBorder", { fg = "NONE", bg = "NONE" })
 
   -- Sélection / recherche
   hl("Visual", { bg = c.bg4 })
-  hl("Search", { fg = c.bg0, bg = c.yellow })
-  hl("IncSearch", { fg = c.bg0, bg = c.orange, bold = true })
-  hl("Substitute", { fg = c.bg0, bg = c.red })
+  hl("Search", { fg = "NONE", bg = c.yellow })
+  hl("IncSearch", { fg = "NONE", bg = c.orange, bold = true })
+  hl("Substitute", { fg = "NONE", bg = c.red })
 
   -- Messages / statut
-  hl("MsgArea", { fg = c.fg2, bg = c.bg1 })
+  hl("MsgArea", { fg = c.fg2, bg = "NONE" })
   hl("ErrorMsg", { fg = c.red, bold = true })
   hl("WarningMsg", { fg = c.yellow })
 
   -- Menus
-  hl("Pmenu", { fg = c.fg1, bg = c.bg2 })
+  hl("Pmenu", { fg = c.fg1, bg = "NONE" })
   hl("PmenuSel", { fg = c.fg0, bg = c.bg4, bold = true })
-  hl("PmenuSbar", { bg = c.bg3 })
+  hl("PmenuSbar", { bg = "NONE" })
   hl("PmenuThumb", { bg = c.fg3 })
 
   -- Syntaxe
@@ -129,30 +123,47 @@ function M.setup()
   hl("DiagnosticUnderlineWarn", { underline = true, sp = c.yellow })
 
   -- Git signs
-  hl("GitSignsAdd", { fg = c.green, bg = c.bg1 })
-  hl("GitSignsChange", { fg = c.yellow, bg = c.bg1 })
-  hl("GitSignsDelete", { fg = c.red, bg = c.bg1 })
+  hl("GitSignsAdd", { fg = c.green, bg = "NONE" })
+  hl("GitSignsChange", { fg = c.yellow, bg = "NONE" })
+  hl("GitSignsDelete", { fg = c.red, bg = "NONE" })
 
   -- Snacks / Telescope / pickers
   hl("SnacksPickerDir", { fg = c.fg3 })
   hl("SnacksPickerMatch", { fg = c.yellow, bold = true })
-  hl("TelescopeBorder", { fg = c.bg3 })
-  hl("TelescopeNormal", { fg = c.fg1, bg = c.bg2 })
+  hl("TelescopeBorder", { fg = "NONE" })
+  hl("TelescopeNormal", { fg = c.fg1, bg = "NONE" })
 
-  -- Lualine (défini ici en plus du setup lualine ci-dessous)
-  for _, mode in ipairs({ "normal", "insert", "visual", "replace", "command", "inactive" }) do
-    hl("lualine_a_" .. mode, { fg = c.bg0, bg = c.orange, bold = true })
-    hl("lualine_b_" .. mode, { fg = c.fg1, bg = c.bg3 })
-    hl("lualine_c_" .. mode, { fg = c.fg2, bg = c.bg2 })
+  -- Transparency
+  local groups = {
+    "StatusLine",   -- lualine bg
+    "StatusLineNC", -- bufferline bg
+    -- "BufferLineFill",
+    -- "BufferLineSeparator", "BufferLineSeparatorSelected"
+  }
+  for _, group in ipairs(groups) do
+    hl(group, { bg = "NONE", ctermbg = "NONE" })
   end
-  hl("lualine_a_normal", { fg = c.bg0, bg = c.orange, bold = true })
-  hl("lualine_a_insert", { fg = c.bg0, bg = c.green, bold = true })
-  hl("lualine_a_visual", { fg = c.bg0, bg = c.yellow, bold = true })
-  hl("lualine_a_replace", { fg = c.bg0, bg = c.red, bold = true })
-  hl("lualine_a_command", { fg = c.bg0, bg = c.teal, bold = true })
-  hl("lualine_a_inactive", { fg = c.fg3, bg = c.bg2 })
-  hl("lualine_b_normal", { fg = c.fg1, bg = c.bg3 })
-  hl("lualine_c_normal", { fg = c.fg2, bg = c.bg2 })
+end
+
+-- Export lualine theme
+function M.get_lualine_theme()
+  local c = M.colors
+  return {
+    normal = {
+      a = { fg = c.bg0, bg = c.orange, bold = true },
+      b = { fg = c.fg0, bg = c.bg2 },
+      c = { fg = c.fg1, bg = "NONE" },
+    },
+    inactive = {
+      a = { fg = c.fg3, bg = c.bg1 },
+      b = { fg = c.fg3, bg = c.bg1 },
+      c = { fg = c.fg3, bg = "NONE" },
+    },
+    insert = { a = { fg = c.bg0, bg = c.green, bold = true } },
+    visual = { a = { fg = c.bg0, bg = c.yellow, bold = true } },
+    replace = { a = { fg = c.bg0, bg = c.red, bold = true } },
+    command = { a = { fg = c.bg0, bg = c.teal, bold = true } },
+  }
 end
 
 return M

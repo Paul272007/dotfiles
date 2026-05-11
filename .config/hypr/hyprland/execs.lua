@@ -1,0 +1,18 @@
+local config = require("hyprland.config")
+
+hl.on("hyprland.start", function()
+	hl.exec_cmd("quickshell")
+	hl.exec_cmd("hypridle") -- TODO : replace with quickshell
+	hl.exec_cmd("awww-daemon") -- TODO : replace with quickshell
+	hl.exec_cmd("swaync") -- TODO : replace with quickshell
+	hl.exec_cmd("hyprshade auto") -- TODO : replace with quickshell
+	hl.exec_cmd("wl-paste --type text --watch cliphist store")
+	hl.exec_cmd("wl-paste --type image --watch cliphist store")
+	hl.exec_cmd("xfce-power-manager") -- TODO : replace with quickshell
+	hl.exec_cmd("hyprctl setcursor macOS 26")
+	hl.exec_cmd("tmux new-session -d -s main")
+	hl.exec_cmd("~/.config/hypr/scripts/themeswitch.sh " .. config.theme)
+end)
+
+hl.exec_cmd("gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'")
+hl.exec_cmd("gsettings set org.gnome.desktop.interface gtk-theme 'Granite'")
