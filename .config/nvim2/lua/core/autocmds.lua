@@ -27,3 +27,10 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spell = true
   end,
 })
+
+-- Do not open comment line when creating new line under comment
+-- opt.formatoptions:remove({ "r", "o" })
+vim.cmd([[autocmd FileType * set formatoptions-=ro]])
+-- Chaque lettre correspond à un comportement spécifique de Neovim :
+-- r : Ajoute automatiquement le symbole de commentaire après avoir appuyé sur Entrée en mode Insertion.
+-- o : Ajoute automatiquement le symbole de commentaire après avoir appuyé sur o ou O en mode Normal.

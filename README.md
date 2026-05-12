@@ -32,6 +32,9 @@
 - `NVM` + `NPM` + `Node`
 - `Clang`
 - `GitHub-CLI`
+- `Spotify`
+- `Obsidian`
+- `Zen Browser`
 
 ## Structure des fichiers de configuration
 

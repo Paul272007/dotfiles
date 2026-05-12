@@ -1,16 +1,6 @@
 # Zsh options
 setopt histignorealldups sharehistory
 
-# Use emacs keybindings even if $EDITOR is set to nvim
-bindkey -e
-
-# Key bindings
-bindkey '^[[3~' delete-char
-bindkey '^[[1;5C' forward-word
-bindkey '^[[1;5D' backward-word
-bindkey '^[[3;5~' kill-word
-bindkey '^H' backward-kill-word
-
 # Removes slash and dot from characters considered as part of a word
 WORDCHARS=${WORDCHARS//[\/.]/}
 
@@ -20,7 +10,6 @@ SAVEHIST=1000
 HISTFILE=~/.zsh_history
 
 # Use modern completion system
-fpath=(~/.zc/completions $fpath)
 autoload -Uz compinit
 compinit
 
@@ -42,18 +31,18 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
+source_if_exists() {
+  if [ -f "$1" ]; then
+    source "$1"
+  else
+    echo "Error: file $1 does not exist"
+  fi
+}
+
 # Load customized configuration
-source ~/.config/rc/rc
+source_if_exists "$HOME/.config/rc/rc"
 
-# Zsh plugins
+# Plugins
 ZSH_PLUGINS_DIR="/usr/share/zsh/plugins"
-
-if [ -f "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
-    source "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-else
-  echo "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh n'existe pas"
-fi
-
-if [ -f "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh" ]; then
-    source "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"
-fi
+source_if_exists "$ZSH_PLUGINS_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+source_if_exists "$ZSH_PLUGINS_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh"

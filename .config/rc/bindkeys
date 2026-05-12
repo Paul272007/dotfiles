@@ -1,12 +1,11 @@
-#!/bin/bash
-
 # ----------------------------------------------- #
 # ------------- Keybindings for ZSH ------------- #
 # ----------------------------------------------- #
 
-CURRENT_SHELL=$(basename "$SHELL")
-
 if [ "$CURRENT_SHELL" = "zsh" ]; then
+  # Use emacs keybindings even if $EDITOR is set to nvim
+  bindkey -e
+
   # Quick edit using Alt+E
   bindkey -s '\ee' 'edit\n'
   # Go to project using Alt+G
@@ -19,4 +18,11 @@ if [ "$CURRENT_SHELL" = "zsh" ]; then
   bindkey -s '\ed' 'docker compose up -d\n'
   # Write sudo pacman -S instantly using Alt+P
   bindkey -s '\ep' 'sudo pacman -S '
+
+  # Key bindings
+  bindkey '^[[3~' delete-char
+  bindkey '^[[1;5C' forward-word
+  bindkey '^[[1;5D' backward-word
+  bindkey '^[[3;5~' kill-word
+  bindkey '^H' backward-kill-word
 fi

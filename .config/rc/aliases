@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # ---------------------------------------------- #
 # - Vital shortcuts for the most used commands - #
 # ---------------------------------------------- #
@@ -41,10 +39,14 @@ alias c='clear'
 alias chmox='chmod +x'
 alias cp='cp -r'
 alias ctl='sudo systemctl'
-alias rs='source ~/.zshrc'
+
+if [ "$CURRENT_SHELL" = "zsh" ]; then
+  alias rs='source ~/.zshrc'
+elif [ "$CURRENT_SHELL" = "bash" ]; then
+  alias rs='source ~/.bashrc'
+fi
 
 # Other tools
-alias n='edit'
 alias y='yazi'
 alias d='docker'
 alias lg='lazygit'

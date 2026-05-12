@@ -47,7 +47,8 @@ map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map("t", "<Esc>", "<C-\\><C-n>", { desc = "Quit terminal mode" })
 
 ---- ZC
-map("n", "<F5>", ":w<CR>:term zc run -q %<CR>", { desc = "Compile and execute C/C++ file using ZC" })
+map("n", "<leader>zc", ":w<CR>:term zc run %<CR>", { desc = "Compile and execute C/C++ file" })
+map("n", "<leader>zq", ":w<CR>:term zc run -q %<CR>", { desc = "Compile and execute C/C++ file quietly" })
 
 ---- Neogen
 map("n", "<leader>co", ":lua require('neogen').generate()<cr>", { desc = "Générer Doc (@brief)" })

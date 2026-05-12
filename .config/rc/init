@@ -1,21 +1,20 @@
-#!/bin/bash
-
 # ----------------------------------------------- #
 # --------- Initialize all shell tools ---------- #
 # ----------------------------------------------- #
 
-CURRENT_SHELL=$(basename "$SHELL")
+if [ -n "$ZSH_VERSION" ]; then
+  CURRENT_SHELL=zsh
+elif [ -n "$BASH_VERSION" ]; then
+  CURRENT_SHELL=bash
+else
+  CURRENT_SHELL=$(basename "$SHELL")
+fi
 
 # Verify each time if tool is installed
 
 # Zoxide
 if command -v zoxide &>/dev/null; then
   eval "$(zoxide init "$CURRENT_SHELL")"
-fi
-
-# Homebrew
-if command -v brew &>/dev/null; then
-  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 fi
 
 # Starship

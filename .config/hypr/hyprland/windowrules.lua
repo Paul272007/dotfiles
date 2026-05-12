@@ -19,7 +19,7 @@ hl.window_rule({
 
 hl.window_rule({
 	name = "center",
-	match = { class = "^(nm-connection-editor|blueman-manager|jetbrains-toolbox|org.nmrs.ui|iut.gon.*)$" },
+	match = { class = "^(nm-connection-editor|blueman-manager|jetbrains-toolbox|org.nmrs.ui)$" },
 	float = true,
 	center = true,
 })
