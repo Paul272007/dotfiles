@@ -1,17 +1,18 @@
-require('flash').setup()
+require("flash").setup()
 
-require('which-key').setup({
-  preset = "helix",
-  spec = {
-    {
-      mode = { "n", "x" },
-      { "<leader>c", group = "code" },
-      { "<leader>f", group = "find" },
-      { "<leader>g", group = "git" },
-      { "<leader>s", group = "search" },
-    },
-  },
+require("which-key").setup({
+	preset = "helix",
+	spec = {
+		{
+			mode = { "n", "x" },
+			{ "<leader>c", group = "code" },
+			{ "<leader>f", group = "find" },
+			{ "<leader>g", group = "git" },
+			{ "<leader>s", group = "search" },
+			{ "<leader>z", group = "zc" },
+		},
+	},
 })
 
-require('gitsigns').setup()
-require('todo-comments').setup()
+require("gitsigns").setup()
+require("todo-comments").setup()
