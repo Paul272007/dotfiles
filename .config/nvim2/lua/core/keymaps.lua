@@ -53,18 +53,41 @@ map("n", "<F5>", ":w<CR>:term zc run -q %<CR>", { desc = "Compile and execute C/
 map("n", "<leader>co", ":lua require('neogen').generate()<cr>", { desc = "Générer Doc (@brief)" })
 
 ---- Snacks
---
--- picker
+-- picker and buffers
 map("n", "<leader><space>", function() Snacks.picker.smart() end, { desc = "Smart find files" })
-map("n", "<leader>e", function()
-  Snacks.explorer({
-    layout = { layout = { position = "right" } },
-  })
-end, { desc = "File Explorer" })
--- buffers
 map("n", "<leader>q", function() Snacks.bufdelete() end, { desc = "Delete current buffer" })
+map("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Buffers" })
+map("n", "<leader>:", function() Snacks.picker.command_history() end, { desc = "Command history" })
+map("n", "<leader>n", function() Snacks.picker.notifications() end, { desc = "Notifications history" })
+map("n", "<leader>e", function() Snacks.explorer({ layout = { layout = { position = "right" } }, }) end,
+  { desc = "File Explorer" })
+
+-- find
+map("n", "<leader>fp", function() Snacks.picker.projects() end, { desc = "Find project" })
+map("n", "<leader>fr", function() Snacks.picker.recent() end, { desc = "Recent" })
+map("n", "<leader>ff", function() Snacks.picker.files() end, { desc = "Find file" })
+map("n", "<leader>fg", function() Snacks.picker.git_files() end, { desc = "Find git file" })
+map("n", "<leader>fc", function() Snacks.picker.files({ cwd = vim.fn.stdpath("config") }) end,
+  { desc = "Find config file" })
+
+-- git
+map("n", "<leader>gb", function() Snacks.picker.git_branches() end, { desc = "Git branches" })
+map("n", "<leader>gl", function() Snacks.picker.git_log() end, { desc = "Git log" })
+map("n", "<leader>gL", function() Snacks.picker.git_log_line() end, { desc = "Git log line" })
+map("n", "<leader>gs", function() Snacks.picker.git_status() end, { desc = "Git status" })
+map("n", "<leader>gS", function() Snacks.picker.git_stash() end, { desc = "Git stash" })
+map("n", "<leader>gd", function() Snacks.picker.git_diff() end, { desc = "Git diff (hunks)" })
+map("n", "<leader>gf", function() Snacks.picker.git_log_file() end, { desc = "Git log file" })
+map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Lazygit" })
+
+-- TODO : gh
+
+-- grep / search
+map("n", "<leader>/", function() Snacks.picker.grep() end, { desc = "Grep in workspace" })
+map("n", "<leader>sb", function() Snacks.picker.lines() end, { desc = "Grep buffer lines" })
+map("n", "<leader>sB", function() Snacks.picker.grep_buffers() end, { desc = "Grep lines in open buffers" })
+map({ "n", "x" }, "<leader>sw", function() Snacks.picker.grep_word() end, { desc = "Visual selection or word" })
+
 -- lsp
 map("n", "<leader>ss", function() Snacks.picker.lsp_symbols() end, { desc = "LSP Symbols" });
 map("n", "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, { desc = "LSP Workspace Symbols" });
--- lazygit
-map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Lazygit" }) -- FIX : doesn't work

@@ -47,3 +47,6 @@ opt.tabstop = 2
 
 -- Autocompletion
 opt.completeopt = { 'menu', 'menuone', 'noselect' }
+
+-- Ensure cache directory exists
+vim.fn.mkdir(vim.fn.stdpath("cache"), "p")

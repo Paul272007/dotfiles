@@ -18,8 +18,8 @@ require('bufferline').setup({
     -- end,
     always_show_bufferline = true, -- show even when only one file is opened
     show_buffer_icons = true,      -- show icons
-    color_icons = true,            -- icons are colored  FIX : does not work
-    hover = {                      -- FIX : does not work
+    color_icons = true,
+    hover = {
       enabled = true,
       delay = 200,
       reveal = { 'close' }
@@ -107,6 +107,7 @@ require('bufferline').setup({
   }
 })
 
+-- TODO : add hour and move position from z to y
 require('lualine').setup({
   options = {
     theme = require('themes.main').get_lualine_theme(),
@@ -142,8 +143,8 @@ require('lualine').setup({
             for child in n:iter_children() do
               local c_type = child:type()
               -- Exclude the "bodies" of structures/functions to avoid finding internal variables
-              if not (c_type:match("list") or c_type:match("block") or c_type:match("body") or 
-                      c_type:match("statement") or c_type == "compound_statement") then
+              if not (c_type:match("list") or c_type:match("block") or c_type:match("body") or
+                    c_type:match("statement") or c_type == "compound_statement") then
                 local res = find_name(child)
                 if res then return res end
               end
@@ -187,11 +188,54 @@ require('lualine').setup({
 }) -- TODO : configure theme
 
 require('notify').setup()
-require('noice').setup() -- TODO : configure bar height and completion
+require('noice').setup({
+  presets = {
+    bottom_search = true,
+  },
+  views = {
+    cmdline_popup = {
+      position = {
+        row = 5,
+        col = "50%",
+      },
+      size = {
+        width = 60,
+        height = "auto",
+      },
+    },
+    popupmenu = {
+      relative = "editor",
+      position = {
+        row = 8,
+        col = "50%",
+      },
+      size = {
+        width = 60,
+        height = 10,
+      },
+      border = {
+        style = "rounded",
+        padding = { 0, 1 },
+      },
+      win_options = {
+        winhighlight = { Normal = "Normal", FloatBorder = "DiagnosticInfo" },
+      },
+    },
+  },
+}) -- TODO : configure bar height and completion
 
 require('snacks').setup({
   bigfile = { enabled = true },
-  dashboard = { enabled = true },
+  lazygit = { enabled = true },
+  dashboard = {
+    enabled = true,
+    sections = {
+      { section = "header" },
+      { section = "keys",         gap = 1,                padding = 1 },
+      { section = "recent_files", title = "Recent Files", indent = 2, padding = 1 },
+      { section = "projects",     title = "Projects",     indent = 2, padding = 1 },
+    },
+  },
   indent = { enabled = true },
   input = { enabled = true },
   notifier = { enabled = true },

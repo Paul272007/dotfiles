@@ -47,7 +47,7 @@ function M.setup()
   hl("CursorLine", { bg = "NONE" })
   hl("CursorLineNr", { fg = c.fg0, bg = "NONE", bold = true })
   hl("ColorColumn", { bg = "NONE" })
-  -- hl("MatchParen", { fg = c.orange, bold = true, underline = true })
+  hl("MatchParen", { fg = c.orange, bold = true, underline = true })
 
   -- Bordures : discrètes, pas agressives
   hl("WinSeparator", { fg = "NONE", bg = "NONE" })
@@ -74,6 +74,7 @@ function M.setup()
   -- Syntaxe
   hl("Comment", { fg = c.fg4, italic = true })
   hl("Keyword", { fg = c.orange, bold = true })
+  hl("Statement", { fg = c.orange, bold = true })
   hl("Conditional", { fg = c.orange })
   hl("Repeat", { fg = c.orange })
   hl("Function", { fg = c.yellow })
