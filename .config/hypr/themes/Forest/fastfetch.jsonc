@@ -187,25 +187,12 @@
       "keyColor": "green",
     },
     {
-      "type": "memory",
-      "key": "├─   Memory              ",
-      "percent": {
-        "green": 50,
-        "yellow": 80,
-        "type": 0,
-      },
+      "type": "display",
+      "key": "├─ 󰍹  Display             ",
       "keyColor": "green",
-    },
-    {
-      "type": "swap",
-      "key": "├─ 󰓡  Swap                ",
-      "percent": {
-        "green": 50,
-        "yellow": 80,
-        "type": 0,
-      },
-      "separate": false,
-      "keyColor": "green",
+      "compactType": "none",
+      "preciseRefreshRate": false,
+      "order": null,
     },
     {
       "type": "disk",
@@ -256,17 +243,25 @@
       },
     },
     {
-      "type": "poweradapter",
-      "key": "├─ 󰚥  Power Adapter       ",
+      "type": "swap",
+      "key": "├─ 󰓡  Swap                ",
+      "percent": {
+        "green": 50,
+        "yellow": 80,
+        "type": 0,
+      },
+      "separate": false,
       "keyColor": "green",
     },
     {
-      "type": "display",
-      "key": "╰─ 󰍹  Display             ",
+      "type": "memory",
+      "key": "╰─   Memory              ",
+      "percent": {
+        "green": 50,
+        "yellow": 80,
+        "type": 0,
+      },
       "keyColor": "green",
-      "compactType": "none",
-      "preciseRefreshRate": false,
-      "order": null,
     },
     "break",
     {
