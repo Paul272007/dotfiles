@@ -19,7 +19,7 @@ vim.pack.add({
   -- code
   "https://github.com/Saghen/blink.lib",
   "https://github.com/Saghen/blink.cmp",
-  "https://github.com/rafamadriz/friendly-snippets",
+  -- "https://github.com/rafamadriz/friendly-snippets",
   "https://github.com/nvim-mini/mini.pairs",
   "https://github.com/nvim-mini/mini.ai",
   "https://github.com/folke/lazydev.nvim",
