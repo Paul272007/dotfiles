@@ -25,4 +25,7 @@ if [ "$CURRENT_SHELL" = "zsh" ]; then
   bindkey '^[[1;5D' backward-word
   bindkey '^[[3;5~' kill-word
   bindkey '^H' backward-kill-word
+  # Search history with up/down arrows
+  bindkey '^[[A' history-search-backward
+  bindkey '^[[B' history-search-forward
 fi

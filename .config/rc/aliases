@@ -26,12 +26,6 @@ alias up='sudo apt update && sudo apt upgrade'
 alias apti='sudo apt install'
 alias i='yay -Syu'
 
-# git
-alias g='git'
-alias pull='git pull'
-alias push='git push'
-alias glog='git log --all --oneline --graph'
-
 # other native commands and shortcuts
 alias mr='rm'
 alias e='exit'

@@ -1,0 +1,26 @@
+# ----------------------------------------------- #
+# ---------------- Shell options ---------------- #
+# ----------------------------------------------- #
+
+HISTSIZE=1000
+
+if [ "$CURRENT_SHELL" = "bash" ]; then
+  HISTFILESIZE=2000
+  HISTCONTROL=ignoreboth
+
+  shopt -s histappend   # append to the history file, don't overwrite it
+  shopt -s checkwinsize # check the window size after each command and update the values of LINES and COLUMNS.
+  shopt -s globstar     # pattern "**" used in a pathname expansion context will match all files and zero or more directories and subdirectories.
+
+elif [ "$CURRENT_SHELL" = "zsh" ]; then
+  SAVEHIST=$HISTSIZE
+  HISTFILE=~/.zsh_history
+  HISTDUP=erase
+
+  # Removes slash and dot from characters considered as part of a word
+  WORDCHARS=${WORDCHARS//[\/.]/}
+
+  # Zsh options
+  setopt sharehistory appendhistory
+  setopt hist_ignore_all_dups hist_ignore_space hist_save_no_dups hist_ignore_dups hist_find_no_dups
+fi

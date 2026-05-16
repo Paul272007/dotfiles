@@ -6,11 +6,22 @@
 
 RC_DIR="$HOME/.config/rc"
 
-source "$RC_DIR/envs"
-source "$RC_DIR/init"
-source "$RC_DIR/functions"
-source "$RC_DIR/aliases"
-source "$RC_DIR/bindkeys"
+source_if_exists() {
+  if [ -f "$1" ]; then
+    source "$1"
+  else
+    echo "Error: file $1 does not exist"
+  fi
+}
+
+source_if_exists "$RC_DIR/envs"
+source_if_exists "$RC_DIR/options"
+source_if_exists "$RC_DIR/functions"
+source_if_exists "$RC_DIR/plugins"
+source_if_exists "$RC_DIR/completion"
+source_if_exists "$RC_DIR/init"
+source_if_exists "$RC_DIR/aliases"
+source_if_exists "$RC_DIR/keybinds"
 
 ##### (Optionnal) Fastfetch
 

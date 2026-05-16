@@ -27,8 +27,8 @@ hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(config.menu), { desc = "Open laun
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(config.terminal), { desc = "Open terminal" })
 
 -- Mouse
-hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true }, { desc = "Drag window" })
-hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true }, { desc = "Resize window" })
+hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true, desc = "Drag window" })
+hl.bind(mainMod .. " + mouse:273", hl.dsp.window.resize(), { mouse = true, desc = "Resize window" })
 
 -- Focus
 hl.bind("ALT + tab", hl.dsp.focus({ direction = "right" }), { desc = "Move window focus" })
@@ -102,12 +102,12 @@ hl.bind(mainMod .. " + F3", hl.dsp.exec_cmd("~/.config/hypr/scripts/themeswitch.
 hl.bind(
   "Print",
   hl.dsp.exec_cmd(
-    'grim -g "$(slurp)" - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png | notify-send "Capture d\'écran de la région prise"'
+    'grim -g "$(slurp)" "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && wl-copy < "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && notify-send "Capture d\'écran" "Région enregistrée et copiée !"'
   )
 )
 hl.bind(
   "SHIFT + Print",
   hl.dsp.exec_cmd(
-    "grim - | wl-copy && wl-paste > ~/Pictures/Screenshots/Screenshot-$(date +%F_%T).png | notify-send \"Capture d'écran de tout l'écran prise\""
+    'grim "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && wl-copy < "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && notify-send "Capture d\'écran" "Ecran enregistré et copié !"'
   )
 )

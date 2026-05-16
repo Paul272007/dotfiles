@@ -4,6 +4,10 @@ local map = vim.keymap.set
 map("i", "<PageUp>", "<Nop>", { desc = "Disable PageUp" })
 map("i", "<PageDown>", "<Nop>", { desc = "Disable PageDown" })
 
+-- better indenting
+map("x", "<", "<gv")
+map("x", ">", ">gv")
+
 -- Move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
 map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })

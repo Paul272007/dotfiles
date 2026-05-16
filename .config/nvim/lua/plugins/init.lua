@@ -1,3 +1,16 @@
+vim.api.nvim_create_autocmd("PackChanged", {
+  group = vim.api.nvim_create_augroup("blink-build", { clear = true }),
+  callback = function(ev)
+    if ev.data.spec.name == "blink.cmp" and (ev.data.kind == "install" or ev.data.kind == "update") then
+      vim.notify("Building blink.cmp...", vim.log.levels.INFO)
+      if not ev.data.active then
+        vim.cmd.packadd("blink.cmp")
+      end
+      require("blink.cmp").build():wait(60000)
+    end
+  end,
+})
+
 vim.pack.add({
   -- dependencies
   "https://github.com/MunifTanjim/nui.nvim",

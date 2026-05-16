@@ -49,18 +49,18 @@ function M.setup()
   hl("ColorColumn", { bg = "NONE" })
   hl("MatchParen", { fg = c.orange, bold = true, underline = true })
 
-  -- Bordures : discrètes, pas agressives
+  -- Borders / window frames
   hl("WinSeparator", { fg = "NONE", bg = "NONE" })
   hl("VertSplit", { fg = "NONE", bg = "NONE" })
   hl("FloatBorder", { fg = "NONE", bg = "NONE" })
 
-  -- Sélection / recherche
+  -- Selection / search
   hl("Visual", { bg = c.bg4 })
   hl("Search", { fg = "NONE", bg = c.yellow })
   hl("IncSearch", { fg = "NONE", bg = c.orange, bold = true })
   hl("Substitute", { fg = "NONE", bg = c.red })
 
-  -- Messages / statut
+  -- Messages / status
   hl("MsgArea", { fg = c.fg2, bg = "NONE" })
   hl("ErrorMsg", { fg = c.red, bold = true })
   hl("WarningMsg", { fg = c.yellow })
@@ -71,7 +71,7 @@ function M.setup()
   hl("PmenuSbar", { bg = "NONE" })
   hl("PmenuThumb", { bg = c.fg3 })
 
-  -- Syntaxe
+  -- Syntax
   hl("Comment", { fg = c.fg4, italic = true })
   hl("Keyword", { fg = c.orange, bold = true })
   hl("Statement", { fg = c.orange, bold = true })

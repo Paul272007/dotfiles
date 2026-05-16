@@ -3,7 +3,7 @@ local config = vim.lsp.config
 config("clangd", {
   cmd = { "clangd" },
   filetypes = { "c", "h", "cpp", "hpp" },
-  root_markers = { ".git", "CMakeLists.txt" },
+  root_markers = { ".git" },
 })
 
 config("lua_ls", {
@@ -37,6 +37,12 @@ config("rust-analyzer", {
   root_markers = { "Cargo.toml", ".git" }
 })
 
+config("bash-language-server", {
+  cmd = { "bash-language-server", "start" },
+  filetypes = { "bash", "sh" },
+  root_markers = { ".git" }
+})
+
 -- TODO : add: jdtls, ts_ls, volar, html, cssls
 
 vim.lsp.enable({
@@ -45,6 +51,7 @@ vim.lsp.enable({
   "intelephense",
   "pyright",
   "rust-analyzer",
+  "bash-language-server"
 })
 
 -- Diagnostic configuration
