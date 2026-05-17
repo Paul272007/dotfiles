@@ -47,3 +47,21 @@ alias lg='lazygit'
 alias a='tmux attach'
 alias sql='sudo mysql -u root -p'
 alias open='xdg-open &>/dev/null'
+
+if [ "$CURRENT_SHELL" = "zsh" ]; then
+  alias -s c='$EDITOR'
+  alias -s cc='$EDITOR'
+  alias -s cpp='$EDITOR'
+  alias -s lua='$EDITOR'
+  alias -s sh='$EDITOR'
+  alias -s js='$EDITOR'
+  alias -s ts='$EDITOR'
+  alias -s py='$EDITOR'
+  alias -s json='bat'
+  alias -s md='bat'
+
+  alias -g NE='2>/dev/null'
+  alias -g NO='&>/dev/null'
+  alias -g JQ=' | jq'
+  alias -g C=' | wl-copy'
+fi

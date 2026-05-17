@@ -74,3 +74,10 @@ cdtv() {
     cd "$dir" || return
   fi
 }
+
+chpwd() {
+  ls
+  if [[ -f .nvmrc ]]; then
+    nvm use
+  fi
+}

@@ -20,15 +20,12 @@ map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
 map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
--- LSP
-map('n', '<leader>cd', vim.diagnostic.open_float, { desc = "Show line diagnostics" })
-
 -- Clear search on esc
 map({ "n" }, "<esc>", function()
   vim.cmd("noh")
 end, { desc = "Clear search highlights" })
 
--- Append character at the end of the line
+-- Function to append character at the end of the line
 map("n", "<leader>a", function()
   local char = vim.fn.nr2char(vim.fn.getchar())
   if char:match("[%z\27]") then return end
@@ -50,11 +47,10 @@ map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 ---- Terminal mode
 map("t", "<Esc>", "<C-\\><C-n>", { desc = "Quit terminal mode" })
 
----- ZC
-map("n", "<leader>zc", ":w<CR>:term zc run %<CR>", { desc = "Compile and execute C/C++ file" })
-map("n", "<leader>zq", ":w<CR>:term zc run -q %<CR>", { desc = "Compile and execute C/C++ file quietly" })
-
----- Neogen
+---- Code
+map('n', '<leader>cd', vim.diagnostic.open_float, { desc = "Show line diagnostics" })
+map("n", "<leader>cz", ":w<CR>:term zc run %<CR>", { desc = "Compile and execute C/C++ file" })
+map("n", "<leader>cq", ":w<CR>:term zc run -q %<CR>", { desc = "Compile and execute C/C++ file quietly" })
 map("n", "<leader>co", ":lua require('neogen').generate()<cr>", { desc = "Générer Doc (@brief)" })
 
 ---- Snacks
@@ -63,7 +59,6 @@ map("n", "<leader><space>", function() Snacks.picker.smart() end, { desc = "Smar
 map("n", "<leader>q", function() Snacks.bufdelete() end, { desc = "Delete current buffer" })
 map("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Buffers" })
 map("n", "<leader>:", function() Snacks.picker.command_history() end, { desc = "Command history" })
-map("n", "<leader>n", function() Snacks.picker.notifications() end, { desc = "Notifications history" })
 map("n", "<leader>e", function() Snacks.explorer({ layout = { layout = { position = "right" } }, }) end,
   { desc = "File Explorer" })
 
@@ -84,6 +79,7 @@ map("n", "<leader>gS", function() Snacks.picker.git_stash() end, { desc = "Git s
 map("n", "<leader>gd", function() Snacks.picker.git_diff() end, { desc = "Git diff (hunks)" })
 map("n", "<leader>gf", function() Snacks.picker.git_log_file() end, { desc = "Git log file" })
 map("n", "<leader>gg", function() Snacks.lazygit() end, { desc = "Lazygit" })
+map({ "n", "v" }, "<leader>gB", function() Snacks.gitbrowse() end, { desc = "Git browse" })
 
 -- TODO : gh
 
@@ -92,7 +88,41 @@ map("n", "<leader>/", function() Snacks.picker.grep() end, { desc = "Grep in wor
 map("n", "<leader>sb", function() Snacks.picker.lines() end, { desc = "Grep buffer lines" })
 map("n", "<leader>sB", function() Snacks.picker.grep_buffers() end, { desc = "Grep lines in open buffers" })
 map({ "n", "x" }, "<leader>sw", function() Snacks.picker.grep_word() end, { desc = "Visual selection or word" })
+map("n", "<leader>s\"", function() Snacks.picker.registers() end, { desc = "Search registers" })
+map("n", "<leader>s/", function() Snacks.picker.search_history() end, { desc = "Search search history" })
+map("n", "<leader>sa", function() Snacks.picker.autocmds() end, { desc = "Search autocommands" })
+map("n", "<leader>sc", function() Snacks.picker.commands() end, { desc = "Search commands" })
+map("n", "<leader>sC", function() Snacks.picker.colorschemes() end, { desc = "Search colorschemes" })
+map("n", "<leader>sd", function() Snacks.picker.diagnostics() end, { desc = "Search diagnostics" })
+map("n", "<leader>sD", function() Snacks.picker.diagnostics_buffer() end, { desc = "Search buffer diagnostics" })
+map("n", "<leader>sh", function() Snacks.picker.help() end, { desc = "Search help pages" })
+map("n", "<leader>sH", function() Snacks.picker.highlights() end, { desc = "Search highlights" })
+map("n", "<leader>si", function() Snacks.picker.icons() end, { desc = "Search icons" })
+map("n", "<leader>sj", function() Snacks.picker.jumps() end, { desc = "Search jumps" }) -- TODO : what's that ?
+map("n", "<leader>sk", function() Snacks.picker.keymaps() end, { desc = "Search keymaps" })
+map("n", "<leader>sl", function() Snacks.picker.loclist() end, { desc = "Search location list" })
+map("n", "<leader>sm", function() Snacks.picker.marks() end, { desc = "Search marks" })
+map("n", "<leader>sM", function() Snacks.picker.man() end, { desc = "Search man pages" })
+map("n", "<leader>sn", function() Snacks.picker.notifications() end, { desc = "Search notifications history" })
+map("n", "<leader>sq", function() Snacks.picker.qflist() end, { desc = "Search quickfix list" })
+-- map("n", "<leader>sr", function() Snacks.picker.resume() end, { desc = "Search resume" })
+map("n", "<leader>su", function() Snacks.picker.undo() end, { desc = "Search undo history" })
 
--- lsp
-map("n", "<leader>ss", function() Snacks.picker.lsp_symbols() end, { desc = "LSP Symbols" });
-map("n", "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, { desc = "LSP Workspace Symbols" });
+-- LSP
+map("n", "<leader>ss", function() Snacks.picker.lsp_symbols() end, { desc = "Search LSP symbols" })
+map("n", "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, { desc = "Search workspace LSP symbols" })
+map("n", "gd", function() Snacks.picker.lsp_definitions() end, { desc = "Goto definition" })
+map("n", "gD", function() Snacks.picker.lsp_declarations() end, { desc = "Goto declaration" })
+map("n", "gr", function() Snacks.picker.lsp_references() end, { nowait = true, desc = "References" })
+map("n", "gI", function() Snacks.picker.lsp_implementations() end, { desc = "Goto implementation" })
+map("n", "gy", function() Snacks.picker.lsp_type_definitions() end, { desc = "Goto type definition" })
+map("n", "gai", function() Snacks.picker.lsp_incoming_calls() end, { desc = "Calls incoming" })
+map("n", "gao", function() Snacks.picker.lsp_outgoing_calls() end, { desc = "Calls outgoing" })
+
+-- other snacks stuff
+map("n", "<leader>z", function() Snacks.zen() end, { desc = "Toggle zen mode" })
+map("n", "<leader>Z", function() Snacks.zen.zoom() end, { desc = "Toggle zoom" }) -- TODO : ???
+map("n", "<leader>.", function() Snacks.scratch() end, { desc = "Toggle scratch buffer" })
+map("n", "<leader>s.", function() Snacks.scratch.select() end, { desc = "Select scratch buffer" })
+map("n", "<leader>ns", function() Snacks.notifier.show_history() end, { desc = "Notification history" })
+map("n", "<leader>nh", function() Snacks.notifier.hide() end, { desc = "Dismiss all notifications" })
