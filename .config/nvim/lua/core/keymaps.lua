@@ -3,28 +3,26 @@ local map = vim.keymap.set
 -- Disable page up and down keys when in insert mode
 map("i", "<PageUp>", "<Nop>", { desc = "Disable PageUp" })
 map("i", "<PageDown>", "<Nop>", { desc = "Disable PageDown" })
-
 -- better indenting
 map("x", "<", "<gv")
 map("x", ">", ">gv")
-
+-- move lines
+map("n", "<A-j>", "<cmd>execute 'move .+' . v:count1<cr>==", { desc = "Move Down" })
+map("n", "<A-k>", "<cmd>execute 'move .-' . (v:count1 + 1)<cr>==", { desc = "Move Up" })
 -- Move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
 map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
 map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
 map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
-
 -- Resize window using <ctrl> arrow keys
 map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
 map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
 map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
 map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
-
 -- Clear search on esc
 map({ "n" }, "<esc>", function()
   vim.cmd("noh")
 end, { desc = "Clear search highlights" })
-
 -- Function to append character at the end of the line
 map("n", "<leader>a", function()
   local char = vim.fn.nr2char(vim.fn.getchar())
@@ -51,12 +49,32 @@ map("t", "<Esc>", "<C-\\><C-n>", { desc = "Quit terminal mode" })
 map('n', '<leader>cd', vim.diagnostic.open_float, { desc = "Show line diagnostics" })
 map("n", "<leader>cz", ":w<CR>:term zc run %<CR>", { desc = "Compile and execute C/C++ file" })
 map("n", "<leader>cq", ":w<CR>:term zc run -q %<CR>", { desc = "Compile and execute C/C++ file quietly" })
-map("n", "<leader>co", ":lua require('neogen').generate()<cr>", { desc = "Générer Doc (@brief)" })
+map("n", "<leader>cl", "vip:norm I- <cr>", { desc = "Transform paragraph into bullet list" })
+map("n", "<leader>cn", ":lua require('neogen').generate()<cr>", { desc = "Générer Doc (@brief)" })
+map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
+map("n", "<leader>co", function()
+  vim.lsp.buf.code_action({ apply = true, context = { only = { "source.organizeImports" }, diagnostics = {} } })
+end, { desc = "Organize imports" })
+map("n", "<leader>ch", function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  local clangd_client = vim.lsp.get_clients({ bufnr = bufnr, name = "clangd" })[1]
+  if clangd_client then
+    vim.lsp.buf_request(bufnr, "textDocument/switchSourceHeader", { uri = vim.uri_from_bufnr(bufnr) },
+      function(_, result)
+        if result then
+          vim.api.nvim_command("edit " .. vim.uri_to_fname(result))
+        end
+      end)
+  else
+    vim.notify("clangd client not found", vim.log.levels.WARN)
+  end
+end, { desc = "Switch source/header" })
 
 ---- Snacks
 -- picker and buffers
 map("n", "<leader><space>", function() Snacks.picker.smart() end, { desc = "Smart find files" })
 map("n", "<leader>q", function() Snacks.bufdelete() end, { desc = "Delete current buffer" })
+map("n", "<leader>bo", function() Snacks.bufdelete.other() end, { desc = "Delete other buffers" })
 map("n", "<leader>,", function() Snacks.picker.buffers() end, { desc = "Buffers" })
 map("n", "<leader>:", function() Snacks.picker.command_history() end, { desc = "Command history" })
 map("n", "<leader>e", function() Snacks.explorer({ layout = { layout = { position = "right" } }, }) end,

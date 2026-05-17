@@ -5,11 +5,12 @@ require("which-key").setup({
   spec = {
     {
       mode = { "n", "x" },
+      { "<leader>b", group = "buffers" },
       { "<leader>c", group = "code" },
       { "<leader>f", group = "find" },
       { "<leader>g", group = "git" },
-      { "<leader>s", group = "search" },
       { "<leader>n", group = "notifications" },
+      { "<leader>s", group = "search" },
     },
   },
 })

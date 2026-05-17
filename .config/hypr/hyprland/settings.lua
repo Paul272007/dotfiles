@@ -33,7 +33,6 @@ hl.config({
     disable_splash_rendering = true,
   },
   decoration = {
-    rounding = 16,
     blur = {
       enabled = true,
       size = 7,

@@ -3,17 +3,14 @@ font-family = "JetBrains Mono Nerd Font"
 font-style = Regular
 
 # Theme and appearance
-# theme = TokyoNight
-# BG color of nvim + TokyoNight :
-# background = #1e2030
-background = #20212c
+background = #1e2030
 background-opacity = 0.2
 
 # Window
 window-theme = ghostty
 window-padding-color = background
-window-padding-x = 10
-window-padding-y = 10
+window-padding-x = 8
+window-padding-y = 5
 confirm-close-surface = false
 resize-overlay = never
 gtk-toolbar-style = flat

@@ -76,7 +76,7 @@ cdtv() {
 }
 
 chpwd() {
-  ls
+  eza --icons=always --hyperlink --group-directories-first
   if [[ -f .nvmrc ]]; then
     nvm use
   fi
