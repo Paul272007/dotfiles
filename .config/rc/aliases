@@ -26,13 +26,20 @@ alias up='sudo apt update && sudo apt upgrade'
 alias apti='sudo apt install'
 alias i='yay -Syu'
 
-# other native commands and shortcuts
+# Other commands
 alias mr='rm'
 alias e='exit'
 alias c='clear'
 alias chmox='chmod +x'
+alias y='yazi'
+alias d='docker'
+alias lg='lazygit'
+alias t='tmux'
+alias a='tmux attach'
 alias cp='cp -r'
 alias ctl='sudo systemctl'
+alias sql='sudo mysql -u root -p'
+alias open='xdg-open &>/dev/null'
 
 if [ "$CURRENT_SHELL" = "zsh" ]; then
   alias rs='source ~/.zshrc'
@@ -40,23 +47,13 @@ elif [ "$CURRENT_SHELL" = "bash" ]; then
   alias rs='source ~/.bashrc'
 fi
 
-# Other tools
-alias y='yazi'
-alias d='docker'
-alias lg='lazygit'
-alias a='tmux attach'
-alias sql='sudo mysql -u root -p'
-alias open='xdg-open &>/dev/null'
-
 if [ "$CURRENT_SHELL" = "zsh" ]; then
   alias -s c='$EDITOR'
   alias -s cc='$EDITOR'
   alias -s cpp='$EDITOR'
   alias -s lua='$EDITOR'
-  alias -s sh='$EDITOR'
   alias -s js='$EDITOR'
   alias -s ts='$EDITOR'
-  alias -s py='$EDITOR'
   alias -s json='bat'
   alias -s md='bat'
 

@@ -52,6 +52,7 @@ map("n", "<leader>cq", ":w<CR>:term zc run -q %<CR>", { desc = "Compile and exec
 map("n", "<leader>cl", "vip:norm I- <cr>", { desc = "Transform paragraph into bullet list" })
 map("n", "<leader>cn", ":lua require('neogen').generate()<cr>", { desc = "Générer Doc (@brief)" })
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
+map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
 map("n", "<leader>co", function()
   vim.lsp.buf.code_action({ apply = true, context = { only = { "source.organizeImports" }, diagnostics = {} } })
 end, { desc = "Organize imports" })

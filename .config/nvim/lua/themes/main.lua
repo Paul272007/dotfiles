@@ -1,7 +1,7 @@
 local M = {}
 
 M.colors = {
-  bg0    = "#16120e", -- fond le plus sombre (lignes inactives)
+  bg0    = "#16120e", -- fond le plus sombre
   bg1    = "#1e1812", -- fond principal
   bg2    = "#252018", -- fond surface (splits, popups)
   bg3    = "#2e2418", -- bordures, séparateurs

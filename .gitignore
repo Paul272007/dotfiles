@@ -12,8 +12,4 @@
 .config/hypr/themes/Default
 
 # Nvim packages
-.config/nvim/lazy-lock.json
-.config/nvim2/nvim-pack-lock.json
-
-# Tmux plugins
-.config/tmux/plugins/*
+.config/nvim/nvim-pack-lock.json
