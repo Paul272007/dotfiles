@@ -44,14 +44,18 @@ require("blink.cmp").setup({
       },
     },
   },
-  cmdline = {
+  cmdline = { -- disable command line and search autocompletion
     enabled = false,
   },
-  -- completion = {
-  --   documentation = {
-  --     window = { border = 'rounded' }
-  --   }
-  -- }
+  completion = { -- rounded borders for autocompletion documentation
+    documentation = {
+      window = { border = 'rounded' }
+    }
+  },
+  -- signature = {
+  --   enabled = true,
+  --   window = { border = 'single' }
+  -- },
 })
 
 require("neogen").setup({})

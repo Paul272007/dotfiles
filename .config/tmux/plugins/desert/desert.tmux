@@ -29,7 +29,7 @@ main() {
   # Separators
   local sep_right=""
   local sep_left=""
-  local sub_sep=""
+  # local sub_sep=""
 
   # Global config
   tmux set-option -g status-style "bg=${transparent},fg=${transparent}"
@@ -42,19 +42,19 @@ main() {
   tmux set-option -g status-left "${status_left}"
 
   # --- Middle
-  # Fenêtre active
+  # Active tab
   local active_tab="#[bg=${transparent},fg=${bg5}]${sep_left}#[fg=${fg2},bg=${bg5},bold] #I #[bg=${bg5},fg=${bg6}]${sep_left}"
   active_tab="${active_tab}#[fg=${fg2},bg=${bg6},bold] #W #[bg=${transparent},fg=${bg6}]${sep_right}"
   tmux set-option -g window-status-current-format "$active_tab"
 
-  # Fenêtre inactive
+  # Inactive tab
   local inactive_tab="#[bg=${transparent},fg=${bg3}]${sep_left}#[fg=${fg3},bg=${bg3},bold] #I #[bg=${bg3},fg=${bg4}]${sep_left}"
   inactive_tab="${inactive_tab}#[fg=${fg3},bg=${bg4}] #W #[bg=${transparent},fg=${bg4}]${sep_right}"
   tmux set-option -g window-status-format "$inactive_tab"
 
   # --- Right
-  # Reproduction du bloc de droite de ton nvim (utf-8 / Arch / %)
-  local status_right="#[bg=${transparent},fg=${bg2}]${sep_left}#[fg=${fg2},bg=${bg2}] #{pane_current_command} ${sub_sep} 󱘲 #(uptime -p | sed 's/up //; s/ hours\?, /h/; s/ minutes\?/m/; s/ days\?, /d/; s/ //g') "
+  local status_right="#[fg=${fg3},bg=${transparent}] #{pane_current_command} #[bg=${transparent},fg=${bg2}]${sep_left}"
+  status_right="${status_right}#[bg=${bg2},fg=${fg2}] 󱘲 #(uptime -p | sed 's/up //; s/ days\?,/d/; s/ hours\?,/h/; s/ minutes\?/m/') "
   status_right="${status_right}#[bg=${bg2},fg=${bg1}]${sep_left}#[fg=${fg1},bg=${bg1},bold] 󱑒 %H:%M "
 
   tmux set-option -g status-right-length 100

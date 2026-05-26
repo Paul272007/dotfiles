@@ -42,8 +42,8 @@ opt.fillchars = {
 }
 
 -- Search
-opt.ignorecase = true -- ignore case when searching in lowercase
-opt.smartcase = true  -- do not ignore case when uppercase is given
+-- opt.ignorecase = true -- ignore case when searching in lowercase
+-- opt.smartcase = true -- do not ignore case when uppercase is given
 
 -- Autocompletion (show menu even when there is only one option and do not select first option automatically)
 opt.completeopt = { 'menu', 'menuone', 'noselect' }

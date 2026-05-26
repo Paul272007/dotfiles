@@ -2,13 +2,28 @@ local config = require("hyprland.config")
 local mainMod = config.mainMod
 
 -- System
-hl.bind(mainMod .. " + M", hl.dsp.exit(), { desc = "Exit hyprland and close session" })
 hl.bind(mainMod .. " + L", hl.dsp.exec_cmd("hyprlock"), { desc = "Lock screen" })
 hl.bind(mainMod .. " + C", hl.dsp.exec_cmd("hyprpicker -a"), { desc = "Color picker" })
 hl.bind(mainMod .. " + N", hl.dsp.exec_cmd("swaync-client -t -sw"), { desc = "Show notifications center" })
 hl.bind(mainMod .. " + R", hl.dsp.exec_cmd("killall quickshell; quickshell"), { desc = "Reload quickshell" })
-hl.bind(mainMod .. " + V", hl.dsp.exec_cmd("~/.config/hypr/scripts/clipboard.sh"), { desc = "Clipboard manager" })
-hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd("~/.config/rofi/powermenu.sh"), { desc = "Power menu" })
+hl.bind(mainMod .. " + Delete", hl.dsp.exit(), { desc = "Exit hyprland and close session" })
+
+hl.bind(mainMod .. " + V", hl.dsp.exec_cmd(config.clipboard), { desc = "Clipboard manager" })
+hl.bind(mainMod .. " + H", hl.dsp.exec_cmd(config.keybinds), { desc = "Show keybindings" })
+hl.bind(mainMod .. " + A", hl.dsp.exec_cmd(config.apps), { desc = "Apps launcher" })
+hl.bind(mainMod .. " + Escape", hl.dsp.exec_cmd(config.powermenu), { desc = "Power menu" })
+hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(config.menu), { desc = "Global search menu" })
+hl.bind(mainMod .. " + asterisk", hl.dsp.exec_cmd(config.windows), { desc = "Windows" })
+
+-- Themes
+hl.bind(mainMod .. " + T", hl.dsp.exec_cmd(config.themes), { desc = "Theme switcher" })
+
+-- Apps
+hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(config.notes), { desc = "Open notes app" })
+hl.bind(mainMod .. " + S", hl.dsp.exec_cmd(config.music), { desc = "Open music app" })
+hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(config.browser), { desc = "Open web browser" })
+hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(config.fileManager), { desc = "Open file manager" })
+hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(config.terminal), { desc = "Open terminal" })
 
 -- Windows
 hl.bind(mainMod .. " + Q", hl.dsp.window.float({ action = "toggle" }), { desc = "Toggle float" })
@@ -17,14 +32,6 @@ hl.bind(mainMod .. " + W", hl.dsp.window.close(), { desc = "Close window" })
 hl.bind(mainMod .. " + K", hl.dsp.window.kill(), { desc = "Kill window" })
 hl.bind(mainMod .. " + P", hl.dsp.window.pseudo(), { desc = "Toggle pseudo tiling" })
 hl.bind(mainMod .. " + J", hl.dsp.layout("togglesplit"), { desc = "Toggle split mode" })
-
--- Apps
-hl.bind(mainMod .. " + O", hl.dsp.exec_cmd(config.notes), { desc = "Open notes app" })
-hl.bind(mainMod .. " + S", hl.dsp.exec_cmd(config.music), { desc = "Open music app" })
-hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(config.browser), { desc = "Open web browser" })
-hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(config.fileManager), { desc = "Open file manager" })
-hl.bind(mainMod .. " + Space", hl.dsp.exec_cmd(config.menu), { desc = "Open launcher" })
-hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(config.terminal), { desc = "Open terminal" })
 
 -- Mouse
 hl.bind(mainMod .. " + mouse:272", hl.dsp.window.drag(), { mouse = true, desc = "Drag window" })
@@ -92,22 +99,16 @@ hl.bind("XF86AudioPause", hl.dsp.exec_cmd("playerctl play-pause"), { locked = tr
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
--- Themes
-hl.bind(mainMod .. " + T", hl.dsp.exec_cmd("~/.config/hypr/scripts/rofi-themes.sh"))
-hl.bind(mainMod .. " + F1", hl.dsp.exec_cmd("~/.config/hypr/scripts/themeswitch.sh Hyprland"))
-hl.bind(mainMod .. " + F2", hl.dsp.exec_cmd("~/.config/hypr/scripts/themeswitch.sh Mountain"))
-hl.bind(mainMod .. " + F3", hl.dsp.exec_cmd("~/.config/hypr/scripts/themeswitch.sh Forest"))
-
 -- Screenshots
 hl.bind(
   "Print",
   hl.dsp.exec_cmd(
-    'grim -g "$(slurp)" "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && wl-copy < "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && notify-send "Capture d\'écran" "Région enregistrée et copiée !"'
+    'grim -g "$(slurp)" "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && wl-copy < "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && notify-send "Capture d\'écran" "Région enregistrée et copiée !" -a Hyprland'
   )
 )
 hl.bind(
   "SHIFT + Print",
   hl.dsp.exec_cmd(
-    'grim "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && wl-copy < "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && notify-send "Capture d\'écran" "Ecran enregistré et copié !"'
+    'grim "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && wl-copy < "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && notify-send "Capture d\'écran" "Ecran enregistré et copié !" -a Hyprland'
   )
 )

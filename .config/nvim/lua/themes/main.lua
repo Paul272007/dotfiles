@@ -32,7 +32,8 @@ function M.setup()
   end
 
   vim.opt.background = "dark"
-  vim.g.colors_name = "main"
+  vim.g.colors_name = "main" -- colorscheme name
+  -- vim.o.winborder = "rounded" -- added rounded borders around popups
 
   local function hl(group, settings)
     vim.api.nvim_set_hl(0, group, settings)
@@ -40,7 +41,7 @@ function M.setup()
 
   -- Editor
   hl("Normal", { fg = c.fg1, bg = "NONE" })
-  hl("NormalFloat", { fg = c.fg1, bg = "NONE" })
+  hl("NormalFloat", { fg = c.fg1, bg = "NONE" }) -- popup menus (file explorer, snacks popus, function docs)
   hl("NormalNC", { fg = c.fg2, bg = "NONE" })
   hl("SignColumn", { fg = c.fg3, bg = "NONE" })
   hl("LineNr", { fg = c.fg3, bg = "NONE" })
@@ -48,11 +49,13 @@ function M.setup()
   hl("CursorLineNr", { fg = c.fg0, bg = "NONE", bold = true })
   hl("ColorColumn", { bg = "NONE" })
   hl("MatchParen", { fg = c.orange, bold = true, underline = true })
+  hl("StatusLine", { bg = "NONE", ctermbg = "NONE" })   -- lualine bg
+  hl("StatusLineNC", { bg = "NONE", ctermbg = "NONE" }) -- bufferline bg
 
   -- Borders / window frames
   hl("WinSeparator", { fg = "NONE", bg = "NONE" })
   hl("VertSplit", { fg = "NONE", bg = "NONE" })
-  hl("FloatBorder", { fg = "NONE", bg = "NONE" })
+  hl("FloatBorder", { fg = "NONE", bg = "NONE" }) -- popup frames
 
   -- Selection / search
   hl("Visual", { bg = c.bg4 })
@@ -66,10 +69,10 @@ function M.setup()
   hl("WarningMsg", { fg = c.yellow })
 
   -- Menus
-  hl("Pmenu", { fg = c.fg1, bg = "NONE" })
-  hl("PmenuSel", { fg = c.fg0, bg = c.bg4, bold = true })
-  hl("PmenuSbar", { bg = "NONE" })
-  hl("PmenuThumb", { bg = c.fg3 })
+  hl("Pmenu", { fg = c.fg1, bg = c.bg0 })                 -- autocompletion popup
+  hl("PmenuSel", { fg = c.fg0, bg = c.bg4, bold = true }) -- selected entry
+  hl("PmenuSbar", { bg = c.bg0 })                         -- scrollbar
+  hl("PmenuThumb", { bg = c.fg3 })                        -- scrollbar cursor
 
   -- Syntax
   hl("Comment", { fg = c.fg4, italic = true })
@@ -133,17 +136,6 @@ function M.setup()
   hl("SnacksPickerMatch", { fg = c.yellow, bold = true })
   hl("TelescopeBorder", { fg = "NONE" })
   hl("TelescopeNormal", { fg = c.fg1, bg = "NONE" })
-
-  -- Transparency
-  local groups = {
-    "StatusLine",   -- lualine bg
-    "StatusLineNC", -- bufferline bg
-    -- "BufferLineFill",
-    -- "BufferLineSeparator", "BufferLineSeparatorSelected"
-  }
-  for _, group in ipairs(groups) do
-    hl(group, { bg = "NONE", ctermbg = "NONE" })
-  end
 end
 
 -- Export lualine theme
