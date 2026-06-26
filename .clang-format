@@ -79,7 +79,7 @@ AllowShortCaseLabelsOnASingleLine: false          # Short case labels are on a s
 AllowShortCompoundRequirementOnASingleLine: true  # Short compound requirements are on a single line.
 AllowShortEnumsOnASingleLine: false               # Short enums are not on a single line.
 AllowShortFunctionsOnASingleLine: Inline          # Rules for short functions (inline and empty functions) (overriden by AllowShortBlocksOnASingleLine)
-AllowShortIfStatementsOnASingleLine: Never        #                  TODO : is it that bad ?
+AllowShortIfStatementsOnASingleLine: Never        # Ifs are always on min. 2 lines
 AllowShortLambdasOnASingleLine: All
 AllowShortLoopsOnASingleLine: false               # No loops on a single line
 AllowShortNamespacesOnASingleLine: true           # Short namespaces are wrapped
