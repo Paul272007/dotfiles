@@ -32,6 +32,15 @@ map("n", "<leader>a", function()
   vim.api.nvim_set_current_line(line .. char)
   vim.api.nvim_win_set_cursor(0, cursor)
 end, { desc = "Append character at end of line" })
+-- Search selection with * in visual mode
+map("v", "*", function()
+  vim.cmd('noau normal! "sy')
+  local text = vim.fn.getreg('s')
+  text = vim.fn.escape(text, '/\\')
+  text = string.gsub(text, "\n", "\\n")
+  vim.fn.setreg('/', '\\V' .. text)
+  vim.cmd('normal! /\\V' .. text .. '<CR>')
+end, { desc = "Search selection" })
 
 ---- Buffers
 -- move between buffers
@@ -50,7 +59,7 @@ map('n', '<leader>cd', vim.diagnostic.open_float, { desc = "Show line diagnostic
 map("n", "<leader>cz", ":w<CR>:term zc run %<CR>", { desc = "Compile and execute C/C++ file" })
 map("n", "<leader>cq", ":w<CR>:term zc run -q %<CR>", { desc = "Compile and execute C/C++ file quietly" })
 map("n", "<leader>cl", "vip:norm I- <cr>", { desc = "Transform paragraph into bullet list" })
-map("n", "<leader>cn", ":lua require('neogen').generate()<cr>", { desc = "Générer Doc (@brief)" })
+map("n", "<leader>cn", ":lua require('neogen').generate()<cr>", { desc = "Generate doc (@brief)" })
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
 map("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
 map("n", "<leader>co", function()

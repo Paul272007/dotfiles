@@ -22,6 +22,7 @@ vim.pack.add({
   "https://github.com/folke/noice.nvim",
   "https://github.com/nvim-mini/mini.icons",
   "https://github.com/folke/snacks.nvim",
+  "https://github.com/sphamba/smear-cursor.nvim",
 
   -- editor
   "https://github.com/folke/flash.nvim",

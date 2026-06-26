@@ -1,7 +1,7 @@
-local config = require("hyprland.config")
+-- local config = require("hyprland.config")
 
 hl.on("hyprland.start", function()
-  hl.exec_cmd("~/.config/hypr/scripts/themeswitch.sh " .. config.theme)
+  -- hl.exec_cmd("~/.config/hypr/scripts/themeswitch.sh " .. config.theme)
   hl.exec_cmd("~/shell/run.sh")
   hl.exec_cmd("hypridle")       -- TODO : replace with quickshell
   hl.exec_cmd("hyprshade auto") -- TODO : replace with quickshell

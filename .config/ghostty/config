@@ -17,7 +17,7 @@ gtk-toolbar-style = flat
 
 # Cursor and mouse
 cursor-style = bar
-cursor-style-blink = true
+cursor-style-blink = false
 mouse-scroll-multiplier = 2
 
 # Shell integration

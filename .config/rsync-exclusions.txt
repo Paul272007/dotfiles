@@ -6,7 +6,7 @@ dist
 out
 dist-electron
 build
-cmake-build_debug
+cmake-build-debug
 venv
 env
 .venv

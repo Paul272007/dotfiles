@@ -54,7 +54,7 @@ main() {
 
   # --- Right
   local status_right="#[fg=${fg3},bg=${transparent}] #{pane_current_command} #[bg=${transparent},fg=${bg2}]${sep_left}"
-  status_right="${status_right}#[bg=${bg2},fg=${fg2}] 󱘲 #(uptime -p | sed 's/up //; s/ days\?,/d/; s/ hours\?,/h/; s/ minutes\?/m/') "
+  status_right="${status_right}#[bg=${bg2},fg=${fg2}] 󱘲 #(uptime -p | sed 's/up //; s/ week\?,/w/; s/ days\?,/d/; s/ hours\?,/h/; s/ minutes\?/m/') "
   status_right="${status_right}#[bg=${bg2},fg=${bg1}]${sep_left}#[fg=${fg1},bg=${bg1},bold] 󱑒 %H:%M "
 
   tmux set-option -g status-right-length 100

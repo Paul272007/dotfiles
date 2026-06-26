@@ -215,7 +215,9 @@ require("lualine").setup({
   },
 }) -- TODO : configure theme
 
-require("notify").setup()
+require("notify").setup({
+  background_colour = "#000000",
+})
 require("noice").setup({
   presets = {
     bottom_search = true,
@@ -282,4 +284,8 @@ require("snacks").setup({
       },
     },
   },
+})
+
+require("smear_cursor").setup({
+  smear_insert_mode = false,
 })
