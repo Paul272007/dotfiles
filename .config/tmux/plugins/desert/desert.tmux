@@ -31,8 +31,14 @@ main() {
   local sep_left=""
   # local sub_sep=""
 
-  # Global config
+  # --- Global config
   tmux set-option -g status-style "bg=${transparent},fg=${transparent}"
+  tmux set-option -g mode-style "bg=${bg1},fg=${fg1}"
+  tmux set-option -g message-style "bg=${bg1},fg=${fg1}"
+
+  # --- Pane borders
+  tmux set-option -g pane-border-style "fg=${fg3}"
+  tmux set-option -g pane-active-border-style "fg=${bg1}"
 
   # --- Left
   local status_left="#[bg=${bg1},fg=${fg1},bold]  TMUX #[bg=${bg1},fg=${bg2}]${sep_left}"

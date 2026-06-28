@@ -286,6 +286,6 @@ require("snacks").setup({
   },
 })
 
-require("smear_cursor").setup({
-  smear_insert_mode = false,
-})
+-- require("smear_cursor").setup({
+--   smear_insert_mode = false,
+-- })
