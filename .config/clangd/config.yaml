@@ -1,5 +1,6 @@
 CompileFlags:
   Add:
+    -I/home/paul/.zc/include
     -Wno-unused-variable
     -Wno-infinite-recursion
     -Wno-array-bounds

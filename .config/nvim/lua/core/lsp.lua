@@ -1,8 +1,14 @@
 local config = vim.lsp.config
 
 config("clangd", {
-  cmd = { "clangd" },
+  cmd = { "clangd", "--clang-tidy" },
   filetypes = { "c", "h", "cpp", "hpp" },
+  root_markers = { ".git" },
+})
+
+config("neocmakelsp", {
+  cmd = { "neocmakelsp", "--stdio" },
+  filetypes = { "cmake" },
   root_markers = { ".git" },
 })
 
@@ -47,6 +53,7 @@ config("bash-language-server", {
 
 vim.lsp.enable({
   "clangd",
+  "neocmakelsp",
   "lua_ls",
   "intelephense",
   "pyright",

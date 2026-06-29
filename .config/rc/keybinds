@@ -3,8 +3,8 @@
 # ----------------------------------------------- #
 
 if [ "$CURRENT_SHELL" = "zsh" ]; then
-  # Use emacs keybindings even if $EDITOR is set to nvim
-  # bindkey -e
+
+  # bindkey -e # Use emacs keybindings even if $EDITOR is set to nvim
 
   autoload -Uz edit-command-line
   clear-keep-buffer() {
@@ -14,35 +14,31 @@ if [ "$CURRENT_SHELL" = "zsh" ]; then
     echo -n $BUFFER | wl-copy
     zle -M "Copied to clipboard!"
   }
-  git-commit-shortcut() {
-    BUFFER='git commit -m ""'
-    CURSOR=15
-  }
 
   zle -N edit-command-line
   zle -N clear-keep-buffer
   zle -N copy-command
-  zle -N git-commit-shortcut
-
-  bindkey '^e' edit-command-line            # Edit current command in $EDITOR
-  bindkey '\eb' clear-keep-buffer           # Clear screen but keep current command
-  bindkey '\ew' copy-command                # Copy current command to clipboard
-  bindkey '\em' git-commit-shortcut         # Alt+M : Git commit
 
   bindkey ' ' magic-space                   # Space expands ! expressions
-  bindkey '^[[3~' delete-char               # Fix del key
-  bindkey '^[[1;5C' forward-word            # Ctrl+arrows to navigate
-  bindkey '^[[1;5D' backward-word           #
-  bindkey '^[[3;5~' kill-word               # Delete word with Ctrl+Del
-  bindkey '^H' backward-kill-word           # Delete word with Ctrl+backspace
-  bindkey '^[[A' history-search-backward    # Navigate history with arrows
-  bindkey '^[[B' history-search-forward     #
-  bindkey '\ez' undo                        # Alt+Z : undo
-  bindkey '\ey' redo                        # Alt+Y : redo
 
-  bindkey -s '\eg' 'pj\n'                   # Alt+G : Go to project
+  bindkey '^b' clear-keep-buffer            # Clear screen but keep current command
+  bindkey '^e' edit-command-line            # Edit current command in $EDITOR
+  bindkey '^h' backward-kill-word           # Delete word with Ctrl+backspace
+  bindkey '^x' copy-command                 # Copy current command to clipboard
+  bindkey '^y' redo                         # Redo
+  bindkey '^z' undo                         # Undo
+
+  bindkey '^[[3~' delete-char               # Del : Delete character under cursor
+  bindkey '^[[3;5~' kill-word               # Ctrl+Del : Delete word
+  bindkey '^[[1;5C' forward-word            # Ctrl+Arrows : Navigate word by word
+  bindkey '^[[1;5D' backward-word           #
+  bindkey '^[[A' history-search-backward    # Arrows : Navigate history
+  bindkey '^[[B' history-search-forward     #
+
   bindkey -s '\ec' 'cdtv\n'                 # Alt+C : Go to directory
-  bindkey -s '\en' 'npm run dev\n'          # Alt+N : Launch npm app
   bindkey -s '\ed' 'docker compose up -d\n' # Alt+D : Launch docker compose
+  bindkey -s '\eg' 'pj\n'                   # Alt+G : Go to project
+  bindkey -s '\em' 'git commit -m ""^[[D'   # Alt+M : Git commit
+  bindkey -s '\en' 'npm run dev\n'          # Alt+N : Launch npm app
   bindkey -s '\ep' 'sudo pacman -S '        # Alt+P : Write sudo pacman -S
 fi
