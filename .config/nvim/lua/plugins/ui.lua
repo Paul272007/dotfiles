@@ -255,6 +255,7 @@ require("noice").setup({
 }) -- TODO : configure bar height and completion
 
 require("snacks").setup({
+  explorer = { enabled = true, replace_netrw = true },
   bigfile = { enabled = true },
   lazygit = { enabled = true },
   dashboard = {

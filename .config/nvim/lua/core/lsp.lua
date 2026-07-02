@@ -1,7 +1,7 @@
 local config = vim.lsp.config
 
 config("clangd", {
-  cmd = { "clangd", "--clang-tidy" },
+  cmd = { "clangd" },
   filetypes = { "c", "h", "cpp", "hpp" },
   root_markers = { ".git" },
 })

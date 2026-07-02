@@ -1,59 +1,58 @@
 hl.config({
-  input = {
-    kb_layout = "fr",
-    numlock_by_default = true,
-    accel_profile = "flat",
-    follow_mouse = 1,
-    sensitivity = 0,
-    scroll_factor = 0.8,
-    touchpad = {
-      natural_scroll = true,
-      scroll_factor = 0.6,
-      disable_while_typing = true,
-    },
-  },
-  cursor = {
-    no_hardware_cursors = true,
-  },
-  general = {
-    layout = "dwindle",
-    resize_on_border = true,
-    allow_tearing = false,
-    border_size = 1,
-  },
-  dwindle = {
-    preserve_split = true,
-  },
-  master = {
-    new_status = "master",
-  },
-  misc = {
-    force_default_wallpaper = 1,
-    disable_hyprland_logo = true,
-    disable_splash_rendering = true,
-  },
-  decoration = {
-    blur = {
-      enabled = true,
-      size = 7,
-      passes = 2,
-      ignore_opacity = true,
-      -- noise = 0.05,
-      contrast = 1.5,
-      xray = false,
-      new_optimizations = true,
-      vibrancy = 0.1696,
-    },
-    shadow = {
-      enabled = true,
-      range = 4,
-      render_power = 3,
-      color = "rgba(1a1a1aee)",
-    },
-  },
-  animations = {
-    enabled = true,
-  },
+	input = {
+		kb_layout = "fr",
+		numlock_by_default = true,
+		accel_profile = "flat",
+		follow_mouse = 1,
+		sensitivity = 0,
+		scroll_factor = 0.8,
+		touchpad = {
+			natural_scroll = true,
+			scroll_factor = 0.6,
+			disable_while_typing = true,
+		},
+	},
+	cursor = {
+		no_hardware_cursors = true,
+	},
+	general = {
+		layout = "dwindle",
+		resize_on_border = true,
+		allow_tearing = false,
+	},
+	dwindle = {
+		preserve_split = true,
+	},
+	master = {
+		new_status = "master",
+	},
+	misc = {
+		force_default_wallpaper = 1,
+		disable_hyprland_logo = true,
+		disable_splash_rendering = true,
+	},
+	decoration = {
+		blur = {
+			enabled = true,
+			size = 7,
+			passes = 2,
+			ignore_opacity = true,
+			-- noise = 0.05,
+			contrast = 1.5,
+			xray = false,
+			new_optimizations = true,
+			vibrancy = 0.1696,
+		},
+		shadow = {
+			enabled = true,
+			range = 4,
+			render_power = 3,
+			color = "rgba(1a1a1aee)",
+		},
+	},
+	animations = {
+		enabled = true,
+	},
 })
 
 hl.curve("easeOutQuint", { type = "bezier", points = { { 0.23, 1 }, { 0.32, 1 } } })
@@ -81,7 +80,7 @@ hl.animation({ leaf = "workspacesOut", enabled = true, speed = 1.94, bezier = "a
 hl.animation({ leaf = "zoomFactor", enabled = true, speed = 7, bezier = "quick" })
 
 hl.gesture({
-  fingers = 3,
-  direction = "horizontal",
-  action = "workspace",
+	fingers = 3,
+	direction = "horizontal",
+	action = "workspace",
 })

@@ -1,14 +1,55 @@
 CompileFlags:
   Add:
-    -I/home/paul/.zc/include
-    -Wno-unused-variable
-    -Wno-infinite-recursion
-    -Wno-array-bounds
-    -Wno-return-stack-address
-    -Werror=implicit-function-declaration
-    -Wshadow
-    -Wno-shadow-field-in-constructor-modified
-    -Wno-shadow-ivar
-    -Wuninitialized
-    -Wunused-label
-    -Wunused-lambda-capture
+    - -I/home/paul/.zc/include
+    - -Wall
+    - -Wextra
+    - -Wpedantic
+    - -Wshadow
+    - -Wformat=2
+    - -Wnull-dereference
+    - -Wconversion
+    - -Wsign-conversion
+    - -Wdouble-promotion
+    - -Wuninitialized
+    - -Wunused-label
+    - -Wnon-virtual-dtor
+    - -Wold-style-cast
+    - -Woverloaded-virtual
+    - -Wno-comment
+
+Diagnostics:
+  # Supprime les warnings provenant des bibliothèques externes (ex: /usr/include)
+  UnusedIncludes: Strict
+  # Configuration de clang-tidy
+  ClangTidy:
+    Add: [
+      "bugprone-*",                     # Détecte les constructions de code propices aux bugs
+      "performance-*",                  # Suggestions pour optimiser la vitesse et la mémoire
+      "portability-*",                  # Problèmes de portabilité entre OS/compilateurs
+      "readability-*",                  # Améliorations de style et de lisibilité (très CLion !)
+      "modernize-*",                    # (Pour le C++) Force l'utilisation des syntaxes modernes
+      "cert-*",                         # Règles de sécurité du standard CERT
+      "cppcoreguidelines-*",            # Règle globales de C++
+      # Trucs en plus de CLion
+      "google-default-arguments",
+      "google-runtime-operator",
+      "hicpp-exception-baseclass",
+      "hicpp-multiway-paths-covered",
+      "misc-misplaced-const",
+      "misc-new-delete-overloads",
+      "misc-non-copyable-objects",
+      "misc-throw-by-value-catch-by-reference",
+      "misc-unconventional-assign-operator",
+      "misc-uniqueptr-reset-release",
+      "openmp-use-default-none",
+    ]
+    Remove: [
+      "bugprone-easily-swappable-parameters",                               # Ne pas vouloir changer l'ordre des paramètres quand 2 à la suite on le même type
+      "modernize-use-trailing-return-type",                                 # Ne pas proposer d'ajouter un trailing return type
+      "readability-braces-around-statements",                               # Ne pas toujours ajouter des {}
+      "readability-identifier-length",                                      # Ne pas vouloir des noms de variables de plus de 3 caractères seulement
+      "cppcoreguidelines-non-private-member-variables-in-classes",          # Ne pas interdire les attributs de classe protected
+      "cppcoreguidelines-avoid-const-or-ref-data-members",                  # Ne pas interdire les attributs de classe const ou &
+      "cppcoreguidelines-avoid-magic-numbers", "readability-magic-numbers", # Autoriser les valeurs hardcodées
+      "cppcoreguidelines-macro-usage",                                      # Réparer les X macros
+    ]

@@ -16,15 +16,17 @@ get_tmux_option() {
 main() {
   # Colors
   local transparent=default   # Transparent
+
   local bg1="#c8814a"         # Orange
-  local bg2="#252018"         # Beige
+  local bg2="#252018"         # Marron
   local bg3="#3a2c1c"         # Marron (numéro onglets inactifs)
   local bg4="#1e1812"         # Marron foncé (onglets inactifs)
   local bg5="#5b4c38"         # Marron très clair (numéro onglet actif)
   local bg6="#443521"         # Marron clair (onglet actif)
+
   local fg1="#16120e"         # Texte sur le orange
-  local fg2="#e0d0ba"         # Texte sur le beige
-  local fg3="#c8b89a"         # Texte sur le transparent
+  local fg2="#e0d0ba"         # Texte sur le marron
+  local fg3="#c8b89a"         # Texte sur le transparent / marron foncé
 
   # Separators
   local sep_right=""
@@ -36,9 +38,10 @@ main() {
   tmux set-option -g mode-style "bg=${bg1},fg=${fg1}"
   tmux set-option -g message-style "bg=${bg1},fg=${fg1}"
 
-  # --- Pane borders
+  # --- Borders
   tmux set-option -g pane-border-style "fg=${fg3}"
-  tmux set-option -g pane-active-border-style "fg=${bg1}"
+  tmux set-option -g pane-active-border-style "fg=${fg3}"
+  tmux set-option -g popup-border-style "fg=${fg3}"
 
   # --- Left
   local status_left="#[bg=${bg1},fg=${fg1},bold]  TMUX #[bg=${bg1},fg=${bg2}]${sep_left}"
