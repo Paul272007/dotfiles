@@ -16,6 +16,8 @@ get_tmux_option() {
 main() {
   # Colors
   local transparent=default   # Transparent
+  local teal="#7aaa90"        # Mode commande
+  local yellow="#d4a85a"      # Mode copy
 
   local bg1="#c8814a"         # Orange
   local bg2="#252018"         # Marron
@@ -37,6 +39,14 @@ main() {
   tmux set-option -g status-style "bg=${transparent},fg=${transparent}"
   tmux set-option -g mode-style "bg=${bg1},fg=${fg1}"
   tmux set-option -g message-style "bg=${bg1},fg=${fg1}"
+  tmux set-option -g message-format "#[bg=${bg1},fg=${fg1}]  #{message} #[bg=${transparent},fg=${bg1}]${sep_right}"
+
+  tmux set-option -g copy-mode-match-style "bg=${bg2},fg=${fg2}"
+  tmux set-option -g copy-mode-current-match-style "bg=${bg1},fg=${fg1},bold"
+
+  tmux set-option -g window-status-separator " "
+  tmux set-option -g status-justify absolute-centre
+  tmux set-option -g clock-mode-colour "${bg1}"
 
   # --- Borders
   tmux set-option -g pane-border-style "fg=${fg3}"
@@ -44,7 +54,10 @@ main() {
   tmux set-option -g popup-border-style "fg=${fg3}"
 
   # --- Left
-  local status_left="#[bg=${bg1},fg=${fg1},bold]  TMUX #[bg=${bg1},fg=${bg2}]${sep_left}"
+  local mode_bg="#{?client_prefix,${teal},#{?pane_in_mode,${yellow},${bg1}}}"
+  local mode_text="#{?client_prefix,WAIT,#{?pane_in_mode,COPY,TMUX}}"
+
+  local status_left="#[bg=${mode_bg},fg=${fg1},bold]  ${mode_text} #[bg=${mode_bg},fg=${bg2}]${sep_left}"
   status_left="${status_left}#[bg=${bg2},fg=${fg2}] 󰆍 #S #[bg=${transparent},fg=${bg2}]${sep_right} "
 
   tmux set-option -g status-left-length 100
@@ -64,7 +77,7 @@ main() {
   # --- Right
   local status_right="#[fg=${fg3},bg=${transparent}] #{pane_current_command} #[bg=${transparent},fg=${bg2}]${sep_left}"
   status_right="${status_right}#[bg=${bg2},fg=${fg2}] 󱘲 #(uptime -p | sed 's/up //; s/ week\?,/w/; s/ days\?,/d/; s/ hours\?,/h/; s/ minutes\?/m/') "
-  status_right="${status_right}#[bg=${bg2},fg=${bg1}]${sep_left}#[fg=${fg1},bg=${bg1},bold] 󱑒 %H:%M "
+  status_right="${status_right}#[bg=${bg2},fg=${mode_bg}]${sep_left}#[fg=${fg1},bg=${mode_bg},bold] 󱑒 %H:%M "
 
   tmux set-option -g status-right-length 100
   tmux set-option -g status-right "${status_right}"

@@ -2,40 +2,57 @@ pragma Singleton
 import QtQuick
 
 QtObject {
-    // Couleurs
-    readonly property color bg: Qt.rgba(20 / 255, 20 / 255, 20 / 255, 0.75)
-    readonly property color hover: Qt.rgba(35 / 255, 35 / 255, 35 / 255, 0.8)
-    readonly property color redBg: Qt.rgba(60 / 255, 20 / 255, 20 / 255, 0.7)
-    readonly property color text: "#eeeeee"
-    readonly property color empty: "#547254"
-    readonly property color alt: "#3b8b47"
-    readonly property color accent: "#2a963e"
-    readonly property color redBorder: "#ff5555"
-    readonly property color borderColor: Qt.rgba(1, 1, 1, 0.1)
-    readonly property color borderHover: Qt.rgba(1, 1, 1, 0.3)
+  // Global
+  readonly property int animDuration: 400
+  readonly property color accent: "#8faa74"
+  readonly property color red: Qt.rgba(60 / 255, 20 / 255, 20 / 255, 0.7)
+  readonly property color redBorder: "#ff5555"
 
-    // Typographie
-    readonly property string fontFamily: "JetBrainsMono Nerd Font"
-    readonly property int fontSize: 12
-    readonly property int fontSizeSmall: 10
+  // Font
+  readonly property string fontFamily: "Geist"
+  readonly property string iconFont: "JetBrainsMono Nerd Font"
+  readonly property int fontSize: 13
+  readonly property color textColor: "#eeeeee"
 
-    // Dimensions
-    readonly property int borderWidth: 1
+  // TaskBar
+  readonly property int barHeight: 35
+  readonly property int barSidePadding: 10
+  readonly property int barPadding: 10
+  readonly property int barSpacing: 8
 
-    readonly property int margin: 3
-    readonly property int sideMargin: 15
-    readonly property int moduleSpacing: 8
-    readonly property int spacing: 10
+  // TaskBar Modules
+  readonly property int moduleHeight: 28
+  readonly property int moduleWidth: 80
+  readonly property int moduleRadius: 20
 
-    readonly property int barHeight: 35
-    readonly property int moduleHeight: 28
-    readonly property int moduleWidth: 75
-    readonly property int expandedModuleHeight: 160
-    readonly property int expandedModuleWidth: 360
+  readonly property int modulePadding: 8
+  readonly property int moduleBorderWidth: 0
+  readonly property color moduleBg: Qt.rgba(20 / 255, 20 / 255, 20 / 255, 0.6)
+  readonly property color moduleHoverBg: Qt.rgba(35 / 255, 35 / 255, 35 / 255, 0.7)
+  readonly property color moduleBorderColor: Qt.rgba(1, 1, 1, 0.1)
+  readonly property color moduleBorderHover: Qt.rgba(1, 1, 1, 0.3)
 
-    readonly property int moduleRadius: 20
-    readonly property int expandedModuleRadius: 35
+  // Dynamic Island
+  readonly property int islandHeight: barHeight
+  readonly property int islandWidth: 150
+  readonly property int islandRadius: moduleRadius
+  readonly property int islandPaddingX: 13
+  readonly property int islandPaddingY: 4
 
-    // Animations
-    readonly property int animDuration: 400
+  readonly property int islandExpandedHeight: 120
+  readonly property int islandExpandedWidth: 300
+  readonly property int islandExpandedRadius: 37
+  readonly property int islandExpandedPaddingX: 20
+  readonly property int islandExpandedPaddingY: 16
+
+  // Notifications
+  readonly property int notifMaxWidth: 550
+
+  // Timers
+  readonly property int notifTime: 5000
+  readonly property int osdTime: 2000
+  readonly property int workspaceTime: 1200
+
+  // Wallpaper
+  readonly property string wallpaperPath: "/home/paul/.config/hypr/themes/Forest/wall.png"
 }
