@@ -1,16 +1,11 @@
-# ----- All symlinks pointing to a theme configuration
+# Symlinks pointing to a theme configuration
 .config/hypr/hyprland/theme.lua
-.config/waybar/config.jsonc
-.config/waybar/style.css
-.config/fastfetch/config.jsonc
-.config/rofi/colors.rasi
-.config/swaync/style.css
-.config/quickshell/.qmlls.ini
-.config/quickshell/Config.qml
-.config/tmux/theme.tmux
-.config/weather.conf
-# Default theme (link)
 .config/hypr/themes/Default
+.config/fastfetch/config.jsonc
+.config/tmux/theme.tmux
 
 # Nvim packages
 .config/nvim/nvim-pack-lock.json
+
+# Sensitive data
+.config/weather.conf
