@@ -17,7 +17,7 @@ QtObject {
   // TaskBar
   readonly property int barHeight: 35
   readonly property int barSidePadding: 10
-  readonly property int barPadding: 10
+  readonly property int barPadding: 7
   readonly property int barSpacing: 8
 
   // TaskBar Modules
