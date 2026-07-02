@@ -20,11 +20,11 @@ main() {
   local yellow="#d4a85a"      # Mode copy
 
   local bg1="#8faa74"         # Vert
-  local bg2="#252018"         # Marron
-  local bg3="#3a2c1c"         # Marron (numéro onglets inactifs)
-  local bg4="#1e1812"         # Marron foncé (onglets inactifs)
-  local bg5="#5b4c38"         # Marron très clair (numéro onglet actif)
-  local bg6="#443521"         # Marron clair (onglet actif)
+  local bg2="#344034"         # Vert plus foncé
+  local bg3="#3b423c"         # Vert-Gris (numéro onglets inactifs)
+  local bg4="#1a1c1a"         # Marron foncé (onglets inactifs)
+  local bg5="#4b524c"         # Marron très clair (numéro onglet actif)
+  local bg6="#2a2c2a"         # Marron clair (onglet actif)
 
   local fg1="#16120e"         # Texte sur le orange
   local fg2="#e0d0ba"         # Texte sur le marron
@@ -36,6 +36,7 @@ main() {
   # local sub_sep=""
 
   # --- Global config
+  tmux set-environment -g FZF_DEFAULT_OPTS "--color=pointer:${bg1},marker:${bg1},bg+:${bg2},fg+:${fg2},prompt:${bg1},info:${fg3}"
   tmux set-option -g status-style "bg=${transparent},fg=${transparent}"
   tmux set-option -g mode-style "bg=${bg1},fg=${fg1}"
   tmux set-option -g message-style "bg=${bg1},fg=${fg1}"

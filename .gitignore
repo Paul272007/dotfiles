@@ -7,6 +7,7 @@
 .config/swaync/style.css
 .config/quickshell/.qmlls.ini
 .config/quickshell/Config.qml
+.config/tmux/theme.tmux
 .config/weather.conf
 # Default theme (link)
 .config/hypr/themes/Default

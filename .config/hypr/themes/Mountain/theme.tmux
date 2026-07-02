@@ -36,6 +36,7 @@ main() {
   # local sub_sep=""
 
   # --- Global config
+  tmux set-environment -g FZF_DEFAULT_OPTS "--color=pointer:${bg1},marker:${bg1},bg+:${bg2},fg+:${fg2},prompt:${bg1},info:${fg3}"
   tmux set-option -g status-style "bg=${transparent},fg=${transparent}"
   tmux set-option -g mode-style "bg=${bg1},fg=${fg1}"
   tmux set-option -g message-style "bg=${bg1},fg=${fg1}"
