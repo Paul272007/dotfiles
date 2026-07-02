@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/bash
 
 # Renvoyer une valeur par défaut si une option Tmux n'est pas configurée par l'utilisateur
 get_tmux_option() {
@@ -19,7 +19,7 @@ main() {
   local teal="#7aaa90"        # Mode commande
   local yellow="#d4a85a"      # Mode copy
 
-  local bg1="#c8814a"         # Orange
+  local bg1="#8faa74"         # Vert
   local bg2="#252018"         # Marron
   local bg3="#3a2c1c"         # Marron (numéro onglets inactifs)
   local bg4="#1e1812"         # Marron foncé (onglets inactifs)
