@@ -54,6 +54,11 @@ main() {
   tmux set-option -g pane-active-border-style "fg=${fg3}"
   tmux set-option -g popup-border-style "fg=${fg3}"
 
+  # --- Menus
+  tmux set-option -g menu-style "bg=${transparent},fg=${fg3}"
+  tmux set-option -g menu-selected-style "bg=${bg1},fg=${fg1},bold"
+  tmux set-option -g menu-border-style "fg=${bg1}"
+
   # --- Left
   local mode_bg="#{?client_prefix,${teal},#{?pane_in_mode,${yellow},${bg1}}}"
   local mode_text="#{?client_prefix,WAIT,#{?pane_in_mode,COPY,TMUX}}"

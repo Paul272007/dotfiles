@@ -48,8 +48,13 @@ Diagnostics:
       "modernize-use-trailing-return-type",                                 # Ne pas proposer d'ajouter un trailing return type
       "readability-braces-around-statements",                               # Ne pas toujours ajouter des {}
       "readability-identifier-length",                                      # Ne pas vouloir des noms de variables de plus de 3 caractères seulement
+      "readability-implicit-bool-conversion",                               # Plus pratique pour certaines fonctions de C renvoyant des int
       "cppcoreguidelines-non-private-member-variables-in-classes",          # Ne pas interdire les attributs de classe protected
       "cppcoreguidelines-avoid-const-or-ref-data-members",                  # Ne pas interdire les attributs de classe const ou &
       "cppcoreguidelines-avoid-magic-numbers", "readability-magic-numbers", # Autoriser les valeurs hardcodées
       "cppcoreguidelines-macro-usage",                                      # Réparer les X macros
+      "cppcoreguidelines-avoid-do-while",                                   # Autoriser les do {} while ()
+      "cppcoreguidelines-pro-type-static-cast-downcast",                    # Je sais ce que je fais
+      "cppcoreguidelines-pro-bounds-pointer-arithmetic",                    # L'arithmétique de pointeurs c'est bien
+      # "performance-avoid-endl",                                             # Des fois c'est pratique quand même
     ]

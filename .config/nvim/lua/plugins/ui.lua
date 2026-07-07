@@ -321,6 +321,8 @@ require("snacks").setup({
 	},
 })
 
+require("colorizer").setup()
+
 -- require("smear_cursor").setup({
 --   smear_insert_mode = false,
 -- })
