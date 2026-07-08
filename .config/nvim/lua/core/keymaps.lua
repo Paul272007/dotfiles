@@ -90,6 +90,9 @@ end, { desc = "Switch source/header" })
 map({ "n", "x", "o" }, "zk", function()
 	require("flash").jump()
 end, { desc = "Jump" })
+map({ "n", "x", "o" }, "²", function()
+	require("flash").jump()
+end, { desc = "Jump" })
 
 ---- Snacks
 -- picker and buffers
