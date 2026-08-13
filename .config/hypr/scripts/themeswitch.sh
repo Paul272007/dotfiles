@@ -36,4 +36,12 @@ killall quickshell
 tmux source-file ~/.config/tmux/tmux.conf
 
 echo "$THEME_NAME" > ~/.cache/current_theme
+
+for _ in {1..50}; do
+  if dbus-send --session --dest=org.freedesktop.DBus --type=method_call --print-reply /org/freedesktop/DBus org.freedesktop.DBus.NameHasOwner string:"org.freedesktop.Notifications" | grep -q "boolean true"; then
+    break
+  fi
+  sleep 0.1
+done
+
 notify-send "Theme applied" "Style : $THEME_NAME" -a MyShell

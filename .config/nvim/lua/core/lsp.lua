@@ -1,85 +1,135 @@
 local config = vim.lsp.config
 
+-- Détection dynamique du chemin global de TypeScript (évite de hardcoder la version Node)
+local global_ts_lib = vim.fn.trim(vim.fn.system("npm root -g")) .. "/typescript/lib"
+
 config("clangd", {
-  cmd = { "clangd" },
-  filetypes = { "c", "h", "cpp", "hpp" },
-  root_markers = { ".git" },
+	cmd = { "clangd" },
+	filetypes = { "c", "h", "cpp", "hpp" },
+	root_markers = { ".git" },
 })
 
 config("neocmakelsp", {
-  cmd = { "neocmakelsp", "--stdio" },
-  filetypes = { "cmake" },
-  root_markers = { ".git" },
+	cmd = { "neocmakelsp", "--stdio" },
+	filetypes = { "cmake" },
+	root_markers = { ".git" },
 })
 
 config("lua_ls", {
-  cmd = { "lua-language-server" },
-  filetypes = { "lua" },
-  root_markers = { ".luarc.json", ".luarc.jsonc", ".git" },
-  settings = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enabled = false },
-      diagnostics = { globals = { "vim" } },
-    },
-  },
+	cmd = { "lua-language-server" },
+	filetypes = { "lua" },
+	root_markers = { ".luarc.json", ".luarc.jsonc", ".git" },
+	settings = {
+		Lua = {
+			workspace = { checkThirdParty = false },
+			telemetry = { enabled = false },
+			diagnostics = { globals = { "vim" } },
+		},
+	},
 })
 
 config("intelephense", {
-  cmd = { "intelephense", "--stdio" },
-  filetypes = { "php" },
-  root_markers = { "composer.json", ".git" },
+	cmd = { "intelephense", "--stdio" },
+	filetypes = { "php" },
+	root_markers = { "composer.json", ".git" },
 })
 
 config("pyright", {
-  cmd = { "pyright-langserver", "--stdio" },
-  filetypes = { "python" },
-  root_markers = { "pyproject.toml", "setup.py", "requirements.txt", ".git" },
+	cmd = { "pyright-langserver", "--stdio" },
+	filetypes = { "python" },
+	root_markers = { "pyproject.toml", "setup.py", "requirements.txt", ".git" },
 })
 
-config("rust-analyzer", {
-  cmd = { "rust-analyzer" },
-  filetypes = { "rust" },
-  root_markers = { "Cargo.toml", ".git" }
+config("rust_analyzer", {
+	cmd = { "rust-analyzer" },
+	filetypes = { "rust" },
+	root_markers = { "Cargo.toml", ".git" },
 })
 
-config("bash-language-server", {
-  cmd = { "bash-language-server", "start" },
-  filetypes = { "bash", "sh" },
-  root_markers = { ".git" }
+config("bashls", {
+	cmd = { "bash-language-server", "start" },
+	filetypes = { "bash", "sh" },
+	root_markers = { ".git" },
 })
 
--- TODO : add: jdtls, ts_ls, volar, html, cssls
+config("cssls", {
+	cmd = { "vscode-css-language-server", "--stdio" },
+	filetypes = { "css" },
+	root_markers = { ".git" },
+})
 
+config("html", {
+	cmd = { "vscode-html-language-server", "--stdio" },
+	filetypes = { "html" },
+	root_markers = { ".git" },
+})
+
+config("ts_ls", {
+	cmd = { "typescript-language-server", "--stdio" },
+	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
+	root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
+	init_options = {
+		tsserver = {
+			path = global_ts_lib .. "/tsserver.js", -- Pointeur direct vers tsserver.js
+		},
+	},
+})
+
+config("volar", {
+	cmd = { "vue-language-server", "--stdio" },
+	filetypes = { "vue" },
+	root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
+	init_options = {
+		typescript = {
+			tsdk = global_ts_lib,
+		},
+		vue = {
+			hybridMode = false,
+		},
+	},
+})
+
+config("jdtls", {
+	cmd = { "jdtls" },
+	filetypes = { "java" },
+	root_markers = { "pom.xml", "build.gradle", "build.gradle.kts", ".git" },
+})
+
+-- Activer tous les LSP
 vim.lsp.enable({
-  "clangd",
-  "neocmakelsp",
-  "lua_ls",
-  "intelephense",
-  "pyright",
-  "rust-analyzer",
-  "bash-language-server"
+	"clangd",
+	"neocmakelsp",
+	"lua_ls",
+	"intelephense",
+	"pyright",
+	"rust_analyzer",
+	"bashls",
+	"cssls",
+	"html",
+	"ts_ls",
+	"volar",
+	"jdtls",
 })
 
 -- Diagnostic configuration
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+	local hl = "DiagnosticSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
 vim.diagnostic.config({
-  virtual_text = {
-    spacing = 4,
-    prefix = "●",
-  },
-  severity_sort = true,
-  signs = {
-    text = {
-      [vim.diagnostic.severity.ERROR] = signs.Error,
-      [vim.diagnostic.severity.WARN] = signs.Warn,
-      [vim.diagnostic.severity.HINT] = signs.Hint,
-      [vim.diagnostic.severity.INFO] = signs.Info,
-    },
-  },
+	virtual_text = {
+		spacing = 4,
+		prefix = "●",
+	},
+	severity_sort = true,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = signs.Error,
+			[vim.diagnostic.severity.WARN] = signs.Warn,
+			[vim.diagnostic.severity.HINT] = signs.Hint,
+			[vim.diagnostic.severity.INFO] = signs.Info,
+		},
+	},
 })

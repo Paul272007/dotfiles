@@ -48,21 +48,21 @@ hl.bind(mainMod .. " + down", hl.dsp.focus({ direction = "down" }), { desc = "Mo
 
 -- Workspaces
 local workspaces = {
-  ["ampersand"] = 1,
-  ["eacute"] = 2,
-  ["quotedbl"] = 3,
-  ["apostrophe"] = 4,
-  ["code:14"] = 5,
-  ["minus"] = 6,
-  ["egrave"] = 7,
-  ["underscore"] = 8,
-  ["ccedilla"] = 9,
-  ["agrave"] = 10,
+	["ampersand"] = 1,
+	["eacute"] = 2,
+	["quotedbl"] = 3,
+	["apostrophe"] = 4,
+	["code:14"] = 5,
+	["minus"] = 6,
+	["egrave"] = 7,
+	["underscore"] = 8,
+	["ccedilla"] = 9,
+	["agrave"] = 10,
 }
 
 for key, ws in pairs(workspaces) do
-  hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = ws }))
-  hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = ws }))
+	hl.bind(mainMod .. " + " .. key, hl.dsp.focus({ workspace = ws }))
+	hl.bind(mainMod .. " + SHIFT + " .. key, hl.dsp.window.move({ workspace = ws }))
 end
 
 -- Scroll
@@ -73,24 +73,24 @@ hl.bind(mainMod .. " + SHIFT + tab", hl.dsp.focus({ workspace = "e-1" }))
 
 -- Multimedia
 hl.bind(
-  "XF86AudioRaiseVolume",
-  hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
-  { locked = true, repeating = true }
+	"XF86AudioRaiseVolume",
+	hl.dsp.exec_cmd("wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"),
+	{ locked = true, repeating = true }
 )
 hl.bind(
-  "XF86AudioLowerVolume",
-  hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
-  { locked = true, repeating = true }
+	"XF86AudioLowerVolume",
+	hl.dsp.exec_cmd("wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"),
+	{ locked = true, repeating = true }
 )
 hl.bind(
-  "XF86AudioMute",
-  hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
-  { locked = true, repeating = true }
+	"XF86AudioMute",
+	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"),
+	{ locked = true, repeating = true }
 )
 hl.bind(
-  "XF86AudioMicMute",
-  hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
-  { locked = true, repeating = true }
+	"XF86AudioMicMute",
+	hl.dsp.exec_cmd("wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"),
+	{ locked = true, repeating = true }
 )
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%+"), { locked = true, repeating = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl -e4 -n2 set 5%-"), { locked = true, repeating = true })
@@ -101,14 +101,14 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 
 -- Screenshots
 hl.bind(
-  "Print",
-  hl.dsp.exec_cmd(
-    'grim -g "$(slurp)" "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && wl-copy < "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && notify-send "Capture d\'écran" "Région enregistrée et copiée !" -a Hyprland'
-  )
+	"Print",
+	hl.dsp.exec_cmd(
+		'grim -g "$(slurp)" "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && wl-copy < "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && notify-send "Capture d\'écran" "Région enregistrée et copiée !" -a Hyprland'
+	)
 )
 hl.bind(
-  "SHIFT + Print",
-  hl.dsp.exec_cmd(
-    'grim "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && wl-copy < "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && notify-send "Capture d\'écran" "Ecran enregistré et copié !" -a Hyprland'
-  )
+	"SHIFT + Print",
+	hl.dsp.exec_cmd(
+		'grim "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && wl-copy < "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && notify-send "Capture d\'écran" "Ecran enregistré et copié !" -a Hyprland'
+	)
 )

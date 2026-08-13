@@ -36,7 +36,7 @@ vim.pack.add({
 	-- code
 	"https://github.com/Saghen/blink.lib",
 	"https://github.com/Saghen/blink.cmp",
-	-- "https://github.com/rafamadriz/friendly-snippets",
+	"https://github.com/rafamadriz/friendly-snippets",
 	"https://github.com/nvim-mini/mini.pairs",
 	"https://github.com/nvim-mini/mini.ai",
 	"https://github.com/folke/lazydev.nvim",
@@ -54,3 +54,11 @@ require("plugins.ui")
 require("plugins.editor")
 require("plugins.code")
 require("plugins.formatting")
+
+local status_luasnip, _ = pcall(require, "luasnip")
+
+if status_luasnip then
+	require("luasnip.loaders.from_vscode").lazy_load({
+		exclude = { "c", "cpp", "lua" },
+	})
+end

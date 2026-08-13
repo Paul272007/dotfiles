@@ -1,6 +1,6 @@
 local M = {}
 local controller =
-"dbus-send --session --type=method_call --dest=org.myshell.Controller /Controller org.myshell.Controller."
+	"dbus-send --session --type=method_call --dest=org.myshell.Controller /Controller org.myshell.Controller."
 
 M.theme = "Default"
 M.mainMod = "SUPER"
@@ -17,5 +17,6 @@ M.apps = controller .. "toggleApps"
 M.keybinds = controller .. "toggleBinds"
 M.clipboard = controller .. "toggleClip"
 M.windows = controller .. "toggleWindows"
+M.notifcenter = controller .. "toggleNotifCenter"
 
 return M
