@@ -9,6 +9,7 @@ M.browser = "zen-browser"
 M.music = "spotify"
 M.notes = "obsidian"
 M.fileManager = "nautilus"
+M.bluetooth = "blueman-manager"
 
 M.themes = controller .. "toggleThemes"
 M.menu = controller .. "toggleGlobal"

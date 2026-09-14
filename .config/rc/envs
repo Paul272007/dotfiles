@@ -1,19 +1,12 @@
+#!/usr/bin/zsh
+
 # ----------------------------------------------- #
 # ------------ Environment variables ------------ #
 # ----------------------------------------------- #
 
-if [ -n "$ZSH_VERSION" ]; then
-  export CURRENT_SHELL=zsh
-elif [ -n "$BASH_VERSION" ]; then
-  export CURRENT_SHELL=bash
-else
-  export CURRENT_SHELL=$(basename "$SHELL")
-fi
-
 # Add custom executable directory to path
 export PATH="${HOME}/.local/bin:${HOME}/.zc/bin:${PATH}"
-# Editors
-export NVM_DIR="$HOME/.config/nvm"
+# export NVM_DIR="$HOME/.config/nvm"
 export EDITOR=nvim
 export SUDO_EDITOR="$EDITOR"
 export VISUAL="$EDITOR"

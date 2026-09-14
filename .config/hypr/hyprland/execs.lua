@@ -3,7 +3,7 @@
 hl.on("hyprland.start", function()
 	-- hl.exec_cmd("~/.config/hypr/scripts/themeswitch.sh " .. config.theme)
 	hl.exec_cmd("~/shell/run.sh")
-	hl.exec_cmd("hypridle") -- TODO : replace with quickshell
+	-- hl.exec_cmd("hypridle") -- TODO : replace with quickshell
 	hl.exec_cmd("hyprshade auto") -- TODO : replace with quickshell
 	hl.exec_cmd("wl-paste --type text --watch cliphist store")
 	hl.exec_cmd("wl-paste --type image --watch cliphist store")

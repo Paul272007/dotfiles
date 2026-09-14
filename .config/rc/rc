@@ -1,27 +1,19 @@
+#!/usr/bin/zsh
+
 # ----------------------------------------------- #
 # --------- Unified shell configuration --------- #
 # ----------------------------------------------- #
 
-# Can be sourced in either ~/.bashrc or ~/.zshrc
-
 RC_DIR="$HOME/.config/rc"
 
-source_if_exists() {
-  if [ -f "$1" ]; then
-    source "$1"
-  else
-    echo "Error: file $1 does not exist"
-  fi
-}
-
-source_if_exists "$RC_DIR/envs"
-source_if_exists "$RC_DIR/options"
-source_if_exists "$RC_DIR/functions"
-source_if_exists "$RC_DIR/plugins"
-source_if_exists "$RC_DIR/completion"
-source_if_exists "$RC_DIR/init"
-source_if_exists "$RC_DIR/aliases"
-source_if_exists "$RC_DIR/keybinds"
+source "$RC_DIR/envs"
+source "$RC_DIR/options"
+source "$RC_DIR/functions"
+source "$RC_DIR/plugins"
+source "$RC_DIR/completion"
+source "$RC_DIR/init"
+source "$RC_DIR/aliases"
+source "$RC_DIR/keybinds"
 
 ##### (Optionnal) Fastfetch
 
@@ -36,6 +28,7 @@ if [[ -t 1 ]]; then
 
   # Compares current size to minimum
   if [ "$TERM_COLS" -ge "$MIN_COLS" ] && [ "$TERM_LINES" -ge "$MIN_LINES" ]; then
-    fastfetch
+    # fastfetch
+    :
   fi
 fi

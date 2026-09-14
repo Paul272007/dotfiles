@@ -3,6 +3,8 @@ local map = vim.keymap.set
 -- Disable page up and down keys when in insert mode
 map("i", "<PageUp>", "<Nop>", { desc = "Disable PageUp" })
 map("i", "<PageDown>", "<Nop>", { desc = "Disable PageDown" })
+-- Ctrl + Backspace = Ctrl + W
+map("i", "<C-BS>", "<C-W>", { desc = "Erase word" })
 -- better indenting
 map("x", "<", "<gv")
 map("x", ">", ">gv")
@@ -43,11 +45,6 @@ map("v", "*", function()
 	vim.fn.setreg("/", "\\V" .. text)
 	vim.cmd("normal! /\\V" .. text .. "<CR>")
 end, { desc = "Search selection" })
--- Place cursor at the center of the screen when moving
-local mappings = { "{", "}", "n", "N", "<C-d>", "<C-u>", "G" }
-for _, key in ipairs(mappings) do
-	vim.keymap.set("n", key, key .. "zz", { noremap = true, silent = true })
-end
 
 ---- Buffers
 -- move between buffers

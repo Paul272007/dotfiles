@@ -17,6 +17,22 @@ CompileFlags:
     - -Woverloaded-virtual
     - -Wno-comment
 
+---
+
+If:
+  PathMatch: .*\.c$
+CompileFlags:
+  Add: [-std=c17]
+
+---
+
+If:
+  PathMatch: .*\.(cpp|cc|cxx|hpp|h)$
+CompileFlags:
+  Add: [-std=c++23]
+
+# FIX: Find a solution to add standard so that it works for both C and C++
+
 Diagnostics:
   # Supprime les warnings provenant des bibliothèques externes (ex: /usr/include)
   UnusedIncludes: Strict
@@ -56,5 +72,8 @@ Diagnostics:
       "cppcoreguidelines-avoid-do-while",                                   # Autoriser les do {} while ()
       "cppcoreguidelines-pro-type-static-cast-downcast",                    # Je sais ce que je fais
       "cppcoreguidelines-pro-bounds-pointer-arithmetic",                    # L'arithmétique de pointeurs c'est bien
+      "cppcoreguidelines-avoid-c-arrays",                                   # Ne pas remplacer les arrays[n] par std::array<n>()
+      "modernize-avoid-c-arrays",                                           # Pareil qu'au dessus
       # "performance-avoid-endl",                                             # Des fois c'est pratique quand même
+      "cppcoreguidelines-avoid-goto",                                       # Des fois c'est pratique quand même
     ]

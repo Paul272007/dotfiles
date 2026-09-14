@@ -1,44 +1,44 @@
+#!/usr/bin/zsh
+
 # ----------------------------------------------- #
 # ------------- Keybindings for ZSH ------------- #
 # ----------------------------------------------- #
 
-if [ "$CURRENT_SHELL" = "zsh" ]; then
+# bindkey -e # Use emacs keybindings even if $EDITOR is set to nvim
 
-  # bindkey -e # Use emacs keybindings even if $EDITOR is set to nvim
+autoload -Uz edit-command-line
+autoload zmv
+clear-keep-buffer() {
+  zle clear-screen
+}
+copy-command() {
+  echo -n $BUFFER | wl-copy
+  zle -M "Copied to clipboard!"
+}
 
-  autoload -Uz edit-command-line
-  clear-keep-buffer() {
-    zle clear-screen
-  }
-  copy-command() {
-    echo -n $BUFFER | wl-copy
-    zle -M "Copied to clipboard!"
-  }
+zle -N edit-command-line
+zle -N clear-keep-buffer
+zle -N copy-command
 
-  zle -N edit-command-line
-  zle -N clear-keep-buffer
-  zle -N copy-command
+bindkey ' ' magic-space                   # Space expands ! expressions
 
-  bindkey ' ' magic-space                   # Space expands ! expressions
+bindkey '^b' clear-keep-buffer            # Clear screen but keep current command
+bindkey '^e' edit-command-line            # Edit current command in $EDITOR
+bindkey '^h' backward-kill-word           # Delete word with Ctrl+backspace
+bindkey '^x' copy-command                 # Copy current command to clipboard
+bindkey '^y' redo                         # Redo
+bindkey '^z' undo                         # Undo
 
-  bindkey '^b' clear-keep-buffer            # Clear screen but keep current command
-  bindkey '^e' edit-command-line            # Edit current command in $EDITOR
-  bindkey '^h' backward-kill-word           # Delete word with Ctrl+backspace
-  bindkey '^x' copy-command                 # Copy current command to clipboard
-  bindkey '^y' redo                         # Redo
-  bindkey '^z' undo                         # Undo
+bindkey '^[[3~' delete-char               # Del : Delete character under cursor
+bindkey '^[[3;5~' kill-word               # Ctrl+Del : Delete word
+bindkey '^[[1;5C' forward-word            # Ctrl+Arrows : Navigate word by word
+bindkey '^[[1;5D' backward-word           #
+bindkey '^[[A' history-search-backward    # Arrows : Navigate history
+bindkey '^[[B' history-search-forward     #
 
-  bindkey '^[[3~' delete-char               # Del : Delete character under cursor
-  bindkey '^[[3;5~' kill-word               # Ctrl+Del : Delete word
-  bindkey '^[[1;5C' forward-word            # Ctrl+Arrows : Navigate word by word
-  bindkey '^[[1;5D' backward-word           #
-  bindkey '^[[A' history-search-backward    # Arrows : Navigate history
-  bindkey '^[[B' history-search-forward     #
-
-  bindkey -s '\ec' 'cdtv\n'                 # Alt+C : Go to directory
-  bindkey -s '\ed' 'docker compose up -d\n' # Alt+D : Launch docker compose
-  bindkey -s '\eg' 'pj\n'                   # Alt+G : Go to project
-  bindkey -s '\em' 'git commit -m ""^[[D'   # Alt+M : Git commit
-  bindkey -s '\en' 'npm run dev\n'          # Alt+N : Launch npm app
-  bindkey -s '\ep' 'sudo pacman -S '        # Alt+P : Write sudo pacman -S
-fi
+bindkey -s '\ec' 'cdtv\n'                 # Alt+C : Go to directory
+bindkey -s '\ed' 'docker compose up -d\n' # Alt+D : Launch docker compose
+bindkey -s '\eg' 'pj\n'                   # Alt+G : Go to project
+bindkey -s '\em' 'git commit -m ""^[[D'   # Alt+M : Git commit
+bindkey -s '\en' 'npm run dev\n'          # Alt+N : Launch npm app
+bindkey -s '\ep' 'sudo pacman -S '        # Alt+P : Write sudo pacman -S

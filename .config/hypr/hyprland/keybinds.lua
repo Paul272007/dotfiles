@@ -25,6 +25,8 @@ hl.bind(mainMod .. " + B", hl.dsp.exec_cmd(config.browser), { desc = "Open web b
 hl.bind(mainMod .. " + E", hl.dsp.exec_cmd(config.fileManager), { desc = "Open file manager" })
 hl.bind(mainMod .. " + Return", hl.dsp.exec_cmd(config.terminal), { desc = "Open terminal" })
 
+hl.bind(mainMod .. " + SHIFT + B", hl.dsp.exec_cmd(config.bluetooth), { desc = "Open bluetooth manager" })
+
 -- Windows
 hl.bind(mainMod .. " + Q", hl.dsp.window.float({ action = "toggle" }), { desc = "Toggle float" })
 hl.bind(mainMod .. " + F", hl.dsp.window.fullscreen(), { desc = "Fullscreen mode" })

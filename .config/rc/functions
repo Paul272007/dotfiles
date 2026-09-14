@@ -1,3 +1,5 @@
+#!/usr/bin/zsh
+
 # ----------------------------------------------- #
 # ----- Additionnal functions for the shell ----- #
 # ----------------------------------------------- #
@@ -11,6 +13,9 @@ mk() {
 x() {
   if [ -z "$1" ]; then
     return 1
+  fi
+  if [ ! -f "$1" ]; then
+    return 2
   fi
   cat "$@" | wl-copy
 }
@@ -38,18 +43,6 @@ n() {
   fi
 }
 
-# Enable PHP server quickly
-apacheup() {
-  sudo systemctl start mariadb
-  sudo systemctl start apache2
-}
-
-# Disable PHP server quickly
-apachedown() {
-  sudo systemctl stop apache2
-  sudo systemctl stop mariadb
-}
-
 # Compression
 compress() {
   tar -czf "${1%/}.tar.gz" "${1%/}"
@@ -75,6 +68,7 @@ cdtv() {
   fi
 }
 
+# Run each time that we cd somewhere
 chpwd() {
   eza --icons=always --hyperlink --group-directories-first
   if [[ -f .nvmrc ]]; then

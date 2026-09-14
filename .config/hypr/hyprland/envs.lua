@@ -1,7 +1,9 @@
 hl.env("XCURSOR_THEME", "macOs")
+-- hl.env("XCURSOR_THEME", "MacOS-Tahoe-Cursor")
 hl.env("XCURSOR_SIZE", "26")
 hl.env("HYPRCURSOR_SIZE", "26")
 
+hl.env("GTK_IM_MODULE", "simple") -- FIX: ghostty ^
 hl.env("GTK_THEME", "adw-gtk3-dark")
 hl.env("COLOR_THEME", "prefer-dark")
 

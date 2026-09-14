@@ -1,3 +1,5 @@
+#!/usr/bin/zsh
+
 # ----------------------------------------------- #
 # --------- Initialize all shell tools ---------- #
 # ----------------------------------------------- #
@@ -22,14 +24,6 @@ fi
 # NVM
 if [ -d "$NVM_DIR" ]; then
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-  # NVM Bash completion
-  if [ "$CURRENT_SHELL" = "bash" ]; then
-    [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-  fi
 fi
 
-if [ "$CURRENT_SHELL" = "zsh" ]; then
-  # eval "$(fzf --zsh)"
-  autoload zmv
-fi
+# eval "$(fzf --zsh)"

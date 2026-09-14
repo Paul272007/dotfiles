@@ -1,3 +1,5 @@
+#!/usr/bin/zsh
+
 # ---------------------------------------------- #
 # - Vital shortcuts for the most used commands - #
 # ---------------------------------------------- #
@@ -18,7 +20,7 @@ alias la='ls -A'
 alias lt='ls --tree --level=2 --long'
 
 # ssh
-alias eden='ssh eden@100.88.35.114'
+alias eden='ssh eden@100.67.67.67'
 
 # package managers
 alias update='sudo apt update'
@@ -43,25 +45,20 @@ alias ctl='sudo systemctl'
 alias sql='sudo mysql -u root -p'
 alias open='xdg-open &>/dev/null'
 alias empty=': > '
+alias rs='source ~/.zshrc'
 
-if [ "$CURRENT_SHELL" = "zsh" ]; then
-  alias rs='source ~/.zshrc'
-elif [ "$CURRENT_SHELL" = "bash" ]; then
-  alias rs='source ~/.bashrc'
-fi
+alias -s c='$EDITOR'
+alias -s cc='$EDITOR'
+alias -s cpp='$EDITOR'
+alias -s lua='$EDITOR'
+alias -s js='$EDITOR'
+alias -s ts='$EDITOR'
+alias -s json='bat'
+alias -s md='bat'
 
-if [ "$CURRENT_SHELL" = "zsh" ]; then
-  alias -s c='$EDITOR'
-  alias -s cc='$EDITOR'
-  alias -s cpp='$EDITOR'
-  alias -s lua='$EDITOR'
-  alias -s js='$EDITOR'
-  alias -s ts='$EDITOR'
-  alias -s json='bat'
-  alias -s md='bat'
-
-  alias -g NE='2>/dev/null'
-  alias -g NO='&>/dev/null'
-  alias -g JQ=' | jq'
-  alias -g C=' | wl-copy'
-fi
+alias -g NE='2>/dev/null'
+alias -g NO='&>/dev/null'
+alias -g JQ=' | jq'
+alias -g C=' | wl-copy'
+alias -g CFLAGS='-Wall -Wextra -Wpedantic -Wshadow -Wformat=2 -Wnull-dereference -Wconversion -Wsign-conversion -Wdouble-promotion -Wuninitialized -Wunused-label -Wno-comment'
+alias -g CXXFLAGS='-Wall -Wextra -Wpedantic -Wshadow -Wformat=2 -Wnull-dereference -Wconversion -Wsign-conversion -Wdouble-promotion -Wuninitialized -Wunused-label -Wno-comment -Wnon-virtual-dtor -Wold-style-cast -Woverloaded-virtual'
