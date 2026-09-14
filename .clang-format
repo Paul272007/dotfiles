@@ -120,7 +120,7 @@ BreakAfterOpenBracketSwitch: false
 BreakAfterReturnType: Automatic
 BreakArrays:     false
 BreakBeforeBinaryOperators: None
-BreakBeforeBraces: Allman                         # Always break before braces        TODO : or Linux/Mozilla ?
+BreakBeforeBraces: Linux                          # Always break before braces        TODO : or Linux/Mozilla ?
 BreakBeforeCloseBracketBracedList: true           # Break before closing bracket
 BreakBeforeCloseBracketFunction: true             # Break before closing parentheses
 BreakBeforeCloseBracketIf: true

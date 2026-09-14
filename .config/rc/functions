@@ -68,6 +68,30 @@ cdtv() {
   fi
 }
 
+# Sync files in ~ with USB stick
+sync-usb() {
+  local dry_run=()
+  if [[ "$1" == "-n" || "$1" == "--dry" || "$1" == "--dry-run" ]]; then
+    dry_run=(-n)
+    shift
+  fi
+  if [[ -z "$1" ]]; then
+    echo "Usage: sync-usb [-n|--dry-run] <dossier_destination>" >&2
+    return 1
+  fi
+
+  local usb_root="$1"
+  if [[ ! -d "$usb_root" ]]; then
+    echo "Error: directory '$usb_root' does not exist" >&2
+    return 2
+  fi
+  # Without / after ~ it would create subdirectory
+  rsync -avh --progress --delete \
+    "${dry_run[@]}" \
+    --exclude-from=~/.config/rsync/exclude.txt \
+    ~/ "$usb_root"
+}
+
 # Run each time that we cd somewhere
 chpwd() {
   eza --icons=always --hyperlink --group-directories-first

@@ -1,0 +1,34 @@
+# Package managers
+vendor/
+node_modules/
+env/
+venv/
+.venv/
+
+# Build
+__pycache__/
+build/
+zc-build/
+cmake-build/
+cmake-build-debug/
+dist/
+dist-electron/
+out/
+target/
+
+# Cache and trash
+.cache/
+.local/share/Trash
+
+# Navigators and sessions
+.mozilla/
+.config/google-chrome
+
+# Code editors and rest
+.DS_Store/
+.idea/
+
+# Big and/or temporary files
+*.iso
+*.qcow2
+*.log
