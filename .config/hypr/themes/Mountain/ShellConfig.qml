@@ -3,39 +3,45 @@ import QtQuick
 
 QtObject {
   // Global
-  readonly property int animDuration: 400
+  readonly property int animDuration: 350
   readonly property color accent: "#F87C63"
-  readonly property color red: Qt.rgba(60 / 255, 20 / 255, 20 / 255, 0.7)
-  readonly property color redBorder: "#ff5555"
+  readonly property color red: Qt.rgba(255 / 255, 69 / 255, 58 / 255, 0.7)
+  readonly property color redBorder: "#ff453a"
 
   // Font
   readonly property string fontFamily: "Geist"
-  readonly property string iconFont: "Geist Mono Nerd Font"
-  readonly property int fontSize: 13
-  readonly property color textColor: "#eeeeee"
+  readonly property string iconFont: "GeistMono Nerd Font"
+  readonly property int fontSize: 12
+  readonly property color textColor: "#F5F5F7"
+  readonly property color textSecondary: Qt.rgba(1, 1, 1, 0.55)
+  readonly property color iconColor: Qt.rgba(1, 1, 1, 0.85)
+  readonly property color iconColorMuted: Qt.rgba(1, 1, 1, 0.45)
 
   // TaskBar
-  readonly property int barHeight: 35
-  readonly property int barSidePadding: 10
-  readonly property int barPadding: 5
+  readonly property int barHeight: 34
+  readonly property int barSidePadding: 12
+  readonly property int barPadding: 6
   readonly property int barSpacing: 8
 
   // TaskBar Modules
   readonly property int moduleHeight: 28
   readonly property int moduleWidth: 80
-  readonly property int moduleRadius: 20
+  readonly property int moduleRadius: 16
 
   readonly property int modulePadding: 8
-  readonly property int moduleBorderWidth: 0
-  readonly property color moduleBg: Qt.rgba(20 / 255, 20 / 255, 20 / 255, 0.75)
-  readonly property color moduleHoverBg: Qt.rgba(35 / 255, 35 / 255, 35 / 255, 0.8)
-  readonly property color moduleBorderColor: Qt.rgba(1, 1, 1, 0.1)
-  readonly property color moduleBorderHover: Qt.rgba(1, 1, 1, 0.3)
+  readonly property int moduleBorderWidth: 1
+  readonly property color moduleBg: Qt.rgba(0.12, 0.12, 0.14, 0.72)
+  readonly property color moduleHoverBg: Qt.rgba(0.22, 0.22, 0.26, 0.80)
+  readonly property color moduleBorderColor: Qt.rgba(1, 1, 1, 0.10)
+  readonly property color moduleBorderHover: Qt.rgba(1, 1, 1, 0.25)
 
   // Dynamic Island
   readonly property int islandHeight: barHeight
   readonly property int islandWidth: 150
-  readonly property int islandRadius: moduleRadius
+  readonly property int islandRadius: 18
+  readonly property color islandBg: Qt.rgba(0.04, 0.04, 0.05, 0.95)
+  readonly property color islandBorderColor: Qt.rgba(1, 1, 1, 0.12)
+  readonly property int islandBorderWidth: 1
   readonly property int islandPaddingX: 13
   readonly property int islandPaddingY: 4
 

@@ -36,9 +36,17 @@ bindkey '^[[1;5D' backward-word           #
 bindkey '^[[A' history-search-backward    # Arrows : Navigate history
 bindkey '^[[B' history-search-forward     #
 
-bindkey -s '\ec' 'cdtv\n'                 # Alt+C : Go to directory
-bindkey -s '\ed' 'docker compose up -d\n' # Alt+D : Launch docker compose
-bindkey -s '\eg' 'pj\n'                   # Alt+G : Go to project
-bindkey -s '\em' 'git commit -m ""^[[D'   # Alt+M : Git commit
-bindkey -s '\en' 'npm run dev\n'          # Alt+N : Launch npm app
-bindkey -s '\ep' 'sudo pacman -S '        # Alt+P : Write sudo pacman -S
+bindkey -s '\ec' 'cdtv\n'                      # Alt+C : Go to directory
+bindkey -s '\ed' 'docker compose up -d\n'      # Alt+D : Launch docker compose
+bindkey -s '\eg' 'pj\n'                        # Alt+G : Go to project
+bindkey -s '\em' 'git commit -m ""^[[D'        # Alt+M : Git commit
+bindkey -s '\en' 'npm run dev\n'               # Alt+N : Launch npm app
+bindkey -s '\ep' 'sudo pacman -S --noconfirm ' # Alt+P : Prepare pacman command
+
+# Change some vim keybinds
+bindkey -M viins -r '^['                  # Remove esc as vim activation key
+bindkey -M viins '^v' vi-cmd-mode         # Enable vim mode
+# Restore normal behaviour for some keys
+bindkey -M viins '^?' backward-delete-char
+bindkey -M viins '^h' backward-delete-char
+bindkey -M viins '^w' backward-kill-word

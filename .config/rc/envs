@@ -12,4 +12,10 @@ export SUDO_EDITOR="$EDITOR"
 export VISUAL="$EDITOR"
 export BAT_THEME=ansi
 # Character to indicate that programs wrote things without a new line
-export PROMPT_EOL_MARK='%F{red} tu as oublié le \n à la fin du printf%f'
+export PROMPT_EOL_MARK='%F{red} \n%f'
+# Wait 10ms instead of 400ms after escape sequence
+export KEYTIMEOUT=1
+
+# ANSI Codes
+export CURSOR="\033[?25h"
+export NOCURSOR="\033[?25l"

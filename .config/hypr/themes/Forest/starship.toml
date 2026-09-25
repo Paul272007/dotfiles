@@ -1,36 +1,110 @@
-add_newline = true
+add_newline     = true
 command_timeout = 200
-format = "[$directory$git_branch$git_status]($style)$character"
-
-[character]
-error_symbol = "[✗](bold green)"
-success_symbol = "[❯](bold green)"
+format       = """
+┏━━\\[ $directory \\]\
+$git_branch\
+$git_status\
+$cmake\
+$c\
+$cpp\
+$docker_context\
+$shlvl
+┗━$character
+"""
+# \\[ $docker_context \\]
+right_format = "$status$cmd_duration"
 
 [directory]
-style = "bold green"
-truncation_length = 2
+read_only         = "󰌾 "
+read_only_style   = "bold fg:#c86050"
+style             = "bold fg:#c8814a"
+truncation_length = 3
 truncation_symbol = "…/"
-format = "[$path]($style)[$read_only]($read_only_style) "
-repo_root_style = "bold green"
-repo_root_format = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
-read_only = " 󰌾"
-read_only_style = "bold green"
+format            = "[$read_only]($read_only_style)[$path]($style)"
+repo_root_style   = "bold fg:#c8814a"
+repo_root_format  = "[$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path]($style)"
 
 [git_branch]
-format = "[$branch]($style) "
-style = "italic green"
+style = "italic fg:#d4a85a"
+format = " [$branch]($style) "
 
 [git_status]
-format = '[$all_status]($style)'
-style = "green"
-ahead = "⇡${count} "
-diverged = "⇕⇡${ahead_count}⇣${behind_count} "
-behind = "⇣${count} "
+style     = "fg:#8faa74"
+format    = '\[ [$all_status]($style)\]'
+ahead     = "⇡${count} "
+diverged  = "⇕⇡${ahead_count}⇣${behind_count} "
+behind    = "⇣${count} "
 conflicted = " "
 up_to_date = " "
-untracked = "? "
-modified = " "
-stashed = ""
-staged = ""
-renamed = ""
-deleted = ""
+untracked  = "? "
+modified   = " "
+stashed    = "󰆓 "
+staged     = "󰐕 "
+renamed    = "󰑕 "
+deleted    = "󰛲 "
+
+[cmake]
+disabled = false
+style    = "italic fg:#7aaa90"
+symbol   = " "
+format   = ' [$symbol$version]($style)'
+
+[c]
+disabled = false
+style    = "italic fg:#7aaa90"
+symbol   = " "
+format   = ' [$symbol$version]($style)'
+detect_files = [ "CMakeLists.txt", "zc.json" ]
+
+[cpp]
+disabled = false
+style    = "italic fg:#7aaa90"
+symbol   = " "
+format   = ' [$symbol$version]($style) '
+version_format = "v$raw"
+detect_extensions = [
+  "cpp", "cc", "cxx", "c++",
+  "hpp", "hh", "hxx", "h++",
+]
+detect_files = [ "CMakeLists.txt", "zc.json" ]
+commands = [
+  [ "c++", "--version" ],
+  [ "g++", "--version" ],
+  [ "clang++", "--version" ],
+]
+
+[docker_context]
+disabled = false
+style    = "italic fg:#7aaa90"
+symbol   = " "
+format   = "[$symbol$context]($style)"
+
+[shlvl]
+disabled  = false
+style     = "bold #7a9ab0"
+symbol    = " "
+format    = '\[ [$symbol$shlvl]($style) \]'
+threshold = 2
+repeat    = false
+
+[character]
+error_symbol = "[✗](bold)"
+# success_symbol = "❯"
+success_symbol = '\$'
+
+[status]
+disabled = false
+style    = "bold bright-black"
+format   = "[ 󰈆 $status]($style)"
+
+[cmd_duration]
+disabled = false
+min_time = 2000
+style    = "bold bright-black"
+format   = "[ 󰔟 $duration]($style)"
+show_milliseconds  = false
+show_notifications = false
+
+[username]
+show_always = true
+format      = "[$user](bright-black)"

@@ -5,10 +5,10 @@ require("conform").setup({
 		c = { "clang-format" },
 		h = { "clang-format" },
 		java = { "clang-format" },
-		javascript = { "clang-format" },
-		typescript = { "clang-format" },
-		json = { "clang-format" },
 
+		javascript = { "prettier" },
+		typescript = { "prettier" },
+		json = { "prettier" },
 		css = { "prettier" },
 		html = { "prettier" },
 		vue = { "prettier" },

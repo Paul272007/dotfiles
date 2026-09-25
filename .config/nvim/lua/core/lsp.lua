@@ -1,7 +1,28 @@
 local config = vim.lsp.config
 
--- Détection dynamique du chemin global de TypeScript (évite de hardcoder la version Node)
-local global_ts_lib = vim.fn.trim(vim.fn.system("npm root -g")) .. "/typescript/lib"
+-- Ajouter Mason au PATH si présent
+local mason_bin = vim.fn.expand("~/.local/share/nvim/mason/bin")
+if vim.fn.isdirectory(mason_bin) == 1 and not string.find(vim.env.PATH, mason_bin, 1, true) then
+	vim.env.PATH = mason_bin .. ":" .. vim.env.PATH
+end
+
+-- Détection dynamique du chemin global de TypeScript
+local function get_typescript_lib()
+	local candidates = {
+		vim.fn.expand("~/.local/share/nvim/mason/packages/vue-language-server/node_modules/typescript/lib"),
+		vim.fn.expand("~/.local/share/nvim/mason/packages/vtsls/node_modules/@vtsls/language-server/node_modules/typescript/lib"),
+		vim.fn.expand("~/.local/lib/node_modules/typescript/lib"),
+		vim.fn.trim(vim.fn.system("npm root -g")) .. "/typescript/lib",
+	}
+	for _, path in ipairs(candidates) do
+		if vim.fn.filereadable(path .. "/tsserver.js") == 1 then
+			return path
+		end
+	end
+	return nil
+end
+
+local global_ts_lib = get_typescript_lib()
 
 config("clangd", {
 	cmd = { "clangd" },

@@ -1,51 +1,109 @@
 add_newline     = true
 command_timeout = 200
-format          = "$directory $git_branch$git_status$character"
-right_format    = "$status $username$hostname"
+format = """
+$directory\
+$git_branch\
+$git_status\
+$cmake\
+$c\
+$cpp\
+$docker_context
+$character
+"""
+# $shlvl
+right_format = """
+$status\
+$cmd_duration\
+$hostname
+"""
+
+[directory]
+read_only         = "󰌾 "
+read_only_style   = "bold fg:#c86050"
+style             = "bold fg:#c86050"
+truncation_length = 3
+truncation_symbol = "…/"
+format            = "[$read_only]($read_only_style)[$path]($style)"
+# repo_root_style   = "bold fg:#c86050"
+# repo_root_format  = "[╭─]($style) [$read_only]($read_only_style)[$repo_root]($repo_root_style)[$path]($style)"
+
+[git_branch]
+style  = "italic fg:#c8814a"
+format = "[  $branch]($style)"
+
+[git_status]
+style     = "bold fg:#d4a85a"
+format    = '([ \[ $all_status\]]($style))'
+ahead     = "⇡${count} "
+diverged  = "⇕⇡${ahead_count}⇣${behind_count} "
+behind    = "⇣${count} "
+conflicted = " "
+up_to_date = " "
+untracked  = "? "
+modified   = " "
+stashed    = "󰆓 "
+staged     = "󰐕 "
+renamed    = "󰑕 "
+deleted    = "󰛲 "
+
+[cmake]
+disabled = false
+style    = "italic fg:#8faa74"
+symbol   = " "
+format   = ' [$symbol$version]($style)'
+
+[c]
+disabled = false
+style    = "italic fg:#8faa74"
+symbol   = " "
+format   = ' [$symbol$version]($style)'
+
+[cpp]
+disabled = false
+style    = "italic fg:#8faa74"
+symbol   = " "
+format   = ' [$symbol$version]($style) '
+detect_extensions = [
+  "cpp", "cc", "cxx", "c++",
+  "hpp", "hh", "hxx", "h++",
+]
+
+[docker_context]
+disabled = false
+style    = "italic fg:#8faa74"
+symbol   = " "
+format   = "[$symbol$context]($style)"
+
+[shlvl]
+disabled  = false
+style     = "bold #7aaa90"
+symbol    = " "
+format    = ' [\[ $symbol$shlvl \]]($style)'
+threshold = 2
+repeat    = false
+
+[character]
+error_symbol   = "[✗](bold fg:#c86050)"
+success_symbol = "[❯](bold fg:#c8814a)"
+vimcmd_symbol  = "[❮](bold fg:#c49060)"
+vimcmd_visual_symbol       = "[❮](bold fg:#7a9ab0)"
+vimcmd_replace_symbol      = "[❮](bold fg:#a08898)"
+vimcmd_replace_one_symbol  = "[❮](bold fg:#a08898)"
 
 [status]
 disabled = false
 style    = "bold bright-black"
-symbol   = "exit code "
-format   = "[$symbol$status]($style)"
+format   = "[ 󰈆 $status]($style)"
 
-[username]
-show_always = true
-format      = "[$user](bright-black)"
+[cmd_duration]
+disabled = false
+min_time = 2000
+style    = "bold bright-black"
+format   = "[ 󰔟 $duration]($style)"
+show_milliseconds  = false
+show_notifications = false
 
 [hostname]
-ssh_only = false
-format   = "[@$hostname](bright-black)"
-
-[character]
-error_symbol   = "[✗](bold red)"
-success_symbol = "[❯](red)"
-# success_symbol = "[󰣇](bold red)"
-
-[directory]
-style             = "bold red"
-format            = "[$path]($style)$read_only"
-truncation_length = 3
-truncation_symbol = "…/"
-read_only         = " 󰌾"
-read_only_style   = "bold red"
-# repo_root_format  = "[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) "
-
-[git_branch]
-format = "[$branch]($style) "
-style = "italic red"
-
-[git_status]
-style      = "bold red"
-format     = "[$all_status]($style)"
-ahead      = "⇡${count} "
-diverged   = "⇕⇡${ahead_count}⇣${behind_count} "
-behind     = "⇣${count} "
-conflicted = " "
-up_to_date = " "
-modified   = " "
-untracked  = "? "
-deleted    = "! "
-stashed = ""
-staged  = ""
-renamed = ""
+ssh_only = true
+style    = "bold bright-black"
+format   = "[ 󰌢 $hostname]($style)"

@@ -1,15 +1,43 @@
 [user]
-	name = Paul Maillard
+	name  = Paul Maillard
 	email = pmaillard27@proton.me
+  # TODO: add signing key :
+  # signingkey = ~/.ssh/id_ed25519.pub
+
+[core]
+  editor = nvim
+  pager  = delta
+
 [init]
 	defaultBranch = main
-[core]
-	editor = nvim
 
-# Other possible Git configurations :
-# Customize output color
-# Aliases (shortcuts for git commands)
+[commit]
+  # gpgsign = true
+  verbose = true
+
+# [tag]
+  # gpgsign = true
+
+# [gpg]
+#   format = ssh
+
+[diff]
+  algorithm  = histogram
+  colorMoved = default
+  mnemonicPrefix = true
+
+[rerere]
+  enabled    = true
+  # autoupdate = true
+
+[merge]
+  conflictStyle = zdiff3
+
+[interactive]
+  difffilter = delta --color-only
+
 [protocol "file"]
 	allow = always
+
 [credential]
 	helper = store

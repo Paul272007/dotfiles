@@ -27,7 +27,8 @@ QtObject {
 
   readonly property int modulePadding: 8
   readonly property int moduleBorderWidth: 0
-  readonly property color moduleBg: Qt.rgba(20 / 255, 20 / 255, 20 / 255, 0.6)
+  // readonly property color moduleBg: Qt.rgba(20 / 255, 20 / 255, 20 / 255, 0.6)
+  readonly property color moduleBg: "#111111";
   readonly property color moduleHoverBg: Qt.rgba(35 / 255, 35 / 255, 35 / 255, 0.7)
   readonly property color moduleBorderColor: Qt.rgba(1, 1, 1, 0.1)
   readonly property color moduleBorderHover: Qt.rgba(1, 1, 1, 0.3)

@@ -23,10 +23,9 @@ alias lt='ls --tree --level=2 --long'
 alias eden='ssh eden@100.67.67.67'
 
 # package managers
-alias update='sudo apt update'
 alias up='sudo apt update && sudo apt upgrade'
-alias apti='sudo apt install'
-alias i='yay -Syu'
+alias i='yay -S --noconfirm'
+alias autorm='sudo pacman -Rns $(pacman -Qtdq)'
 
 # Other commands
 alias mr='rm'
