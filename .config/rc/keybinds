@@ -47,6 +47,6 @@ bindkey -s '\ep' 'sudo pacman -S --noconfirm ' # Alt+P : Prepare pacman command
 bindkey -M viins -r '^['                  # Remove esc as vim activation key
 bindkey -M viins '^v' vi-cmd-mode         # Enable vim mode
 # Restore normal behaviour for some keys
-bindkey -M viins '^?' backward-delete-char
-bindkey -M viins '^h' backward-delete-char
-bindkey -M viins '^w' backward-kill-word
+# bindkey -M viins '^?' backward-delete-char
+# bindkey -M viins '^h' backward-delete-char
+# bindkey -M viins '^w' backward-kill-word

@@ -27,6 +27,7 @@ target/
 # Code editors and rest
 .DS_Store/
 .idea/
+.vscode/
 
 # Big and/or temporary files
 *.iso
