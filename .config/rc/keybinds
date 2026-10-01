@@ -20,7 +20,7 @@ zle -N edit-command-line
 zle -N clear-keep-buffer
 zle -N copy-command
 
-bindkey ' ' magic-space                   # Space expands ! expressions
+bindkey '^ ' magic-space               # Ctrl+Space for normal space (no alias expansion)
 
 bindkey '^b' clear-keep-buffer            # Clear screen but keep current command
 bindkey '^e' edit-command-line            # Edit current command in $EDITOR

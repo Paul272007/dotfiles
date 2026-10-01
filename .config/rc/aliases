@@ -61,3 +61,6 @@ alias -g JQ=' | jq'
 alias -g C=' | wl-copy'
 alias -g CFLAGS='-Wall -Wextra -Wpedantic -Wshadow -Wformat=2 -Wnull-dereference -Wconversion -Wsign-conversion -Wdouble-promotion -Wuninitialized -Wunused-label -Wno-comment'
 alias -g CXXFLAGS='-Wall -Wextra -Wpedantic -Wshadow -Wformat=2 -Wnull-dereference -Wconversion -Wsign-conversion -Wdouble-promotion -Wuninitialized -Wunused-label -Wno-comment -Wnon-virtual-dtor -Wold-style-cast -Woverloaded-virtual'
+
+# Decide which alias not to expand
+GLOBALIAS_FILTER_VALUES=("l" "ls")
