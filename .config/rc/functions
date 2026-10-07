@@ -22,24 +22,34 @@ x() {
 
 # Edit files quickly
 n() {
-  local file="$1"
-  local dir
+  local -a files=("$@")
+  local file dir use_sudo=0
 
   # When no argument, use television to choose file to edit
-  if [ -z "$file" ]; then
-    file=$(tv files)
+  if [ $# -eq 0 ]; then
+    local selected
+    selected=$(tv files)
     # Exit if esc was pressed
-    [ -z "$file" ] && return 0
+    [ -z "$selected" ] && return 0
+    files=("${(f)selected}")
   fi
 
-  # Check writing permissions
-  dir=$(dirname "$file")
-  # If the file can be written or if doesn't exist but the folder can be written
-  if [ -w "$file" ] || { [ ! -e "$file" ] && [ -w "$dir" ]; }; then
-    nvim "$file"
-  else
+  # Check writing permissions for each file
+  for file in "${files[@]}"; do
+    [[ "$file" == [-+]* ]] && continue
+    dir=$(dirname "$file")
+    # If any file cannot be written (or doesn't exist and the folder cannot be written)
+    if ! [[ -w "$file" || ( ! -e "$file" && -w "$dir" ) ]]; then
+      use_sudo=1
+      break
+    fi
+  done
+
+  if (( use_sudo )); then
     echo "Using sudoedit..."
-    sudoedit "$file"
+    sudoedit "${files[@]}"
+  else
+    $EDITOR "${files[@]}"
   fi
 }
 

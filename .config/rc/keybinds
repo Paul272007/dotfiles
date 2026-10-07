@@ -42,6 +42,7 @@ bindkey -s '\eg' 'pj\n'                        # Alt+G : Go to project
 bindkey -s '\em' 'git commit -m ""^[[D'        # Alt+M : Git commit
 bindkey -s '\en' 'npm run dev\n'               # Alt+N : Launch npm app
 bindkey -s '\ep' 'sudo pacman -S --noconfirm ' # Alt+P : Prepare pacman command
+bindkey -s '\ee' '$EDITOR $(which )^[[D'       # Alt+E : Edit executable from command
 
 # Change some vim keybinds
 bindkey -M viins -r '^['                  # Remove esc as vim activation key
