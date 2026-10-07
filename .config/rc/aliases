@@ -17,7 +17,9 @@ alias sl='ls'
 alias ms='ls'
 alias sm='ls'
 alias la='ls -A'
+alias al='la'
 alias lt='ls --tree --level=2 --long'
+alias tl='lt'
 
 # package managers
 alias up='yay -Syu --noconfirm'
@@ -57,8 +59,9 @@ alias -s md='bat'
 
 alias -g NE='2>/dev/null'
 alias -g NO='&>/dev/null'
-alias -g JQ=' | jq'
-alias -g C=' | wl-copy'
+alias -g JQ='| jq'
+alias -g C='| wl-copy'
+alias -g S='| rg'
 alias -g CFLAGS='-Wall -Wextra -Wpedantic -Wshadow -Wformat=2 -Wnull-dereference -Wconversion -Wsign-conversion -Wdouble-promotion -Wuninitialized -Wunused-label -Wno-comment'
 alias -g CXXFLAGS='-Wall -Wextra -Wpedantic -Wshadow -Wformat=2 -Wnull-dereference -Wconversion -Wsign-conversion -Wdouble-promotion -Wuninitialized -Wunused-label -Wno-comment -Wnon-virtual-dtor -Wold-style-cast -Woverloaded-virtual'
 

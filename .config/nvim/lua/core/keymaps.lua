@@ -1,8 +1,10 @@
 local map = vim.keymap.set
 
--- Disable page up and down keys when in insert mode
+-- Disable page up and down keys in insert mode
 map("i", "<PageUp>", "<Nop>", { desc = "Disable PageUp" })
 map("i", "<PageDown>", "<Nop>", { desc = "Disable PageDown" })
+-- Disable shift arrow down in normal mode
+map("n", "<S-Down>", "<Nop>", { desc = "Disable Shift + Down" })
 -- Ctrl + Backspace = Ctrl + W
 map("i", "<C-BS>", "<C-W>", { desc = "Erase word" })
 -- better indenting

@@ -4,7 +4,7 @@ local controller =
 
 M.theme = "Default"
 M.mainMod = "SUPER"
-M.terminal = "kitty"
+M.terminal = "ghostty"
 M.browser = "zen-browser"
 M.music = "spotify"
 M.notes = "obsidian"
