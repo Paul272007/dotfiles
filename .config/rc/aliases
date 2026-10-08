@@ -45,7 +45,7 @@ alias ctl='sudo systemctl'
 alias sql='sudo mysql -u root -p'
 alias open='xdg-open &>/dev/null'
 alias rs='source ~/.zshrc'
-alias rsync++='rsync -avh --progress --delete --exclude-from=/home/paul/.config/rsync/exclude.txt'
+alias rsync++='rsync -avh --modify-window=1 --no-perms --delete --exclude-from=/home/paul/.config/rsync/exclude.txt'
 alias eden='ssh eden@100.67.67.67'
 
 alias -s c='$EDITOR'
