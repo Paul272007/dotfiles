@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 
 # Renvoyer une valeur par défaut si une option Tmux n'est pas configurée par l'utilisateur
 get_tmux_option() {
@@ -46,6 +46,8 @@ main() {
   tmux set-option -g copy-mode-current-match-style "bg=${bg1},fg=${fg1},bold"
 
   tmux set-option -g window-status-separator " "
+  tmux set-option -g window-status-style "none"
+  tmux set-option -g window-status-current-style "none"
   tmux set-option -g status-justify absolute-centre
   tmux set-option -g clock-mode-colour "${bg1}"
 
@@ -82,7 +84,7 @@ main() {
 
   # --- Right
   local status_right="#[fg=${fg3},bg=${transparent}] #{pane_current_command} #[bg=${transparent},fg=${bg2}]${sep_left}"
-  status_right="${status_right}#[bg=${bg2},fg=${fg2}] 󱘲 #(uptime -p | sed 's/up //; s/ week\?,/w/; s/ days\?,/d/; s/ hours\?,/h/; s/ minutes\?/m/') "
+  status_right="${status_right}#[bg=${bg2},fg=${fg2}] 󱘲 #(uptime -p 2>/dev/null | grep -q 'up' && uptime -p | sed 's/up //; s/ week\?,/w/; s/ days\?,/d/; s/ hours\?,/h/; s/ minutes\?/m/' || uptime | sed -E 's/.*up +([^,]+), .*/\1/') "
   status_right="${status_right}#[bg=${bg2},fg=${mode_bg}]${sep_left}#[fg=${fg1},bg=${mode_bg},bold] 󱑒 %H:%M "
 
   tmux set-option -g status-right-length 100

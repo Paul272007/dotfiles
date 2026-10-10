@@ -13,7 +13,11 @@ compinit
 
 # Lit la configuration GNU dircolors (souvent /etc/DIR_COLORS ou ~/.dircolors) et exporte la variable d'environnement LS_COLORS avec le code couleur par extension de fichier.
 # Utilité : Très utile si tu veux que les fichiers dans la complétion aient les mêmes couleurs que la commande ls.
-eval "$(dircolors -b)"
+if (( $+commands[gdircolors] )); then
+  eval "$(gdircolors -b)"
+elif (( $+commands[dircolors] )); then
+  eval "$(dircolors -b)"
+fi
 # Injecte les couleurs de $LS_COLORS dans le menu de complétion de Zsh en découpant la chaîne aux deux-points (:).
 # Utilité : Très utile (fonctionne de pair avec dircolors).
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}

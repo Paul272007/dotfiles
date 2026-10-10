@@ -23,7 +23,7 @@
     },
     "printRemaining": true,
     "preserveAspectRatio": false,
-    "recache": false,
+    "cache": true,
     "position": "left",
     "chafa": {
       "fgOnly": false,
@@ -113,7 +113,6 @@
     "processingTimeout": 5000,
     "detectVersion": true,
     "playerName": "",
-    "dsForceDrm": false,
   },
   "modules": [
     {

@@ -2,11 +2,15 @@ vim.api.nvim_create_autocmd("PackChanged", {
 	group = vim.api.nvim_create_augroup("blink-build", { clear = true }),
 	callback = function(ev)
 		if ev.data.spec.name == "blink.cmp" and (ev.data.kind == "install" or ev.data.kind == "update") then
-			vim.notify("Building blink.cmp...", vim.log.levels.INFO)
-			if not ev.data.active then
-				vim.cmd.packadd("blink.cmp")
+			if vim.fn.executable("cargo") == 1 then
+				vim.notify("Building blink.cmp...", vim.log.levels.INFO)
+				if not ev.data.active then
+					vim.cmd.packadd("blink.cmp")
+				end
+				pcall(function()
+					require("blink.cmp").build():wait(60000)
+				end)
 			end
-			require("blink.cmp").build():wait(60000)
 		end
 	end,
 })
@@ -24,7 +28,7 @@ vim.pack.add({
 	"https://github.com/nvim-mini/mini.icons",
 	"https://github.com/folke/snacks.nvim",
 	"https://github.com/sphamba/smear-cursor.nvim",
-	"https://github.com/norcalli/nvim-colorizer.lua",
+	"https://github.com/NvChad/nvim-colorizer.lua",
 
 	-- editor
 	"https://github.com/folke/flash.nvim",

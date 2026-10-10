@@ -89,11 +89,11 @@ config("ts_ls", {
 	cmd = { "typescript-language-server", "--stdio" },
 	filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 	root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
-	init_options = {
+	init_options = global_ts_lib and {
 		tsserver = {
 			path = global_ts_lib .. "/tsserver.js", -- Pointeur direct vers tsserver.js
 		},
-	},
+	} or nil,
 })
 
 config("volar", {

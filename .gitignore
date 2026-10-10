@@ -3,9 +3,13 @@
 .config/hypr/themes/Default
 .config/fastfetch/config.jsonc
 .config/tmux/theme.tmux
+.config/starship.toml
 
 # Nvim packages
 .config/nvim/nvim-pack-lock.json
+
+# Zed stuff
+.config/zed/prompts/
 
 # Sensitive data
 .config/weather.conf

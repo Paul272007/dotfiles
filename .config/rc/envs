@@ -19,3 +19,12 @@ export KEYTIMEOUT=1
 # ANSI Codes
 export CURSOR="\033[?25h"
 export NOCURSOR="\033[?25l"
+
+# macOS specific toolchain paths (Homebrew keg-only packages)
+if [[ "$OSTYPE" == darwin* ]]; then
+  export PATH="/opt/homebrew/opt/python/libexec/bin:/opt/homebrew/opt/llvm/bin:${PATH}"
+  export CMAKE_PREFIX_PATH="/opt/homebrew/opt/llvm:/opt/homebrew/opt/libarchive:${CMAKE_PREFIX_PATH}"
+  export LLVM_DIR="/opt/homebrew/opt/llvm/lib/cmake/llvm"
+  export CC="/opt/homebrew/opt/llvm/bin/clang"
+  export CXX="/opt/homebrew/opt/llvm/bin/clang++"
+fi

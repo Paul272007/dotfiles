@@ -2,8 +2,9 @@
 font-family = JetBrains Mono Nerd Font
 
 # Theme and appearance
-background = #1e202A
-background-opacity = 0.2
+background = #1e1e1e
+background-opacity = 0.8
+background-blur-radius = 45
 
 # Window
 window-theme = ghostty
@@ -31,3 +32,13 @@ keybind = super+control+shift+alt+arrow_left=resize_split:left,100
 keybind = super+control+shift+alt+arrow_right=resize_split:right,100
 
 async-backend = epoll
+
+# macOS
+macos-option-as-alt = left
+
+# Global shortcut (accessible from anywhere on macOS)
+# keybind = global:cmd+enter=toggle_quick_terminal
+# quick-terminal-position = top
+# quick-terminal-screen = main
+# quick-terminal-animation-duration = 0.2
+# quick-terminal-autohide = true

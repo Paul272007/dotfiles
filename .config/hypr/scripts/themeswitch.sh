@@ -1,8 +1,12 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# --- Check that a theme was given and that a the given theme exists
+# --- Check that a theme was given and that the given theme exists
 if [ -z "$1" ]; then
   echo "Usage: themeswitch <theme>"
+  if [ -d "$HOME/.config/hypr/themes" ]; then
+    echo "Available themes:"
+    ls -1 "$HOME/.config/hypr/themes" | grep -v 'Default'
+  fi
   exit 1
 fi
 
@@ -10,38 +14,51 @@ THEME_NAME="$1"
 THEME_DIR="$HOME/.config/hypr/themes/$THEME_NAME"
 
 if [ ! -d "$THEME_DIR" ]; then
-  notify-send "Error" "The theme $THEME_NAME doesn't exist."
+  if command -v notify-send &>/dev/null; then
+    notify-send "Error" "The theme $THEME_NAME doesn't exist."
+  fi
+  echo "Error: The theme '$THEME_NAME' does not exist in $HOME/.config/hypr/themes"
   exit 1
 fi
 
-# --- Update all symlinks
-HYPRLAND_THEME="$HOME/.config/hypr/hyprland/theme.lua"
-QUICKSHELL_CONF="$HOME/shell/modules/Config.qml"
-FASTFETCH_CONF="$HOME/.config/fastfetch/config.jsonc"
+# --- Universal symlinks (macOS & Linux)
 STARSHIP_CONF="$HOME/.config/starship.toml"
 TMUX_THEME="$HOME/.config/tmux/theme.tmux"
+FASTFETCH_CONF="$HOME/.config/fastfetch/config.jsonc"
 
-ln -sf "$THEME_DIR/theme.lua" "$HYPRLAND_THEME"         # Hyprland config
-ln -sf "$THEME_DIR/ShellConfig.qml" "$QUICKSHELL_CONF"  # Quickshell config
-ln -sf "$THEME_DIR/fastfetch.jsonc" "$FASTFETCH_CONF"   # Fastfetch configuration
-ln -sf "$THEME_DIR/starship.toml" "$STARSHIP_CONF"      # Starship theme
-ln -sf "$THEME_DIR/theme.tmux" "$TMUX_THEME"            # TMUX theme
+[ -f "$THEME_DIR/starship.toml" ] && ln -sf "$THEME_DIR/starship.toml" "$STARSHIP_CONF"
+[ -f "$THEME_DIR/theme.tmux" ] && ln -sf "$THEME_DIR/theme.tmux" "$TMUX_THEME"
+if [ -f "$THEME_DIR/fastfetch.jsonc" ]; then
+  mkdir -p "$HOME/.config/fastfetch"
+  ln -sf "$THEME_DIR/fastfetch.jsonc" "$FASTFETCH_CONF"
+fi
 
-# --- Reload some applications to apply changes
-hyprctl reload
+# --- Linux / Hyprland specific
+if command -v hyprctl &>/dev/null; then
+  HYPRLAND_THEME="$HOME/.config/hypr/hyprland/theme.lua"
+  QUICKSHELL_CONF="$HOME/shell/modules/Config.qml"
 
-killall quickshell
-~/shell/run.sh &>/dev/null &
+  [ -f "$THEME_DIR/theme.lua" ] && ln -sf "$THEME_DIR/theme.lua" "$HYPRLAND_THEME"
+  [ -f "$THEME_DIR/ShellConfig.qml" ] && ln -sf "$THEME_DIR/ShellConfig.qml" "$QUICKSHELL_CONF"
 
-tmux source-file ~/.config/tmux/tmux.conf
+  hyprctl reload &>/dev/null
+  killall quickshell 2>/dev/null
+  [ -f "$HOME/shell/run.sh" ] && "$HOME/shell/run.sh" &>/dev/null &
+fi
 
-echo "$THEME_NAME" > ~/.cache/current_theme
+# --- Reload Tmux if running
+if tmux info &>/dev/null; then
+  tmux source-file ~/.config/tmux/tmux.conf &>/dev/null
+fi
 
-for _ in {1..50}; do
-  if dbus-send --session --dest=org.freedesktop.DBus --type=method_call --print-reply /org/freedesktop/DBus org.freedesktop.DBus.NameHasOwner string:"org.freedesktop.Notifications" | grep -q "boolean true"; then
-    break
-  fi
-  sleep 0.1
-done
+mkdir -p "$HOME/.cache"
+echo "$THEME_NAME" > "$HOME/.cache/current_theme"
 
-notify-send "Theme applied" "Style : $THEME_NAME" -a MyShell
+# --- Notifications
+if command -v notify-send &>/dev/null; then
+  notify-send "Theme applied" "Style : $THEME_NAME" -a MyShell
+elif [[ "$OSTYPE" == darwin* ]]; then
+  osascript -e 'display notification "Style : '$THEME_NAME'" with title "Theme applied"' 2>/dev/null
+fi
+
+echo "Theme applied: $THEME_NAME"

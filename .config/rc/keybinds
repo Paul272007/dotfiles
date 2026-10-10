@@ -12,7 +12,11 @@ clear-keep-buffer() {
   zle clear-screen
 }
 copy-command() {
-  echo -n $BUFFER | wl-copy
+  if [[ "$OSTYPE" == darwin* ]]; then
+    echo -n $BUFFER | pbcopy
+  else
+    echo -n $BUFFER | wl-copy
+  fi
   zle -M "Copied to clipboard!"
 }
 
@@ -25,6 +29,10 @@ bindkey '^ ' magic-space               # Ctrl+Space for normal space (no alias e
 bindkey '^b' clear-keep-buffer            # Clear screen but keep current command
 bindkey '^e' edit-command-line            # Edit current command in $EDITOR
 bindkey '^h' backward-kill-word           # Delete word with Ctrl+backspace
+bindkey '^[^?' backward-kill-word         # Option + Backspace
+bindkey '^[^h' backward-kill-word         # Option + Backspace (alternate)
+bindkey -M viins '^[^?' backward-kill-word
+bindkey -M viins '^[^h' backward-kill-word
 bindkey '^x' copy-command                 # Copy current command to clipboard
 bindkey '^y' redo                         # Redo
 bindkey '^z' undo                         # Undo
