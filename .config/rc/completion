@@ -11,52 +11,44 @@
 autoload -Uz compinit
 compinit
 
-# Lit la configuration GNU dircolors (souvent /etc/DIR_COLORS ou ~/.dircolors) et exporte la variable d'environnement LS_COLORS avec le code couleur par extension de fichier.
-# Utilité : Très utile si tu veux que les fichiers dans la complétion aient les mêmes couleurs que la commande ls.
+# Load GNU dircolors configuration if available and export LS_COLORS
 if (( $+commands[gdircolors] )); then
   eval "$(gdircolors -b)"
 elif (( $+commands[dircolors] )); then
   eval "$(dircolors -b)"
 fi
-# Injecte les couleurs de $LS_COLORS dans le menu de complétion de Zsh en découpant la chaîne aux deux-points (:).
-# Utilité : Très utile (fonctionne de pair avec dircolors).
+# Use LS_COLORS in Zsh completion menu
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-# Définit la chaîne d'algorithmes tentés dans l'ordre lors de l'appui sur Tab :
-#  _expand : étend les variables/alias globaux.
-#  _complete : complétion normale standard.
-#  _correct : tente de corriger une petite faute de frappe si rien ne matche.
-#  _approximate : tolère plusieurs fautes de frappe.
-# Utilité : Très utile, mais attention : _approximate peut parfois ralentir la complétion sur de gros dossiers ou corriger des commandes alors que tu ne voulais pas.
+# Completion algorithms tried in order on Tab:
+#  _expand      : expand variables and global aliases
+#  _complete    : standard completion
+#  _correct     : fix minor typos if nothing matches
+#  _approximate : tolerate multiple typos
 zstyle ':completion:*' completer _expand _complete _correct _approximate
-# Définit les étapes de tolérance de frappe :
-# 1. '' : essaie d'abord la correspondance exacte.
-# 2. 'm:{a-z}={A-Z}' : tolère l'insensibilité à la casse (minuscule matche majuscule).
-# 3. 'm:{a-zA-Z}={A-Za-z}' : insensible à la casse bidirectionnelle.
-# 4. Complétion partielle sur les délimiteurs (_, ., -).
-zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*' # Completion ignores case
+# Matching rules:
+# 1. ''                        : exact match first
+# 2. 'm:{a-z}={A-Z}'           : lowercase matches uppercase
+# 3. 'm:{a-zA-Z}={A-Za-z}'     : bidirectional case-insensitive match
+# 4. 'r:|[._-]=* r:|=* l:|=*'  : partial matching across separators (_, ., -)
+zstyle ':completion:*' matcher-list '' 'm:{a-z}={A-Z}' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=* l:|=*'
 
-# Affiche des explications détaillées à côté des options (par exemple la description d'un flag --help d'un outil CLI).
+# Show detailed descriptions alongside CLI option flags
 zstyle ':completion:*' verbose true
-# Définit le titre affiché au-dessus de chaque catégorie de complétion (%d devient par exemple files, commands, aliases).
-# Utilité : Esthétique / Utile. Permet de bien repérer ce qui est proposé.
+# Header displayed above each completion category (%d = files, commands, aliases, etc.)
 zstyle ':completion:*' format 'Completing %d'
-# Active le regroupement par catégorie avec leur nom respectif (nécessaire pour que le format défini au-dessus s'applique distinctement aux groupes).
-# Utilité : Utile si tu gardes la ligne format.
+# Group completions by category name (required for the format header above)
 zstyle ':completion:*' group-name ''
-# Active le menu de sélection navigable au clavier dès qu'il y a au moins 2 choix possibles.
+# Enable interactive keyboard selection menu when at least 2 candidates exist
 zstyle ':completion:*' menu select=2
 
-# Message affiché en bas quand la liste de suggestions dépasse la hauteur de l'écran (mode pagination). %p affiche le pourcentage déroulé.
-# Utilité : Utile si tu complètes souvent des dossiers contenant des centaines de fichiers.
+# Prompt shown at the bottom when suggestions exceed screen height (%p = scroll percentage)
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
-# Affiche un indicateur de position (%p en %) lorsque tu es en train de naviguer activement dans un menu de sélection paginé.
-# Utilité : Pratique si le menu interactif déborde de l'écran.
+# Prompt shown while actively scrolling through a paginated selection menu
 zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
 
-# Colore en rouge gras (01;31) le PID des processus lors de la complétion de la commande kill.
+# Highlight process PIDs in bold red (01;31) when completing `kill`
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
-# Modifie la commande système utilisée pour lister les processus à tuer avec kill <TAB> en n'affichant que tes processus (-u $USER) avec des colonnes claires (PID, CPU, terminal, temps, commande).
-# Utilité : Excellente. Beaucoup plus lisible que la sortie par défaut de Zsh.
+# List only current user's processes with readable columns for `kill <TAB>`
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 

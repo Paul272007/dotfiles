@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Only restow on branch checkout ($3 == 1), not single-file checkout
+[ "${3:-0}" = "1" ] || exit 0
+command -v stow >/dev/null 2>&1 || exit 0
+cd "$(git rev-parse --show-toplevel)"
+stow -R .

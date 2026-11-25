@@ -1,12 +1,12 @@
 local config = vim.lsp.config
 
--- Ajouter Mason au PATH si présent
+-- Add Mason bin directory to PATH if present
 local mason_bin = vim.fn.expand("~/.local/share/nvim/mason/bin")
 if vim.fn.isdirectory(mason_bin) == 1 and not string.find(vim.env.PATH, mason_bin, 1, true) then
 	vim.env.PATH = mason_bin .. ":" .. vim.env.PATH
 end
 
--- Détection dynamique du chemin global de TypeScript
+-- Dynamically resolve global TypeScript library path
 local function get_typescript_lib()
 	local candidates = {
 		vim.fn.expand("~/.local/share/nvim/mason/packages/vue-language-server/node_modules/typescript/lib"),
@@ -31,7 +31,7 @@ config("clangd", {
 })
 
 config("neocmakelsp", {
-	cmd = { "neocmakelsp", "--stdio" },
+	cmd = { "neocmakelsp", "stdio" },
 	filetypes = { "cmake" },
 	root_markers = { ".git" },
 })
@@ -91,7 +91,7 @@ config("ts_ls", {
 	root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
 	init_options = global_ts_lib and {
 		tsserver = {
-			path = global_ts_lib .. "/tsserver.js", -- Pointeur direct vers tsserver.js
+			path = global_ts_lib .. "/tsserver.js", -- Direct path to tsserver.js
 		},
 	} or nil,
 })
@@ -116,7 +116,7 @@ config("jdtls", {
 	root_markers = { "pom.xml", "build.gradle", "build.gradle.kts", ".git" },
 })
 
--- Activer tous les LSP
+-- Enable all configured LSP servers
 vim.lsp.enable({
 	"clangd",
 	"neocmakelsp",

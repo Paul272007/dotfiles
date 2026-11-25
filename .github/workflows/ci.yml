@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Scan for secrets with gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        run: sudo apt-get update && sudo apt-get install -y stow zsh
+
+      - name: Test GNU Stow in sandbox directory
+        run: |
+          TMP_HOME="$(mktemp -d)"
+          trap 'rm -rf "$TMP_HOME"' EXIT
+          stow -d "$PWD" -t "$TMP_HOME" --no-folding .
+          stow -D -d "$PWD" -t "$TMP_HOME" --no-folding .
+
+      - name: Check shell syntax
+        run: |
+          zsh -n .zshrc
+          for f in .config/rc/*; do
+            [ -f "$f" ] && zsh -n "$f"
+          done
+          bash -n .bashrc .local/bin/get-color
+          for f in .config/hypr/scripts/*.sh; do
+            [ -f "$f" ] && bash -n "$f"
+          done

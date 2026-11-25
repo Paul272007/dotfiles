@@ -13,3 +13,7 @@
 
 # Sensitive data
 .config/weather.conf
+.config/rc/local
+
+# macOS
+.DS_Store

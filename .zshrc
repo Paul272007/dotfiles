@@ -1,3 +1,6 @@
 source ~/.config/rc/rc
 
-# [ -f "/home/paul/.ghcup/env" ] && . "/home/paul/.ghcup/env" # ghcup-env
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:$HOME/.lmstudio/bin"
+# End of LM Studio CLI section
+

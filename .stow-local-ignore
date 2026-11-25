@@ -1,0 +1,9 @@
+\.git
+\.gitignore
+\.gitmodules
+\.DS_Store
+^/\.stowrc$
+^/\.githooks$
+^/\.github$
+^/README.*
+^/LICENSE.*

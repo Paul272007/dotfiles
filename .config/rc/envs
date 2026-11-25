@@ -5,7 +5,12 @@
 # ----------------------------------------------- #
 
 # Add custom executable directory to path
-export PATH="${HOME}/.local/bin:${HOME}/.zc/bin:${PATH}"
+export PATH="${HOME}/.ghcup/bin:${HOME}/.local/bin:${HOME}/.zc/bin:${PATH}"
+
+# Resolve dotfiles repo path dynamically from stowed symlink
+if [[ -L "${HOME}/.zshrc" ]]; then
+  export DOTFILES_DIR="$(dirname "$(realpath "${HOME}/.zshrc")")"
+fi
 # export NVM_DIR="$HOME/.config/nvm"
 export EDITOR=nvim
 export SUDO_EDITOR="$EDITOR"
@@ -27,4 +32,9 @@ if [[ "$OSTYPE" == darwin* ]]; then
   export LLVM_DIR="/opt/homebrew/opt/llvm/lib/cmake/llvm"
   export CC="/opt/homebrew/opt/llvm/bin/clang"
   export CXX="/opt/homebrew/opt/llvm/bin/clang++"
+fi
+
+# Default CMake generator to Ninja if available
+if command -v ninja >/dev/null 2>&1; then
+  export CMAKE_GENERATOR="Ninja"
 fi

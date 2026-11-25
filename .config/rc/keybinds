@@ -41,12 +41,12 @@ bindkey '^[[3~' delete-char               # Del : Delete character under cursor
 bindkey '^[[3;5~' kill-word               # Ctrl+Del : Delete word
 bindkey '^[[1;5C' forward-word            # Ctrl+Arrows : Navigate word by word
 bindkey '^[[1;5D' backward-word           #
+bindkey '^[f' forward-word                # Option+Arrows : Navigate word by word
+bindkey '^[b' backward-word               #
 bindkey '^[[A' history-search-backward    # Arrows : Navigate history
 bindkey '^[[B' history-search-forward     #
 
-bindkey -s '\ec' 'cdtv\n'                      # Alt+C : Go to directory
 bindkey -s '\ed' 'docker compose up -d\n'      # Alt+D : Launch docker compose
-bindkey -s '\eg' 'pj\n'                        # Alt+G : Go to project
 bindkey -s '\em' 'git commit -m ""^[[D'        # Alt+M : Git commit
 bindkey -s '\en' 'npm run dev\n'               # Alt+N : Launch npm app
 bindkey -s '\ep' 'sudo pacman -S --noconfirm ' # Alt+P : Prepare pacman command

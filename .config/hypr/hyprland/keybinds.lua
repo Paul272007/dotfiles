@@ -105,12 +105,12 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 hl.bind(
 	"Print",
 	hl.dsp.exec_cmd(
-		'grim -g "$(slurp)" "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && wl-copy < "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && notify-send "Capture d\'écran" "Région enregistrée et copiée !" -a Hyprland'
+		'grim -g "$(slurp)" "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && wl-copy < "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && notify-send "Screenshot" "Region saved and copied!" -a Hyprland'
 	)
 )
 hl.bind(
 	"SHIFT + Print",
 	hl.dsp.exec_cmd(
-		'grim "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && wl-copy < "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && notify-send "Capture d\'écran" "Ecran enregistré et copié !" -a Hyprland'
+		'grim "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && wl-copy < "$HOME/Pictures/Screenshots/Screenshot-$(date +%F_%T).png" && notify-send "Screenshot" "Screen saved and copied!" -a Hyprland'
 	)
 )

@@ -5,26 +5,26 @@ COLOR=$("$HOME/.local/bin/get-color")
 # SHADER="blue-light-filter"
 SHADER="sweet-amber"
 
-# Vérification de l'état actuel
-# On utilise grep pour voir si le shader est présent dans la sortie de 'current'
+# Check current shader state
+# Use grep to see if the shader appears in 'current' output
 IS_ON=$(hyprshade current | grep -q "$SHADER" && echo "true" || echo "false")
 
 if [ "$1" == "status" ]; then
   if [ "$IS_ON" == "true" ]; then
-    # On peut même changer l'icône (ex: une lune quand c'est ON)
-    echo "{\"text\": \"<span size='112%' color='$COLOR'>󰛨</span> ON\", \"class\": \"on\", \"tooltip\": \"Filtre actif\"}"
+    # Icon can be customized (e.g., moon icon when active)
+    echo "{\"text\": \"<span size='112%' color='$COLOR'>󰛨</span> ON\", \"class\": \"on\", \"tooltip\": \"Filter active\"}"
   else
-    echo "{\"text\": \"<span size='112%' color='$COLOR'>󰛩</span> OFF\", \"class\": \"off\", \"tooltip\": \"Filtre inactif\"}"
+    echo "{\"text\": \"<span size='112%' color='$COLOR'>󰛩</span> OFF\", \"class\": \"off\", \"tooltip\": \"Filter inactive\"}"
   fi
   exit 0
 fi
 
-# Logique de bascule (Toggle)
+# Toggle logic
 if [ "$IS_ON" == "true" ]; then
   hyprshade off
 else
   hyprshade on "$SHADER"
 fi
 
-# Signal pour rafraîchir Waybar (RTMIN+8 correspond à ton signal: 8 dans la config)
+# Signal Waybar to refresh (RTMIN+8 matches signal: 8 in Waybar config)
 pkill -RTMIN+8 waybar

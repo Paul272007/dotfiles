@@ -1,14 +1,14 @@
 [metadata]
-# Le nom ici DOIT être "dirs" pour que `tv dirs` fonctionne
+# Must stay "dirs" so `tv dirs` works
 name = "dirs"
-description = "Naviguer dans les dossiers"
+description = "Navigate directories"
 
 [source]
-# On utilise sh -c pour que le symbole && soit compris !
+# Use sh -c so && is interpreted by the shell
 command = "sh -c 'echo \".\" && fd --type d --hidden --exclude .git'"
 
 [preview]
-# Un aperçu sympa avec eza ou ls (optionnel)
+# Directory preview using eza (optional)
 command = "eza --icons=always --hyperlink --git --classify --group-directories-first -lh '{}'"
 
 [keybindings]

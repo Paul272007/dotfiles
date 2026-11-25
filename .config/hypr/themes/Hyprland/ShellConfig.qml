@@ -1,5 +1,6 @@
 pragma Singleton
 import QtQuick
+import Quickshell
 
 QtObject {
   // Global
@@ -54,5 +55,5 @@ QtObject {
   readonly property int workspaceTime: 1200
 
   // Wallpaper
-  readonly property string wallpaperPath: "/home/paul/.cache/current_wallpaper.png"
+  readonly property string wallpaperPath: Quickshell.env("HOME") + "/.cache/current_wallpaper.png"
 }

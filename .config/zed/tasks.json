@@ -1,0 +1,7 @@
+[
+  {
+    "label": "Run",
+    "command": "if [ -f stack.yaml ]; then stack run; elif [ -f cabal.project ] || ls *.cabal 2>/dev/null | grep -q .; then cabal run; else runghc \"$ZED_FILE\"; fi",
+    "tags": ["haskell-run"]
+  }
+]

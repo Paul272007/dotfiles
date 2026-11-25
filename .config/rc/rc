@@ -15,7 +15,10 @@ source "$RC_DIR/init"
 source "$RC_DIR/aliases"
 source "$RC_DIR/keybinds"
 
-##### (Optionnal) Fastfetch
+# Load optional machine-specific / private configuration
+[[ -f "$RC_DIR/local" ]] && source "$RC_DIR/local"
+
+##### (Optional) Fastfetch
 
 # If terminal is interactive
 if [[ -t 1 ]]; then

@@ -7,6 +7,17 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "which_key": {
+    "enabled": true
+  },
+  "ui_font_family": "SF Pro",
+  "buffer_font_weight": 400.0,
+  "format_on_save": "on",
+  "buffer_font_family": "SFMono Nerd Font",
+  "terminal": {
+    "font_weight": 350.0,
+    "font_family": "SFMono Nerd Font"
+  },
   "session": {
     "trust_all_worktrees": true
   },
@@ -16,7 +27,7 @@
   "buffer_font_size": 15,
   "theme": {
     "mode": "system",
-    "light": "One Light",
-    "dark": "One Dark",
+    "light": "Catppuccin Mocha",
+    "dark": "Catppuccin Mocha",
   },
 }

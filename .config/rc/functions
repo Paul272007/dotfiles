@@ -1,7 +1,7 @@
 #!/usr/bin/zsh
 
 # ----------------------------------------------- #
-# ----- Additionnal functions for the shell ----- #
+# ------ Additional functions for the shell ----- #
 # ----------------------------------------------- #
 
 # mkdir + cd
@@ -17,7 +17,7 @@ x() {
   if [ ! -f "$1" ]; then
     return 2
   fi
-  cat "$@" | wl-copy
+  cat "$@" | pbcopy
 }
 
 # Edit files quickly
@@ -28,7 +28,7 @@ n() {
   # When no argument, use television to choose file to edit
   if [ $# -eq 0 ]; then
     local selected
-    selected=$(tv files)
+    selected=$(fzf)
     # Exit if esc was pressed
     [ -z "$selected" ] && return 0
     files=("${(f)selected}")
@@ -47,7 +47,7 @@ n() {
 
   if (( use_sudo )); then
     echo "Using sudoedit..."
-    sudoedit "${files[@]}"
+    sudo -e "${files[@]}"
   else
     $EDITOR "${files[@]}"
   fi
@@ -58,26 +58,6 @@ compress() {
   tar -czf "${1%/}.tar.gz" "${1%/}"
 }
 
-# Switch between repos (tv git-repos somehow doesn't work)
-pj() {
-  local dir
-  dir=$(tv git-repos)
-
-  if [[ -n "$dir" ]]; then
-    cd "$dir" || return
-  fi
-}
-
-# cd to directory using television
-cdtv() {
-  local dir
-  dir=$(tv dirs)
-
-  if [[ -n "$dir" ]]; then
-    cd "$dir" || return
-  fi
-}
-
 # Sync files in ~ with USB stick
 sync-usb() {
   local dry_run=()
@@ -86,7 +66,7 @@ sync-usb() {
     shift
   fi
   if [[ -z "$1" ]]; then
-    echo "Usage: sync-usb [-n|--dry-run] <dossier_destination>" >&2
+    echo "Usage: sync-usb [-n|--dry-run] <destination_dir>" >&2
     return 1
   fi
 

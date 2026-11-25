@@ -1,5 +1,5 @@
 add_newline     = true
-command_timeout = 200
+command_timeout = 250
 format = """
 $directory\
 $git_branch\
@@ -72,7 +72,7 @@ detect_extensions = [
 disabled = false
 style    = "italic fg:#8faa74"
 symbol   = " "
-format   = "[$symbol$context]($style)"
+format   = " [$symbol$context]($style)"
 
 [shlvl]
 disabled  = false

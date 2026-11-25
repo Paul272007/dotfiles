@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Compte les mises à jour Pacman et AUR
 # Counts Pacman and AUR updates
 updates_arch=$(checkupdates 2>/dev/null | wc -l)
 updates_aur=$(yay -Qum 2>/dev/null | wc -l)

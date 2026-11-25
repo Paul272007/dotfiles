@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Remplace 'ghostty' par 'kitty' si besoin
-kitty -e sh -c "yay -Syu; echo 'Mise à jour terminée. Appuyez sur une touche pour quitter.'; read -n 1"
+# Replace 'kitty' with 'ghostty' if preferred
+kitty -e sh -c "yay -Syu; echo 'Update complete. Press any key to exit.'; read -n 1"
 
-# On envoie un signal à Waybar pour rafraîchir le module après la mise à jour
+# Signal Waybar to refresh the updates module after updating
 pkill -RTMIN+9 waybar

@@ -1,6 +1,6 @@
 CompileFlags:
   Add:
-    - -I/home/paul/.zc/include
+    # - -I/path/to/custom/include
     - -Wall
     - -Wextra
     - -Wpedantic
@@ -27,26 +27,24 @@ CompileFlags:
 ---
 
 If:
-  PathMatch: .*\.(cpp|cc|cxx|hpp|h)$
+  PathMatch: .*\.(cpp|cc|cxx|hpp|hh|hxx|h)$
 CompileFlags:
   Add: [-std=c++23]
 
-# FIX: Find a solution to add standard so that it works for both C and C++
-
 Diagnostics:
-  # Supprime les warnings provenant des bibliothèques externes (ex: /usr/include)
+  # Suppress warnings from external libraries (e.g., /usr/include)
   UnusedIncludes: Strict
-  # Configuration de clang-tidy
+  # clang-tidy configuration
   ClangTidy:
     Add: [
-      "bugprone-*",                     # Détecte les constructions de code propices aux bugs
-      "performance-*",                  # Suggestions pour optimiser la vitesse et la mémoire
-      "portability-*",                  # Problèmes de portabilité entre OS/compilateurs
-      "readability-*",                  # Améliorations de style et de lisibilité (très CLion !)
-      "modernize-*",                    # (Pour le C++) Force l'utilisation des syntaxes modernes
-      "cert-*",                         # Règles de sécurité du standard CERT
-      "cppcoreguidelines-*",            # Règle globales de C++
-      # Trucs en plus de CLion
+      "bugprone-*",                     # Detect error-prone code patterns
+      "performance-*",                  # Suggestions to optimize speed and memory
+      "portability-*",                  # Portability issues across OS/compilers
+      "readability-*",                  # Style and readability improvements
+      "modernize-*",                    # (C++) Enforce modern language syntax
+      "cert-*",                         # CERT security standard rules
+      "cppcoreguidelines-*",            # C++ Core Guidelines rules
+      # Extra checks
       "google-default-arguments",
       "google-runtime-operator",
       "hicpp-exception-baseclass",
@@ -60,20 +58,20 @@ Diagnostics:
       "openmp-use-default-none",
     ]
     Remove: [
-      "bugprone-easily-swappable-parameters",                               # Ne pas vouloir changer l'ordre des paramètres quand 2 à la suite on le même type
-      "modernize-use-trailing-return-type",                                 # Ne pas proposer d'ajouter un trailing return type
-      "readability-braces-around-statements",                               # Ne pas toujours ajouter des {}
-      "readability-identifier-length",                                      # Ne pas vouloir des noms de variables de plus de 3 caractères seulement
-      "readability-implicit-bool-conversion",                               # Plus pratique pour certaines fonctions de C renvoyant des int
-      "cppcoreguidelines-non-private-member-variables-in-classes",          # Ne pas interdire les attributs de classe protected
-      "cppcoreguidelines-avoid-const-or-ref-data-members",                  # Ne pas interdire les attributs de classe const ou &
-      "cppcoreguidelines-avoid-magic-numbers", "readability-magic-numbers", # Autoriser les valeurs hardcodées
-      "cppcoreguidelines-macro-usage",                                      # Réparer les X macros
-      "cppcoreguidelines-avoid-do-while",                                   # Autoriser les do {} while ()
-      "cppcoreguidelines-pro-type-static-cast-downcast",                    # Je sais ce que je fais
-      "cppcoreguidelines-pro-bounds-pointer-arithmetic",                    # L'arithmétique de pointeurs c'est bien
-      "cppcoreguidelines-avoid-c-arrays",                                   # Ne pas remplacer les arrays[n] par std::array<n>()
-      "modernize-avoid-c-arrays",                                           # Pareil qu'au dessus
-      # "performance-avoid-endl",                                             # Des fois c'est pratique quand même
-      "cppcoreguidelines-avoid-goto",                                       # Des fois c'est pratique quand même
+      "bugprone-easily-swappable-parameters",                               # Allow consecutive parameters of the same type
+      "modernize-use-trailing-return-type",                                 # Do not enforce trailing return types
+      "readability-braces-around-statements",                               # Do not require braces around single-line statements
+      "readability-identifier-length",                                      # Allow short variable names (under 3 chars)
+      "readability-implicit-bool-conversion",                               # Convenient for C functions returning int
+      "cppcoreguidelines-non-private-member-variables-in-classes",          # Allow protected class member variables
+      "cppcoreguidelines-avoid-const-or-ref-data-members",                  # Allow const or reference class members
+      "cppcoreguidelines-avoid-magic-numbers", "readability-magic-numbers", # Allow magic numbers
+      "cppcoreguidelines-macro-usage",                                      # Allow macros (e.g., X-macros)
+      "cppcoreguidelines-avoid-do-while",                                   # Allow do {} while ()
+      "cppcoreguidelines-pro-type-static-cast-downcast",                    # Allow explicit static_cast downcasts
+      "cppcoreguidelines-pro-bounds-pointer-arithmetic",                    # Allow pointer arithmetic
+      "cppcoreguidelines-avoid-c-arrays",                                   # Allow C-style arrays[n]
+      "modernize-avoid-c-arrays",                                           # Same as above
+      # "performance-avoid-endl",                                             # Sometimes std::endl is useful
+      "cppcoreguidelines-avoid-goto",                                       # Allow goto when appropriate
     ]
