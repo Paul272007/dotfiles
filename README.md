@@ -16,7 +16,7 @@ Centralized personal configuration managed with [GNU Stow](https://www.gnu.org/s
 Because [`.stowrc`](.stowrc) configures `--target=~` and `--no-folding`, you can clone this repository anywhere (for example `~/Projects/dotfiles`) and run Stow without extra flags:
 
 ```bash
-git clone <your-repo-url> ~/Projects/dotfiles
+git clone https://github.com/Paul272007/dotfiles ~/Projects/dotfiles
 cd ~/Projects/dotfiles
 stow .
 ```
